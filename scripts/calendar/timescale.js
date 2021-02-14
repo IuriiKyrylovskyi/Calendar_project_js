@@ -14,11 +14,9 @@ export const renderTimescale = () => {
 
   // calendarTimeScaleElem.innerHTML = timeScale;
 
-  calendarTimeScaleElem.innerHTML = createNumbersArray(0, 24).reduce((acc, num) => {
-    acc.join(`<div class="time-slot"><span class="time-slot__time">${num}</span>
-			 </div>`),
-      '';
-  });
+	calendarTimeScaleElem.innerHTML = createNumbersArray(0, 24)
+		.map(num => `<div class="time-slot"><span class="time-slot__time">${num}</span></div>`)
+		.join('');
 
   // listItemElem.append(checkbox, text);
 

@@ -1,6 +1,5 @@
 .page {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -127,12 +126,6 @@
   font-size: 20px;
 }
 
-.time-slot {
-  width: 50px;
-  height: 60px;
-  background-color: #c8fac8;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.8);
-}
 .event {
   position: absolute;
   width: 80%;
@@ -146,6 +139,12 @@
 }
 .event__title {
   margin-bottom: 15px;
+}
+.time-slot {
+  width: 50px;
+  height: 60px;
+  background-color: #c8fac8;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.8);
 }
 * {
   box-sizing: border-box;
