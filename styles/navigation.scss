@@ -1,7 +1,11 @@
 // стили навигации
-button {
+.button {
 }
 .create-event-btn {
+  min-width: 100px;
+}
+.create-event-btn__icon {
+  margin-right: 10px;
 }
 .navigation__today-btn {
 }
@@ -20,8 +24,8 @@ input {
 }
 
 input[name="title"] {
-	// color: blue;
-	// background-color: pink;
+  // color: blue;
+  // background-color: pink;
 }
 input[name="date"] {
 }

@@ -14,6 +14,7 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
+  padding: 0px 15px;
 }
 
 .icon-button {
@@ -58,8 +59,93 @@
   display: none;
 }
 
-.calendar {
-  background-color: #fff;
+.create-event-btn {
+  min-width: 100px;
+}
+
+.create-event-btn__icon {
+  margin-right: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin: 10px 50px 5px 50px;
+}
+
+.button {
+  margin: 5px 30px 5px 0;
+}
+
+.navigation__displayed-month {
+  font-weight: 600;
+}
+
+.icon-button {
+  margin: 0px 10px 0px 0px;
+}
+
+.calendar__header {
+  display: flex;
+  height: 100px;
+  margin: 0px 0px 0px 50px;
+}
+.calendar__week-container {
+  display: flex;
+}
+.calendar__week {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.calendar__day {
+  flex: 0 0 calc(100 / 7 * 1%);
+  background-color: rgba(255, 192, 203, 0.308);
+}
+.calendar__time-slot {
+  position: relative;
+  height: 60px;
+  border-right: 1px solid rgba(128, 128, 128, 0.3);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.day-label {
+  flex: 0 0 calc(100 / 7 * 1%);
+  height: 100%;
+  text-align: center;
+  padding: 23px 20px 20px;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.day-label__day-name {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.day-label__day-number {
+  font-size: 20px;
+}
+
+.time-slot {
+  width: 50px;
+  height: 60px;
+  background-color: #c8fac8;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.8);
+}
+.event {
+  position: absolute;
+  width: 80%;
+  height: 200px;
+  top: 300px;
+  left: 0;
+  color: #fff;
+  background-color: #518fe0;
+  padding: 10px;
+  border-radius: 10px;
+}
+.event__title {
+  margin-bottom: 15px;
 }
 * {
   box-sizing: border-box;
@@ -68,6 +154,7 @@
 body {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
+  background-color: #fff;
 }
 
 /*# sourceMappingURL=styles.css.map */

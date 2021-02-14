@@ -1,16 +1,17 @@
-@import 'page.scss';
-@import 'common.scss';
-@import 'navigation.scss';
-@import 'calendar.scss';
-@import 'timescale.scss';
-@import 'create-event.scss';
-@import 'event.scss';
+@import "page.scss";
+@import "common.scss";
+@import "navigation.scss";
+@import "calendar.scss";
+@import "timescale.scss";
+@import "create-event.scss";
+@import "event.scss";
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-family: "Roboto", sans-serif;
+	background-color: #fff;
 }
