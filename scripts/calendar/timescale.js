@@ -28,7 +28,7 @@ export const renderTimescale = () => {
 
   // listItemElem.append(checkbox, text);
 
-  return calendarTimeScaleElem;
+  // return calendarTimeScaleElem;
 };
 
 // renderTimescale();

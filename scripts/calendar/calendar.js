@@ -3,18 +3,19 @@ import { generateWeekRange } from '../common/time.utils.js';
 // import { renderEvents } from '../events/events.js';
 import { createNumbersArray } from '../common/createNumbersArray.js';
 
-const generateDay = dayNum => {
-  // +- функция должна сгенерировать и вернуть разметку дня в виде строки
+const generateDay = () => {
+  // + функция должна сгенерировать и вернуть разметку дня в виде строки
   // + разметка состоит из 24 часовых временных слотов (.calendar__time-slot)
 
   const calendarDayElem = document.createElement('div');
   calendarDayElem.classList.add('calendar__day');
-  calendarDayElem.setAttribute('data-day', dayNum);
+  // calendarDayElem.setAttribute('data-day', dayNum);
   calendarDayElem.innerHTML = createNumbersArray(0, 24)
     .map(num => `<div data-time="${num}" class="calendar__time-slot"></div>`)
     .join('');
 
-  return calendarDayElem;
+  // return calendarDayElem;
+  console.log(calendarDayElem);
 };
 
 export const renderWeek = () => {
@@ -28,11 +29,12 @@ export const renderWeek = () => {
   // const generateDayElem = generateDay();
   // console.log(generateDayElem);
 
-  const startDate = getItem(displayedWeekStart);
+  // const startDate = getItem(displayedWeekStart);
+  const startDate = getItem('displayedWeekStart');
   console.log(startDate);
-
+  console.log(generateWeekRange(startDate));
   calendarWeekElem.innerHTML = generateWeekRange(startDate)
-    .map(dayNum => generateDay(dayNum))
+    .map(dayNum => (dayNum = generateDay()))
     // .map(dayNum => generateDayElem.setAttribute('data-day', dayNum))
     // .map(dayNum =>
     //   generateDayElem.replace(
@@ -44,5 +46,3 @@ export const renderWeek = () => {
 
   // return
 };
-renderWeek();
-console.log(renderWeek());

@@ -1,18 +1,17 @@
-import { storage, getItem } from '../common/storage.js';
+import { getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 // import { openModal } from '../common/modal.js';
 
 const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
 export const renderHeader = () => {
-  // - на основе displayedWeekStart из storage с помощью generateWeekRange сформируйте массив дней текущей недели
+  // + на основе displayedWeekStart из storage с помощью generateWeekRange сформируйте массив дней текущей недели
   // + на основе полученного массива сформируйте разметку в виде строки - 7 дней (день недели и число в месяце)
   // + полученную разметку вставить на страницу с помощью innerHTML в .calendar__header
   // ? в дата атрибуте каждой ячейки должно хранить для какого часа эта ячейка
 
-  // const startDate = storage.getItem(displayedWeekStart);
-  const startDate = new Date(2020, 2, 16);
-  // console.log(getItem(storage));
+  const startDate = getItem(['displayedWeekStart']);
+  // console.log(startDate);
 
   const currentWeekDays = generateWeekRange(startDate);
 
@@ -28,7 +27,6 @@ export const renderHeader = () => {
     )
     .join('');
 
-  return calendarHeaderElem;
 };
 
 // при клике на кнопку "Create" открыть модальное окно с формой для создания события

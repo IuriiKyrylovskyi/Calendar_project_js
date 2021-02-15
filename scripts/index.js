@@ -1,5 +1,5 @@
 import { renderTimescale } from './calendar/timescale.js';
-// import { renderWeek } from './calendar/calendar.js';
+import { renderWeek } from './calendar/calendar.js';
 import { renderHeader } from './calendar/header.js';
 // import { initNavigation } from './header/navigation.js';
 // import { setItem } from './common/storage.js';
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // инициализация всех элементов
     renderTimescale();
     // setItem('displayedWeekStart', getStartOfWeek(new Date()));
-    // renderWeek();
+    renderWeek();
     renderHeader();
     // initNavigation();
     // initEventForm();
