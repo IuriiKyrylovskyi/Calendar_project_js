@@ -1,10 +1,22 @@
 // стили боковой временной шкалы
+.calendar__time-scale {
+	height: 100%;
+}
 .time-slot {
 	width: 50px;
 	height: 60px;
 	background-color: rgb(200, 250, 200);
 	border-bottom: 1px solid rgba(128, 128, 128, 0.8);
+	&:first-child {
+		font-size: 0;
+	}
 
 	&__time {
+		display: block;
+		text-align: right;
+		padding: 0px 5px 0px 0px;
+		transform: translateY(-50%);
+		font-size: 12px;
+		font-weight: 500;
 	}
 }

@@ -1,28 +1,34 @@
 import { createNumbersArray } from '../common/createNumbersArray.js';
 
 export const renderTimescale = () => {
-  // ф-ция должна генерировать разметку для боковой шкалы времени (24 часа)
-  // полученную разметку вставьте на страницу с помощью innerHTML в .calendar__time-scale
+  // +- ф-ция должна генерировать разметку для боковой шкалы времени (24 часа)
+  // + полученную разметку вставьте на страницу с помощью innerHTML в .calendar__time-scale
   // ============ start ==============
-  const calendarTimeScaleElem = document.querySelector('.calendar__time-scale');
+  const getGreenwichTime = date => {
+    const formatter = new Intl.DateTimeFormat('en', {
+      timeZone: 'UTC',
+      hour: '2-digit',
+      hour12: true,
+    });
+    return formatter.format(date);
+  };
 
-  // const timeScaleElem = document.createElement('div');
-  // timeScaleElem.classList.add('time-slot');
-  // const timeSlotElem = document.createElement('span');
-  // timeSlotElem.classList.add('time-slot__time');
-  // const timeScale = timeScaleElem.append(timeSlotElem);
-
-  // calendarTimeScaleElem.innerHTML = timeScale;
-
-	calendarTimeScaleElem.innerHTML = createNumbersArray(0, 24)
-		.map(num => `<div class="time-slot"><span class="time-slot__time">${num}</span></div>`)
-		.join('');
+	const calendarTimeScaleElem = document.querySelector('.calendar__time-scale');
+	
+  calendarTimeScaleElem.innerHTML = createNumbersArray(0, 24)
+    .map(
+      num =>
+        `<div data-hour="${num}" class="time-slot">
+				   <span
+					 	data-time-slot-time="${num}" 
+						class="time-slot__time">${getGreenwichTime(new Date(num))}</span>
+		     </div>`,
+    )
+    .join('');
 
   // listItemElem.append(checkbox, text);
 
-  // return calendarTimeScaleElem;
-
-  // listElem.append(...tasksElems);
+  return calendarTimeScaleElem;
 };
 
-renderTimescale();
+// renderTimescale();
