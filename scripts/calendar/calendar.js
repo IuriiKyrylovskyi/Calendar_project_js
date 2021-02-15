@@ -14,7 +14,7 @@ const generateDay = () => {
     .map(num => `<div data-time="${num}" class="calendar__time-slot"></div>`)
     .join('');
 
-  console.log(calendarDayElem);
+  // console.log(calendarDayElem);
   return calendarDayElem;
 };
 
@@ -24,28 +24,27 @@ export const renderWeek = () => {
   // + массив дней, которые нужно отобразить, считаем ф-цией generateWeekRange на основе displayedWeekStart из storage
   // каждый день должен содержать в дата атрибуте порядковый номер дня в месяце
   // после того, как отрисовали всю сетку для отображаемой недели, нужно отобразить события этой недели с помощью renderEvents
-  console.log(typeof generateDay());
-
+	
+  // console.log(typeof generateDay());
+  // console.log(Object.values(generateDay()));
   const calendarWeekElem = document.querySelector('.calendar__week');
 
-  // const startDate = getItem(displayedWeekStart);
   const startDate = getItem('displayedWeekStart');
-  console.log(startDate);
+  // console.log(startDate);
 
   const currentWeekDays = generateWeekRange(startDate);
   console.log(currentWeekDays);
 
   calendarWeekElem.innerHTML = currentWeekDays
-    .map(dayNum => (dayNum = generateDay()))
+    // .map(dayNum => (dayNum = generateDay().outerHTML))
     // .map(dayNum => generateDayElem.setAttribute('data-day', dayNum))
-    // .map(dayNum =>
-    // 	generateDay()
-    // 		.replace(
-    //     `<div class="calendar__day"`,
-    //     `<div data-day="${dayNum}" class="calendar__day"`,
-    //   ),
-    // )
+    .map(dayNum =>
+    	generateDay().outerHTML
+    		.replace(
+        `<div class="calendar__day"`,
+        `<div data-day="${dayNum}" class="calendar__day"`,
+      ),
+    )
     .join('');
 
-  // return
 };
