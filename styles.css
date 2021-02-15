@@ -167,9 +167,6 @@
   background-color: #c8fac8;
   border-bottom: 1px solid rgba(128, 128, 128, 0.8);
 }
-.time-slot:first-child {
-  font-size: 0;
-}
 .time-slot__time {
   display: block;
   text-align: right;
@@ -177,6 +174,10 @@
   transform: translateY(-50%);
   font-size: 12px;
   font-weight: 500;
+}
+
+span[data-time-slot-time="0"] {
+  font-size: 0;
 }
 
 * {

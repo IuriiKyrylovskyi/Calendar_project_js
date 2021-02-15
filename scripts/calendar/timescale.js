@@ -6,29 +6,23 @@ export const renderTimescale = () => {
   // ============ start ==============
   const getGreenwichTime = date => {
     const formatter = new Intl.DateTimeFormat('en', {
-      timeZone: 'UTC',
+      // timeZone: 'UTC',
       hour: '2-digit',
       hour12: true,
     });
     return formatter.format(date);
   };
 
-	const calendarTimeScaleElem = document.querySelector('.calendar__time-scale');
-	
+  const calendarTimeScaleElem = document.querySelector('.calendar__time-scale');
+
   calendarTimeScaleElem.innerHTML = createNumbersArray(0, 24)
     .map(
       num =>
         `<div data-hour="${num}" class="time-slot">
 				   <span
 					 	data-time-slot-time="${num}" 
-						class="time-slot__time">${getGreenwichTime(new Date(num))}</span>
+						class="time-slot__time">${getGreenwichTime(new Date().setHours(num))}</span>
 		     </div>`,
     )
     .join('');
-
-  // listItemElem.append(checkbox, text);
-
-  // return calendarTimeScaleElem;
 };
-
-// renderTimescale();
