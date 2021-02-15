@@ -7,7 +7,7 @@ export const renderTimescale = () => {
   const getGreenwichTime = date => {
     const formatter = new Intl.DateTimeFormat('en', {
       // timeZone: 'UTC',
-      hour: '2-digit',
+      hour: 'numeric',
       hour12: true,
     });
     return formatter.format(date);

@@ -32,7 +32,7 @@ export const renderWeek = () => {
   // console.log(startDate);
 
   const currentWeekDays = generateWeekRange(startDate);
-  console.log(currentWeekDays);
+  // console.log(currentWeekDays);
 
   calendarWeekElem.innerHTML = currentWeekDays
     .map(dayNum => {
