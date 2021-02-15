@@ -1,3 +1,30 @@
+const generateWeekRange = startDate => {
+  const result = [];
+  for (let i = 0; i < 7; i += 1) {
+    const base = new Date(startDate);
+    result.push(new Date(base.setDate(base.getDate() + i)));
+  }
+  return result;
+};
+
+console.log(generateWeekRange(Date.now()));
+
+let storage = {
+  // используется для удаления события
+  eventIdToDelete: null,
+  // хранит дату понедельника той отображаемой недели
+  displayedWeekStart: new Date(2020, 2, 16), //null,
+  // хранит массив всех событий
+  events: [],
+  // это все данные, которые вам нужно хранить для работы приложения
+};
+console.log(storage.displayedWeekStart); // 2020-03-15T22:00:00.000Z
+
+const startDate = new Date(2020, 2, 16);
+const currentWeekDays = generateWeekRange(startDate);
+
+console.log(currentWeekDays);
+
 const createNumbersArray = (from, to) => {
   // ф-ция должна генерировать массив чисел от from до to
   const numbers = [];
