@@ -1,4 +1,4 @@
-import { getItem } from '../common/storage.js';
+import { storage, getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 // import { openModal } from '../common/modal.js';
 
@@ -10,9 +10,9 @@ export const renderHeader = () => {
   // + полученную разметку вставить на страницу с помощью innerHTML в .calendar__header
   // ? в дата атрибуте каждой ячейки должно хранить для какого часа эта ячейка
 
-  const startDate = getItem(displayedWeekStart);
+  const startDate = storage.displayedWeekStart;
   // const startDate = new Date(2020, 2, 16);
-  // console.log(getItem(displayedWeekStart));
+  // console.log(getItem(storage));
 
   const currentWeekDays = generateWeekRange(startDate);
 

@@ -1,4 +1,4 @@
-let storage = {
+export let storage = {
   // используется для удаления события
   eventIdToDelete: null,
   // хранит дату понедельника той отображаемой недели
