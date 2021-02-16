@@ -28,31 +28,48 @@ const onChangeWeek = event => {
 
   let uploadWeekStart = 0;
 
-  if (!isButton) {
-    console.log(getItem('displayedWeekStart'));
-    console.log(startOfWeek);
-    console.log(startOfWeek.getDate());
-    return;
+  switch (isButton.dataset.direction) {
+    // case !isButton.dataset.direction:
+    //   return;
+    case 'next':
+      uploadWeekStart = startOfWeek.getDate() + 7;
+      startOfWeek.setDate(uploadWeekStart);
+      setItem('displayedWeekStart', startOfWeek);
+      break;
+    case 'prev':
+      uploadWeekStart = startOfWeek.getDate() - 7;
+      startOfWeek.setDate(uploadWeekStart);
+      setItem('displayedWeekStart', startOfWeek);
+      break;
+    case 'today':
+      setItem('displayedWeekStart', getStartOfWeek(new Date(Date.now())));
+      break;
+    default:
+      // break;
   }
-  if (isButton.dataset.direction === 'next') {
-    uploadWeekStart = startOfWeek.getDate() + 7;
-    // console.log(uploadWeekStart); // 22
-    startOfWeek.setDate(uploadWeekStart);
-    // console.log(startOfWeek);
-    setItem('displayedWeekStart', startOfWeek);
-    // console.log(getItem('displayedWeekStart'));
-  } else if (isButton.dataset.direction === 'prev') {
-    uploadWeekStart = startOfWeek.getDate() - 7;
-    // console.log(uploadWeekStart); // 8
-    startOfWeek.setDate(uploadWeekStart);
-    // console.log(startOfWeek);
-    setItem('displayedWeekStart', startOfWeek);
-    // console.log(getItem('displayedWeekStart'));
-  } else if (isButton.dataset.direction === 'today') {
-    // console.log(new Date(Date.now()).getDate());
-    setItem('displayedWeekStart', getStartOfWeek(new Date(Date.now())));
-    // console.log(getItem('displayedWeekStart'));
-  }
+
+  // if (!isButton) {
+  //   return;
+  // }
+  // if (isButton.dataset.direction === 'next') {
+  //   uploadWeekStart = startOfWeek.getDate() + 7;
+  //   // console.log(uploadWeekStart); // 22
+  //   startOfWeek.setDate(uploadWeekStart);
+  //   // console.log(startOfWeek);
+  //   setItem('displayedWeekStart', startOfWeek);
+  //   // console.log(getItem('displayedWeekStart'));
+  // } else if (isButton.dataset.direction === 'prev') {
+  //   uploadWeekStart = startOfWeek.getDate() - 7;
+  //   // console.log(uploadWeekStart); // 8
+  //   startOfWeek.setDate(uploadWeekStart);
+  //   // console.log(startOfWeek);
+  //   setItem('displayedWeekStart', startOfWeek);
+  //   // console.log(getItem('displayedWeekStart'));
+  // } else if (isButton.dataset.direction === 'today') {
+  //   // console.log(new Date(Date.now()).getDate());
+  //   setItem('displayedWeekStart', getStartOfWeek(new Date(Date.now())));
+  //   // console.log(getItem('displayedWeekStart'));
+  // }
   renderHeader();
   renderWeek();
   renderCurrentMonth();

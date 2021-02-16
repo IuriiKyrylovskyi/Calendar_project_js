@@ -29,7 +29,7 @@ export const renderWeek = () => {
   const calendarWeekElem = document.querySelector('.calendar__week');
 
   const startDate = getItem('displayedWeekStart');
-  // console.log(startDate);
+  // console.log(startDate);2
 
   const currentWeekDays = generateWeekRange(startDate);
   // console.log(currentWeekDays);
