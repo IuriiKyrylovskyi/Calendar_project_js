@@ -61,10 +61,37 @@
 
 .create-event-btn {
   min-width: 100px;
+  transition: all 0.3s linear;
+}
+.create-event-btn:hover {
+  background-color: rgba(128, 128, 128, 0.3);
 }
 
 .create-event-btn__icon {
   margin-right: 10px;
+}
+
+.navigation__today-btn {
+  transition: all 0.3s linear;
+}
+.navigation__today-btn:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+.icon-button {
+  transition: all 0.3s linear;
+  border: 1px solid #fff;
+}
+.icon-button:hover {
+  border-radius: 3px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  background-color: rgba(128, 128, 128, 0.8);
+  color: #fff;
+}
+
+textarea[name=description] {
+  border-radius: 3px;
+  border: 1px solid grey;
 }
 
 .header {

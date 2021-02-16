@@ -51,8 +51,7 @@ const onChangeWeek = event => {
   } else if (isButton.dataset.direction === 'today') {
     // console.log(new Date(Date.now()).getDate());
     setItem('displayedWeekStart', getStartOfWeek(new Date(Date.now())));
-    // setItem('displayedWeekStart', startOfWeek);
-    console.log(getItem('displayedWeekStart'));
+    // console.log(getItem('displayedWeekStart'));
   }
   renderHeader();
   renderWeek();
