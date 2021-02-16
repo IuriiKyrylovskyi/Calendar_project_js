@@ -19,8 +19,8 @@ function renderCurrentMonth() {
 }
 
 const onChangeWeek = event => {
-  // при переключении недели обновите displayedWeekStart в storage
-  // и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
+  // + при переключении недели обновите displayedWeekStart в storage
+  // + и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
 
   const isButton = event.target.closest('button');
 
@@ -35,25 +35,25 @@ const onChangeWeek = event => {
     return;
   }
   if (isButton.dataset.direction === 'next') {
-    // const nextWeek = startOfWeek.setDate();
     uploadWeekStart = startOfWeek.getDate() + 7;
-		console.log(uploadWeekStart); // 22
-		setItem('displayedWeekStart', );
-		startOfWeek.setDate = uploadWeekStart;
-		console.log(startOfWeek);
-		console.log(getItem('displayedWeekStart'));
-		
-
+    // console.log(uploadWeekStart); // 22
+    startOfWeek.setDate(uploadWeekStart);
+    // console.log(startOfWeek);
+    setItem('displayedWeekStart', startOfWeek);
+    // console.log(getItem('displayedWeekStart'));
   } else if (isButton.dataset.direction === 'prev') {
-    console.log('prev');
+    uploadWeekStart = startOfWeek.getDate() - 7;
+    // console.log(uploadWeekStart); // 8
+    startOfWeek.setDate(uploadWeekStart);
+    // console.log(startOfWeek);
+    setItem('displayedWeekStart', startOfWeek);
+    // console.log(getItem('displayedWeekStart'));
   } else if (isButton.dataset.direction === 'today') {
-    // date = Date.now().getDate();
-    // console.log(getStartOfWeek(Date.now()));
-
-    setItem('displayedWeekStart', getStartOfWeek(Date.now()));
-    console.log('today');
+    // console.log(new Date(Date.now()).getDate());
+    setItem('displayedWeekStart', getStartOfWeek(new Date(Date.now())));
+    // setItem('displayedWeekStart', startOfWeek);
+    console.log(getItem('displayedWeekStart'));
   }
-  // console.log('btn');
   renderHeader();
   renderWeek();
   renderCurrentMonth();
