@@ -28,9 +28,10 @@ const onChangeWeek = event => {
 
   let uploadWeekStart = 0;
 
+  if (!isButton) {
+    return;
+  }
   switch (isButton.dataset.direction) {
-    // case !isButton.dataset.direction:
-    //   return;
     case 'next':
       uploadWeekStart = startOfWeek.getDate() + 7;
       startOfWeek.setDate(uploadWeekStart);
@@ -45,7 +46,7 @@ const onChangeWeek = event => {
       setItem('displayedWeekStart', getStartOfWeek(new Date(Date.now())));
       break;
     default:
-      // break;
+      break;
   }
 
   // if (!isButton) {
