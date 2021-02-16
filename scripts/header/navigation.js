@@ -23,20 +23,27 @@ const onChangeWeek = event => {
   // и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
 
   const isButton = event.target.closest('button');
-  // const date = new Date();
+
   const startOfWeek = getStartOfWeek(getItem('displayedWeekStart'));
+
+  let uploadWeekStart = 0;
 
   if (!isButton) {
     console.log(getItem('displayedWeekStart'));
+    console.log(startOfWeek);
     console.log(startOfWeek.getDate());
     return;
   }
   if (isButton.dataset.direction === 'next') {
-    const nextWeek = startOfWeek.getDate() + 7;
-    console.log(nextWeek); // 22
-    setItem('displayedWeekStart', new Date().setDate(nextWeek));
-    getItem('displayedWeekStart');
-    // console.log(setItem('displayedWeekStart'));
+    // const nextWeek = startOfWeek.setDate();
+    uploadWeekStart = startOfWeek.getDate() + 7;
+		console.log(uploadWeekStart); // 22
+		setItem('displayedWeekStart', );
+		startOfWeek.setDate = uploadWeekStart;
+		console.log(startOfWeek);
+		console.log(getItem('displayedWeekStart'));
+		
+
   } else if (isButton.dataset.direction === 'prev') {
     console.log('prev');
   } else if (isButton.dataset.direction === 'today') {
