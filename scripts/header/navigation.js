@@ -11,8 +11,8 @@ function renderCurrentMonth() {
   // + вставить в .navigation__displayed-month
 
   const currentMonth = getDisplayedMonth(getItem('displayedWeekStart'));
-  console.log(currentMonth);
-  console.log(getItem('displayedWeekStart'));
+  // console.log(currentMonth);
+  // console.log(getItem('displayedWeekStart'));
 
   displayedMonthElem.textContent = currentMonth;
   // console.log(displayedMonthElem);
@@ -27,18 +27,16 @@ const onChangeWeek = event => {
   const startOfWeek = getStartOfWeek(getItem('displayedWeekStart'));
 
   if (!isButton) {
+    console.log(getItem('displayedWeekStart'));
+    console.log(startOfWeek.getDate());
     return;
   }
   if (isButton.dataset.direction === 'next') {
-    // console.log(date.setDate(date.getDate()))
-    console.log(new Date(startOfWeek));
-    const newDate = new Date(startOfWeek.getDay());
-
-    console.log(newDate);
-    // console.log(date.getDate());
-    // const newDate = date.setDate(date.getDate() + 7);
-    setItem('displayedWeekStart', newDate);
-    console.log('next');
+    const nextWeek = startOfWeek.getDate() + 7;
+    console.log(nextWeek); // 22
+    setItem('displayedWeekStart', new Date().setDate(nextWeek));
+    getItem('displayedWeekStart');
+    // console.log(setItem('displayedWeekStart'));
   } else if (isButton.dataset.direction === 'prev') {
     console.log('prev');
   } else if (isButton.dataset.direction === 'today') {
