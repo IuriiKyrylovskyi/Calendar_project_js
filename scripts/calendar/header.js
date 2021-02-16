@@ -20,7 +20,7 @@ export const renderHeader = () => {
   calendarHeaderElem.innerHTML = currentWeekDays
     .map(
       date =>
-        `<div class="calendar__day-label day-label">
+        `<div data-day="${new Date(date).getDay()}" class="calendar__day-label day-label">
 					<span class="day-label__day-name">${daysOfWeek[new Date(date).getDay()]}</span>
 					<span class="day-label__day-number">${new Date(date).getDate()}</span>
 				</div>`,

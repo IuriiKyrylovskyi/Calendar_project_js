@@ -23,18 +23,29 @@ const onChangeWeek = event => {
   // и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
 
   const isButton = event.target.closest('button');
-  const date = new Date();
+  // const date = new Date();
+  const startOfWeek = getStartOfWeek(getItem('displayedWeekStart'));
 
   if (!isButton) {
     return;
   }
   if (isButton.dataset.direction === 'next') {
-    const newDate = date.setDate(date.getDate() + 6);
+    // console.log(date.setDate(date.getDate()))
+    console.log(new Date(startOfWeek));
+    const newDate = new Date(startOfWeek.getDay());
+
+    console.log(newDate);
+    // console.log(date.getDate());
+    // const newDate = date.setDate(date.getDate() + 7);
     setItem('displayedWeekStart', newDate);
     console.log('next');
   } else if (isButton.dataset.direction === 'prev') {
     console.log('prev');
   } else if (isButton.dataset.direction === 'today') {
+    // date = Date.now().getDate();
+    // console.log(getStartOfWeek(Date.now()));
+
+    setItem('displayedWeekStart', getStartOfWeek(Date.now()));
     console.log('today');
   }
   // console.log('btn');
