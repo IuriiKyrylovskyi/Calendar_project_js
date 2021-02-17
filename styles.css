@@ -183,20 +183,6 @@ textarea[name=description] {
   font-size: 20px;
 }
 
-.event {
-  position: absolute;
-  width: 80%;
-  height: 200px;
-  top: 300px;
-  left: 0;
-  color: #fff;
-  background-color: #518fe0;
-  padding: 8px;
-  border-radius: 8px;
-}
-.event__title {
-  margin-bottom: 15px;
-}
 .calendar__time-scale {
   height: 100%;
 }
@@ -220,6 +206,20 @@ span[data-time-slot-time="0"] {
   font-size: 0;
 }
 
+.event {
+  position: absolute;
+  width: 80%;
+  height: 200px;
+  top: 300px;
+  left: 0;
+  color: #fff;
+  background-color: #518fe0;
+  padding: 8px;
+  border-radius: 8px;
+}
+.event__title {
+  margin-bottom: 15px;
+}
 * {
   box-sizing: border-box;
 }

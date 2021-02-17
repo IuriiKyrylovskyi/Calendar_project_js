@@ -12,14 +12,31 @@ function handleEventClick(event) {
 
 function removeEventsFromCalendar() {
   // ф-ция для удаления всех событий с календаря
-  setItem('events', []);
+  // setItem('events', []);
 }
 
 const createEventElement = event => {
-  // ф-ция создает DOM элемент события
+  // + ф-ция создает DOM элемент события
   // событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
-  // нужно добавить id события в дата атрибут
-  // здесь для создания DOM элемента события используйте document.createElement
+  // + нужно добавить id события в дата атрибут
+  // + здесь для создания DOM элемента события используйте document.createElement
+
+  const eventElem = document.createElement('div');
+  eventElem.classList.add('event');
+  eventElem.setAttribute('data-event-id');
+  eventElem.style.top = '10px'; // let
+  eventElem.style.height = '200px'; // let
+
+  const eventTitleElem = document.createElement('div');
+  eventTitleElem.classList.add('event__title');
+  eventTitleElem.textContent = 'Code'; // let
+
+  const eventTimeElem = document.createElement('div');
+  eventTimeElem.classList.add('event__time');
+  eventTimeElem.textContent = '3:15 - 6:30'; // let
+
+  eventElem.append(eventTitleElem);
+  eventElem.append(eventTimeElem);
 };
 
 export const renderEvents = () => {

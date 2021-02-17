@@ -2,9 +2,17 @@ let storage = {
   // используется для удаления события
   eventIdToDelete: null,
   // хранит дату понедельника той отображаемой недели
-	displayedWeekStart: null, // new Date(2020, 2, 16), //null,
+  displayedWeekStart: null, // new Date(2020, 2, 16), //null,
   // хранит массив всех событий
-  events: [],
+  events: [
+    {
+      id: 0.7520027086457333, // id понадобится для работы с событиями
+      title: 'Code',
+      description: 'something',
+      start: new Date('2021-01-19T01:10:00.000Z'),
+      end: new Date('2021-01-19T04:30:00.000Z'),
+    },
+  ],
   // это все данные, которые вам нужно хранить для работы приложения
 };
 
