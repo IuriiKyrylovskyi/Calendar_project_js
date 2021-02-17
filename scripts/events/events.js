@@ -60,14 +60,15 @@ export const renderEvents = () => {
     );
   };
 
-	createEventElement(getWeekEvents);
-	
-	const calendarTimeSlotElems = document.querySelectorAll('.calendar__time-slot');
+  createEventElement(getWeekEvents);
 
-	const calendarTimeSlotElem = () => calendarTimeSlotElems.map(elem => elem.dataTime);
+  const calendarTimeSlotElems = document.querySelectorAll('.calendar__time-slot');
 
-	if (weekElem.closest.dataset.dataDay === )
+  const calendarTimeSlotElem = () => calendarTimeSlotElems.map(elem => elem);
 
+  if (weekElem.closest.dataset.dataDay === calendarTimeSlotElem.dataTime) {
+    this.append(calendarTimeSlotElem);
+  }
 };
 
 function onDeleteEvent() {
