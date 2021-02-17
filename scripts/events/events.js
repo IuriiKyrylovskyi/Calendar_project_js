@@ -61,15 +61,21 @@ export const renderEvents = () => {
       (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
   );
 
-  const calendarTimeSlotElem = document.querySelectorAll('.calendar__time-slot');
+  const calendarTimeSlotElem = document.querySelector('.calendar__time-slot');
+  const calendarTimeSlotTimeElem = calendarTimeSlotElem.dataset.time;
 
   const getEventsByTime = getEventsByDate.map(event => {
-    console.log(new Date(event.start).getHours());
-    // if (new Date(event.start).getHours() === calendarTimeSlotElem.dataset.time) {
-    //   // calendarTimeSlotElem.append(createEventElement(event));
-    // }
-    // return calendarTimeSlotElem;
+   
+    if (new Date(event.start).getHours() !== calendarTimeSlotTimeElem) {
+      console.log(new Date(event.start).getHours() * 60);
+      console.log(calendarTimeSlotTimeElem);
+      return;
+    }
+    calendarTimeSlotElem.innerHTML = createEventElement(event);
+    console.log(calendarTimeSlotElem);
   });
+
+  
 };
 
 function onDeleteEvent() {
