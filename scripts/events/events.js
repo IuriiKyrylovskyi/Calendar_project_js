@@ -34,7 +34,8 @@ const createEventElement = event => {
 
   const eventTimeElem = document.createElement('div');
   eventTimeElem.classList.add('event__time');
-  eventTimeElem.textContent = '3:15 - 6:30'; // let
+  eventTimeElem.textContent = `${new Date(getItem('event.start')).getHours()} - ${getItem('event.end')}`; // let
+  // eventTimeElem.textContent = '3:15 - 6:30'; // let
 
   eventElem.append(eventTitleElem);
   eventElem.append(eventTimeElem);
@@ -61,21 +62,20 @@ export const renderEvents = () => {
       (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
   );
 
-  const calendarTimeSlotElem = document.querySelector('.calendar__time-slot');
-  const calendarTimeSlotTimeElem = calendarTimeSlotElem.dataset.time;
+  console.log(getEventsByDate);
+  // const calendarTimeSlotTimeElem = calendarTimeSlotElem.dataset.time;
 
   const getEventsByTime = getEventsByDate.map(event => {
-   
-    if (new Date(event.start).getHours() !== calendarTimeSlotTimeElem) {
-      console.log(new Date(event.start).getHours() * 60);
-      console.log(calendarTimeSlotTimeElem);
-      return;
-    }
-    calendarTimeSlotElem.innerHTML = createEventElement(event);
-    console.log(calendarTimeSlotElem);
+    const calendarTimeSlotElem = document.querySelector(
+      // '.calendar__time-slot[data-time="' + new Date(event.start).getHours() + '"]',
+      `.calendar__time-slot[data-time="${new Date(event.start).getHours()}"]`,
+    );
+    calendarTimeSlotElem.append(createEventElement(event));
+    // calendarTimeSlotElem.innerHTML = createEventElement(event);
+    calendarTimeSlotElem;
+    // console.log(calendarTimeSlotElem);
   });
-
-  
+  console.log(getEventsByTime);
 };
 
 function onDeleteEvent() {
