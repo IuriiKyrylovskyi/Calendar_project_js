@@ -24,6 +24,7 @@ const createEventElement = event => {
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
   eventElem.setAttribute('data-event-id');
+  eventElem.dataset.eventId = Date.now();
   eventElem.style.top = '10px'; // let
   eventElem.style.height = '200px'; // let
 
@@ -43,10 +44,26 @@ export const renderEvents = () => {
   // достаем из storage все события и дату понедельника отображаемой недели
   // фильтруем события, оставляем только те, что входят в текущую неделю
   // создаем для них DOM элементы с помощью createEventElement
-  // для каждого события находим на странице временную ячейку (.calendar__time-slot)
+  // + для каждого события находим на странице временную ячейку (.calendar__time-slot)
   // и вставляем туда событие
   // каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
   // не забудьте удалить с календаря старые события перед добавлением новых
+
+  const events = getItem('events');
+  const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
+
+  const getWeekEvents = () => {
+    events.filter(
+      dayDate =>
+        dayDate.start.getDate() - mondayDate.getDate() <= 6 &&
+        dayDate.start.getDate() - mondayDate.getDate() >= 0,
+    );
+  };
+
+	createEventElement(getWeekEvents);
+	
+	const calendarTimeSlotElems = document.querySelectorAll('.calendar__time-slot');
+
 };
 
 function onDeleteEvent() {
