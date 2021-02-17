@@ -1,6 +1,6 @@
 import { getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
-// import { renderEvents } from '../events/events.js';
+import { renderEvents } from '../events/events.js';
 import { createNumbersArray } from '../common/createNumbersArray.js';
 
 const generateDay = () => {
@@ -37,7 +37,7 @@ export const renderWeek = () => {
   calendarWeekElem.innerHTML = currentWeekDays
     .map(dayNum => {
       const day = generateDay();
-      day.setAttribute('data-day', dayNum.getDay());
+      day.setAttribute('data-day', dayNum.getDate());
       return day.outerHTML;
     })
     // .map(dayNum =>
@@ -47,5 +47,8 @@ export const renderWeek = () => {
     //     `<div data-day="${dayNum.getDay()}" class="calendar__day"`,
     //   ),
     // )
-    .join('');
+		.join('');
+	
+		renderEvents();
 };
+

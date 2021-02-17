@@ -4,9 +4,7 @@
 	align-items: center;
 	margin: 10px 50px 5px 50px;
 }
-.button {
-	margin: 5px 30px 5px 0;
-}
+
 .create-event-btn {
 	&__icon {
 	}
@@ -73,7 +71,7 @@
 	}
 
 	&__time-slot {
-		position: relative;
+		// position: relative;
 		height: 60px;
 		border-right: 1px solid rgba(128, 128, 128, 0.3);
 		border-bottom: 1px solid rgba(128, 128, 128, 0.3);

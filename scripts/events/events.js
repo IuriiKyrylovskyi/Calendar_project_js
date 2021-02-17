@@ -23,10 +23,10 @@ const createEventElement = event => {
 
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
-  eventElem.setAttribute('data-event-id');
-  eventElem.dataset.eventId = Date.now();
-  eventElem.style.top = '10px'; // let
-  eventElem.style.height = '200px'; // let
+  eventElem.setAttribute('data-event-id', Date.now());
+  eventElem.style.top = '20px'; // let
+  eventElem.style.height = '100px'; // let
+  eventElem.style.position = 'absolute'; // for check ----
 
   const eventTitleElem = document.createElement('div');
   eventTitleElem.classList.add('event__title');
@@ -38,13 +38,15 @@ const createEventElement = event => {
 
   eventElem.append(eventTitleElem);
   eventElem.append(eventTimeElem);
+
+  return eventElem;
 };
 
 export const renderEvents = () => {
   // достаем из storage все события и дату понедельника отображаемой недели
   // фильтруем события, оставляем только те, что входят в текущую неделю
   // создаем для них DOM элементы с помощью createEventElement
-  // + для каждого события находим на странице временную ячейку (.calendar__time-slot)
+  // для каждого события находим на странице временную ячейку (.calendar__time-slot)
   // и вставляем туда событие
   // каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
   // не забудьте удалить с календаря старые события перед добавлением новых
@@ -52,23 +54,22 @@ export const renderEvents = () => {
   const events = getItem('events');
   const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
 
-  const getWeekEvents = () => {
-    events.filter(
-      dayDate =>
-        dayDate.start.getDate() - mondayDate.getDate() <= 6 &&
-        dayDate.start.getDate() - mondayDate.getDate() >= 0,
-    );
-  };
+  const getEventsByDate = events.filter(
+    event =>
+      // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
+      new Date(event.start - mondayDate).getDay() <= 6 &&
+      (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
+  );
 
-  createEventElement(getWeekEvents);
+  const calendarTimeSlotElem = document.querySelectorAll('.calendar__time-slot');
 
-  const calendarTimeSlotElems = document.querySelectorAll('.calendar__time-slot');
-
-  const calendarTimeSlotElem = () => calendarTimeSlotElems.map(elem => elem);
-
-  if (weekElem.closest.dataset.dataDay === calendarTimeSlotElem.dataTime) {
-    this.append(calendarTimeSlotElem);
-  }
+  const getEventsByTime = getEventsByDate.map(event => {
+    console.log(new Date(event.start).getHours());
+    // if (new Date(event.start).getHours() === calendarTimeSlotElem.dataset.time) {
+    //   // calendarTimeSlotElem.append(createEventElement(event));
+    // }
+    // return calendarTimeSlotElem;
+  });
 };
 
 function onDeleteEvent() {

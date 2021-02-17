@@ -1,6 +1,7 @@
 // стили отображаемого в календаре события
 .event {
 	position: absolute;
+	z-index: 5;
 	width: 80%;
 	height: 200px;
 	top: 300px;
