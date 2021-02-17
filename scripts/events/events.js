@@ -64,6 +64,10 @@ export const renderEvents = () => {
 	
 	const calendarTimeSlotElems = document.querySelectorAll('.calendar__time-slot');
 
+	const calendarTimeSlotElem = () => calendarTimeSlotElems.map(elem => elem.dataTime);
+
+	if (weekElem.closest.dataset.dataDay === )
+
 };
 
 function onDeleteEvent() {
