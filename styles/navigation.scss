@@ -2,20 +2,25 @@
 .button {
 }
 .create-event-btn {
-	min-width: 100px;
-	transition: all 0.3s linear;
-	&:hover {
-		background-color: rgba(128, 128, 128, 0.3);
-	}
+  min-width: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px 0px 5px;
+  border-radius: 20px;
+  transition: all 0.3s linear;
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+  }
 }
 .create-event-btn__icon {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 .navigation__today-btn {
-	transition: all 0.3s linear;
-	&:hover {
-		background-color: rgba(128, 128, 128, 0.3);
-	}
+  transition: all 0.3s linear;
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+  }
 }
 .create-event__close-btn {
 }
@@ -24,14 +29,25 @@
 .delete-event-btn {
 }
 .icon-button {
-	transition: all 0.3s linear;
-	border: 1px solid #fff;
-	&:hover {
-		border-radius: 3px;
-		border: 1px solid rgba(128, 128, 128, 0.5);
-		background-color: rgba(128, 128, 128, 0.8);
-		color: #fff;
-	}
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  transition: all 0.3s linear;
+  // border: 1px solid #fff;
+  border-radius: 100%;
+
+  // border-radius: 3px;
+  &:hover {
+    // border: 1px solid rgba(128, 128, 128, 0.1);
+    background-color: rgba(128, 128, 128, 0.1);
+    // color: #fff;
+  }
+}
+.fa-chevron-left{
+  margin: 0px 2px 0px 0px;
+}
+.fa-chevron-right{
+  margin: 0px 0px 0px 2px;
 }
 input {
 }
@@ -41,8 +57,8 @@ input {
 }
 
 input[name="title"] {
-	// color: blue;
-	// background-color: pink;
+  // color: blue;
+  // background-color: pink;
 }
 input[name="date"] {
 }
@@ -51,7 +67,7 @@ input[name="startTime"] {
 input[name="endTime"] {
 }
 textarea[name="description"] {
-	border-radius: 3px;
-	border: 1px solid grey;
+  border-radius: 3px;
+  border: 1px solid grey;
 }
 // font-family: 'Material Icons Extended';
