@@ -32,7 +32,7 @@ function onCreateEvent(event) {
   // + закрываем форму
   // + и запускаем перерисовку событий с помощью renderEvents
 
-  if (event.target !== closeEventFormBtn) {
+  if (event.target !== eventFormElem.querySelector('[type="submit"]')) {
     return;
   }
 
