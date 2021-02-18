@@ -8,6 +8,10 @@ const deleteEventBtn = document.querySelector('.delete-event-btn');
 function handleEventClick(event) {
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
+  if (event.target !== weekElem.querySelector('.event')) {
+    return;
+	}
+	openPopup();
 }
 
 function removeEventsFromCalendar() {
@@ -20,21 +24,36 @@ const createEventElement = event => {
   // событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
   // + нужно добавить id события в дата атрибут
   // + здесь для создания DOM элемента события используйте document.createElement
+  const calendarDayTimeSlotElem = weekElem.querySelector('.calendar__time-slot');
+  if (event.target !== calendarDayTimeSlotElem) {
+    return;
+  }
+
+  const createdElem = getItem('events').filter(
+    el.start.getDate() === calendarDayTimeSlotElem.closest('.calendar__day').dataset.day &&
+      el.start.getHours() === calendarDayTimeSlotElem.dataset.time,
+  );
 
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
   eventElem.setAttribute('data-event-id', Date.now());
-  eventElem.style.top = '20px'; // let
-  eventElem.style.height = '100px'; // let
   eventElem.style.position = 'absolute'; // for check ----
+  eventElem.style.top = `${new Date(getItem('start').getMinutes())}px`; // let
+  eventElem.style.height = shmoment('subtract', getItem('start'), getItem('end')); // 100px'; // let
 
   const eventTitleElem = document.createElement('div');
   eventTitleElem.classList.add('event__title');
-  eventTitleElem.textContent = 'Code'; // let
+  eventTitleElem.textContent = getItem('title'); // 'Code'; // let
 
   const eventTimeElem = document.createElement('div');
   eventTimeElem.classList.add('event__time');
-  eventTimeElem.textContent = `12 - 'event.end'`; // let
+  eventTimeElem.textContent = `
+			${new Date(createdElem('start').getHours())}:
+			${new Date(createdElem('start').getMinutes())} - 
+			${new Date(createdElem('end').getHours())}:
+			${new Date(createdElem('end').getMinutes())}
+			`; // let
+
   // eventTimeElem.textContent = '3:15 - 6:30'; // let
 
   eventElem.append(eventTitleElem);

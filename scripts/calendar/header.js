@@ -10,7 +10,7 @@ export const renderHeader = () => {
   // + полученную разметку вставить на страницу с помощью innerHTML в .calendar__header
   // + в дата атрибуте каждой ячейки должно хранить для какого часа эта ячейка (Date)
 
-  const startDate = getItem(['displayedWeekStart']);
+  const startDate = getItem('displayedWeekStart');
   // console.log(startDate);
 
   const currentWeekDays = generateWeekRange(startDate);

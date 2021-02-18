@@ -9,8 +9,8 @@ const closeEventFormBtn = document.querySelector('.create-event__close-btn');
 function clearEventForm() {
   // ф-ция должна очистить поля формы от значений
   eventFormElem.querySelector('[name="title"]').value = 'Title';
-  eventFormElem.querySelector('[name="description"]').value = 'Добавьте описание';
-  eventFormElem.querySelector('[name="date"]').value = '';
+  eventFormElem.querySelector('[name="description"]').value = 'Add description';
+  eventFormElem.querySelector('[name="date"]').value = null; // new Date(Date.now()).getFullYear();
   eventFormElem.querySelector('[name="startTime"]').value = '';
   eventFormElem.querySelector('[name="endTime"]').value = '';
 }
@@ -31,7 +31,6 @@ function onCreateEvent(event) {
   // + полученное событие добавляем в массив событий, что хранится в storage
   // + закрываем форму
   // + и запускаем перерисовку событий с помощью renderEvents
-  console.log(eventFormElem.querySelector('[type="submit"]'));
 
   if (event.target !== eventFormElem.querySelector('[type="submit"]')) {
     return;
@@ -50,6 +49,7 @@ function onCreateEvent(event) {
       eventFormElem.querySelector('[name="endTime"]').value,
     ),
   };
+  console.log(newEvent);
 
   setItem('events', getItem('events').push(newEvent));
 
@@ -60,6 +60,8 @@ function onCreateEvent(event) {
 
 export function initEventForm() {
   // +? подпишитесь на сабмит формы и на закрытие формы
+  console.log(eventFormElem.querySelector('[type="submit"]'));
+
   eventFormElem.querySelector('[type="submit"]').addEventListener('click', onCreateEvent);
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
