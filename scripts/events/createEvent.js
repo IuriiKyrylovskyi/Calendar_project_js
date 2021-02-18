@@ -59,5 +59,6 @@ function onCreateEvent(event) {
 
 export function initEventForm() {
   // +? подпишитесь на сабмит формы и на закрытие формы
-  closeEventFormBtn.addEventListener('click', onCreateEvent);
+  eventFormElem.querySelector('[type="submit"]').addEventListener('click', onCreateEvent);
+  closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
