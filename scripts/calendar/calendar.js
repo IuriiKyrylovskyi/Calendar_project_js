@@ -47,8 +47,7 @@ export const renderWeek = () => {
     //     `<div data-day="${dayNum.getDay()}" class="calendar__day"`,
     //   ),
     // )
-		.join('');
-	
-		renderEvents();
-};
+    .join('');
 
+  renderEvents();
+};

@@ -36,7 +36,10 @@
   border: 1px solid #ccc;
   border-radius: 8px;
 }
-
+.modal .create-event {
+  position: relative;
+  max-width: 550px;
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -87,6 +90,33 @@
   background-color: rgba(128, 128, 128, 0.3);
 }
 
+.navigation__displayed-month {
+  font-weight: 600;
+}
+
+.create-event__close-btn {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  height: 32px;
+  width: 32px;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 1;
+}
+.create-event__close-btn:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 32px;
+  width: 32px;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 1;
+  background: pink;
+}
+
 .icon-button {
   flex: 0 0 30px;
   width: 30px;
@@ -115,10 +145,6 @@ textarea[name=description] {
   display: flex;
   align-items: center;
   margin: 10px 50px 5px 50px;
-}
-
-.navigation__displayed-month {
-  font-weight: 600;
 }
 
 .icon-button {
@@ -181,6 +207,10 @@ textarea[name=description] {
 }
 .day-label__day-number {
   font-size: 20px;
+}
+
+.current {
+  background-color: #518fe0;
 }
 
 .calendar__time-scale {

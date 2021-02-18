@@ -10,17 +10,7 @@
 	}
 }
 
-.navigation {
-	&__today-btn {
-	}
 
-	&__nav-icon {
-	}
-
-	&__displayed-month {
-		font-weight: 600;
-	}
-}
 .icon-button {
 	margin: 0px 10px 0px 0px;
 }
@@ -96,5 +86,7 @@
 		font-size: 20px;
 	}
 }
-
+ .current {
+   background-color: #518fe0;;
+ }
 

@@ -34,7 +34,7 @@ const createEventElement = event => {
 
   const eventTimeElem = document.createElement('div');
   eventTimeElem.classList.add('event__time');
-  eventTimeElem.textContent = `${new Date(getItem('event.start')).getHours()} - ${getItem('event.end')}`; // let
+  eventTimeElem.textContent = `12 - 'event.end'`; // let
   // eventTimeElem.textContent = '3:15 - 6:30'; // let
 
   eventElem.append(eventTitleElem);
@@ -72,10 +72,15 @@ export const renderEvents = () => {
     );
     calendarTimeSlotElem.append(createEventElement(event));
     // calendarTimeSlotElem.innerHTML = createEventElement(event);
-    calendarTimeSlotElem;
-    // console.log(calendarTimeSlotElem);
+    // calendarTimeSlotElem;
+    console.log(calendarTimeSlotElem);
   });
-  console.log(getEventsByTime);
+  // console.log(getEventsByTime);
+
+  const currentDateEl = document.querySelector(
+    `.calendar__day-label.day-label[data-time="${new Date(Date.now()).getDate()}"]`,
+  );
+  console.log(currentDateEl);
 };
 
 function onDeleteEvent() {
