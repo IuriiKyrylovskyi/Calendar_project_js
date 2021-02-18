@@ -1,17 +1,83 @@
 // стили формы события внутри модального окна
 .create-event {
-
-		&__close-btn {
-		}
+	position: relative;
+	max-width: 550px;
+	min-width: 400px;
+	padding: 30px 20px 20px 40px;
+	&__close-btn {
+	}
 }
 .event-form {
+	display: flex;
+	flex-direction: column;
 
-		&__field {
-		}
+	&__field {
+	}
 
-		&__time {
+	&__time {
+		display: flex;
+		justify-content: space-between;
+		font-size: 14px;
+		margin: 0px 0px 45px 0px;
+		input + input {
+			margin-left: 15px;
 		}
+		input {
+			&:before,
+			&:after {
+				content: "";
+				display: none;
+			}
+		}
+	}
+	textarea {
+		border: none;
+	}
+	&__submit-btn {
+		flex: 0 0 40px;
+		width: 150px;
+		background-color: #518fe0;
+		color: #fff;
+		margin: 0 0 0 auto;
+		cursor: pointer;
+		border: none;
+		border-radius: 3px;
+	}
+}
+input {
+	border-style: none;
+	outline: none;
+}
+input[name="title"] {
+	width: calc(100% - 40px);
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 100%;
+	margin: 20px 0px 45px 0px;
+	outline: none;
+	border: none;
+	border-bottom: 2px solid transparent;
 
-		&__submit-btn {
-		}
+	&:focus {
+		border-bottom: 2px solid blue;
+	}
+}
+input[name="date"] {
+	width: 100px;
+}
+input[name="startTime"] {
+}
+input[name="endTime"] {
+}
+textarea[name="description"] {
+	height: 100px;
+	padding: 5px;
+	margin: 0px 0px 45px 0px;
+	border: none;
+	resize: none;
+	overflow-y: auto;
+	appearance: none;
+
+	&:focus {
+	}
 }

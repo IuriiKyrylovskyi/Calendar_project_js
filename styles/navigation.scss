@@ -47,9 +47,36 @@
 		width: 32px;
 		background-color: transparent;
 		border-radius: 50%;
+		border: 1px solid transparent;
 		z-index: 1;
 		outline: none;
+		transition: all 0.3s linear;
+		color: transparent;
 		cursor: pointer;
+		&:hover {
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+		&:before {
+			content: "";
+			position: absolute;
+			top: 15px;
+			right: 5px;
+			width: 20px;
+			height: 1px;
+			background-color: #000;
+			transform: rotate(45deg);
+		}
+		&:after {
+			content: "";
+			position: absolute;
+			top: 15px;
+			right: 5px;
+			width: 20px;
+			height: 1px;
+			background-color: #000;
+			transform: rotate(-45deg);
+		}
 		// &:after {
 		//   content: "";
 		//   position: absolute;
@@ -64,16 +91,7 @@
 		// }
 	}
 }
-.event-form {
-	&__field {
-	}
 
-	&__time {
-	}
-
-	&__submit-btn {
-	}
-}
 // -----------
 .icon-button {
 	flex: 0 0 30px;
@@ -96,25 +114,5 @@
 .fa-chevron-right {
 	margin: 0px 0px 0px 2px;
 }
-input {
-}
-.event-form__field {
-}
-.event-form__field {
-}
 
-input[name="title"] {
-	// color: blue;
-	// background-color: pink;
-}
-input[name="date"] {
-}
-input[name="startTime"] {
-}
-input[name="endTime"] {
-}
-textarea[name="description"] {
-	border-radius: 3px;
-	border: 1px solid grey;
-}
 // font-family: 'Material Icons Extended';

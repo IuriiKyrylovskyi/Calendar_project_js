@@ -31,7 +31,6 @@ function onCreateEvent(event) {
   // + полученное событие добавляем в массив событий, что хранится в storage
   // + закрываем форму
   // + и запускаем перерисовку событий с помощью renderEvents
-
   console.log(eventFormElem.querySelector('[type="submit"]'));
 
   if (event.target !== eventFormElem.querySelector('[type="submit"]')) {
@@ -52,7 +51,7 @@ function onCreateEvent(event) {
     ),
   };
 
-  setItem('events').push(newEvent);
+  setItem('events', getItem('events').push(newEvent));
 
   onCloseEventForm();
 

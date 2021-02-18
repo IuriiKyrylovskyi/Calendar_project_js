@@ -36,11 +36,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
 }
-.modal .create-event {
-  position: relative;
-  max-width: 550px;
-  padding: 30px 0px 0px 0px;
-}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -103,9 +99,36 @@
   width: 32px;
   background-color: transparent;
   border-radius: 50%;
+  border: 1px solid transparent;
   z-index: 1;
   outline: none;
+  transition: all 0.3s linear;
+  color: transparent;
   cursor: pointer;
+}
+.create-event__close-btn:hover {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.create-event__close-btn:before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  width: 20px;
+  height: 1px;
+  background-color: #000;
+  transform: rotate(45deg);
+}
+.create-event__close-btn:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  width: 20px;
+  height: 1px;
+  background-color: #000;
+  transform: rotate(-45deg);
 }
 
 .icon-button {
@@ -125,11 +148,6 @@
 
 .fa-chevron-right {
   margin: 0px 0px 0px 2px;
-}
-
-textarea[name=description] {
-  border-radius: 3px;
-  border: 1px solid grey;
 }
 
 .header {
@@ -227,6 +245,75 @@ span[data-time-slot-time="0"] {
   font-size: 0;
 }
 
+.create-event {
+  position: relative;
+  max-width: 550px;
+  min-width: 400px;
+  padding: 30px 20px 20px 40px;
+}
+.event-form {
+  display: flex;
+  flex-direction: column;
+}
+.event-form__time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 0px 0px 45px 0px;
+}
+.event-form__time input + input {
+  margin-left: 15px;
+}
+.event-form__time input:before, .event-form__time input:after {
+  content: "";
+  display: none;
+}
+.event-form textarea {
+  border: none;
+}
+.event-form__submit-btn {
+  flex: 0 0 40px;
+  width: 150px;
+  background-color: #518fe0;
+  color: #fff;
+  margin: 0 0 0 auto;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+}
+
+input {
+  border-style: none;
+  outline: none;
+}
+
+input[name=title] {
+  width: calc(100% - 40px);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  margin: 20px 0px 45px 0px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+input[name=title]:focus {
+  border-bottom: 2px solid blue;
+}
+
+input[name=date] {
+  width: 100px;
+}
+
+textarea[name=description] {
+  height: 100px;
+  padding: 5px;
+  margin: 0px 0px 45px 0px;
+  border: none;
+  resize: none;
+  overflow-y: auto;
+  appearance: none;
+}
 .event {
   position: absolute;
   z-index: 5;
