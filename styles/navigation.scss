@@ -1,98 +1,100 @@
 // стили навигации
 .button {
-  margin: 5px 30px 5px 0;
+	margin: 5px 30px 5px 0;
 }
 .create-event-btn {
-  min-width: 92px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 10px 0px 5px;
-  border-radius: 20px;
-  transition: all 0.3s linear;
-  &:hover {
-    background-color: rgba(128, 128, 128, 0.3);
-  }
+	min-width: 92px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 10px 0px 5px;
+	border-radius: 20px;
+	transition: all 0.3s linear;
+	&:hover {
+		background-color: rgba(128, 128, 128, 0.3);
+	}
 }
 .create-event-btn__icon {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 .navigation__today-btn {
-  transition: all 0.3s linear;
-  &:hover {
-    background-color: rgba(128, 128, 128, 0.3);
-  }
+	transition: all 0.3s linear;
+	&:hover {
+		background-color: rgba(128, 128, 128, 0.3);
+	}
 }
 .navigation {
-  &__today-btn {
-  }
+	&__today-btn {
+	}
 
-  &__nav-icon {
-  }
+	&__nav-icon {
+	}
 
-  &__displayed-month {
-    font-weight: 600;
-  }
+	&__displayed-month {
+		font-weight: 600;
+	}
 }
 
 .delete-event-btn {
 }
 // modal
 .create-event {
-  &__close-btn {
-    position: absolute;
-    top: 2px;
-    right: 10px;
-    height: 32px;
-    width: 32px;
-    background-color: transparent;
-    border-radius: 50%;
-    z-index: 1;
-    &:after {
-      content: "";
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      height: 32px;
-      width: 32px;
-      background-color: transparent;
-      border-radius: 50%;
-      z-index: 1;
-      background: pink;
-    }
-  }
+	&__close-btn {
+		position: absolute;
+		top: 2px;
+		right: 10px;
+		height: 32px;
+		width: 32px;
+		background-color: transparent;
+		border-radius: 50%;
+		z-index: 1;
+		outline: none;
+		cursor: pointer;
+		// &:after {
+		//   content: "";
+		//   position: absolute;
+		//   top: 0px;
+		//   right: 0px;
+		//   height: 32px;
+		//   width: 32px;
+		//   background-color: transparent;
+		//   border-radius: 50%;
+		//   z-index: 1;
+		//   background: pink;
+		// }
+	}
 }
 .event-form {
-  &__field {
-  }
+	&__field {
+	}
 
-  &__time {
-  }
+	&__time {
+	}
 
-  &__submit-btn {
-  }
+	&__submit-btn {
+	}
 }
 // -----------
 .icon-button {
-  flex: 0 0 30px;
-  width: 30px;
-  height: 30px;
-  transition: all 0.3s linear;
-  // border: 1px solid #fff;
-  border-radius: 100%;
+	flex: 0 0 30px;
+	width: 30px;
+	height: 30px;
+	transition: all 0.3s linear;
+	// border: 1px solid #fff;
+	border-radius: 100%;
 
-  // border-radius: 3px;
-  &:hover {
-    // border: 1px solid rgba(128, 128, 128, 0.1);
-    background-color: rgba(128, 128, 128, 0.1);
-    // color: #fff;
-  }
+	// border-radius: 3px;
+	&:hover {
+		// border: 1px solid rgba(128, 128, 128, 0.1);
+		background-color: rgba(128, 128, 128, 0.1);
+		// color: #fff;
+	}
 }
 .fa-chevron-left {
-  margin: 0px 2px 0px 0px;
+	margin: 0px 2px 0px 0px;
 }
 .fa-chevron-right {
-  margin: 0px 0px 0px 2px;
+	margin: 0px 0px 0px 2px;
 }
 input {
 }
@@ -102,8 +104,8 @@ input {
 }
 
 input[name="title"] {
-  // color: blue;
-  // background-color: pink;
+	// color: blue;
+	// background-color: pink;
 }
 input[name="date"] {
 }
@@ -112,7 +114,7 @@ input[name="startTime"] {
 input[name="endTime"] {
 }
 textarea[name="description"] {
-  border-radius: 3px;
-  border: 1px solid grey;
+	border-radius: 3px;
+	border: 1px solid grey;
 }
 // font-family: 'Material Icons Extended';

@@ -1,15 +1,12 @@
 const modalElem = document.querySelector('.modal');
 const modalContentElem = document.querySelector('.modal__content');
 
-// опишите ф-ции openModal и closeModal
-// модальное окно работает похожим на попап образом
-// отличие в том, что попап отображается в месте клика, а модальное окно - по центру экрана
-
+// + опишите ф-ции openModal и closeModal
+// + модальное окно работает похожим на попап образом
+// + отличие в том, что попап отображается в месте клика, а модальное окно - по центру экрана
 
 export function openModal(x, y) {
   modalElem.classList.remove('hidden');
-  // modalContentElem.style.top = `${y}px`;
-  // modalContentElem.style.left = `${x}px`;
 }
 
 export function closeModal() {
@@ -17,7 +14,9 @@ export function closeModal() {
 }
 
 function onClickInsideModal(event) {
-  event.stopPropagation();
+  if (!event.target.closest('.create-event__close-btn')) {
+    event.stopPropagation();
+  }
 }
 
 modalContentElem.addEventListener('click', onClickInsideModal);

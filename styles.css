@@ -39,6 +39,7 @@
 .modal .create-event {
   position: relative;
   max-width: 550px;
+  padding: 30px 0px 0px 0px;
 }
 .overlay {
   position: fixed;
@@ -103,18 +104,8 @@
   background-color: transparent;
   border-radius: 50%;
   z-index: 1;
-}
-.create-event__close-btn:after {
-  content: "";
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  height: 32px;
-  width: 32px;
-  background-color: transparent;
-  border-radius: 50%;
-  z-index: 1;
-  background: pink;
+  outline: none;
+  cursor: pointer;
 }
 
 .icon-button {
