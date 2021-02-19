@@ -16,7 +16,8 @@ function handleEventClick(event) {
 
 function removeEventsFromCalendar() {
   // ф-ция для удаления всех событий с календаря
-  return setItem('events', []);
+  const eventsFronCalendar = document.querySelectorAll('.event');
+  eventsFronCalendar.forEach(event => event.remove());
 }
 
 const createEventElement = event => {
@@ -72,42 +73,28 @@ export const renderEvents = () => {
   // + для каждого события находим на странице временную ячейку (.calendar__time-slot)
   // + и вставляем туда событие
   // + каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
-  // не забудьте удалить с календаря старые события перед добавлением новых
+  // + не забудьте удалить с календаря старые события перед добавлением новых
 
-  // removeEventsFromCalendar();
+  removeEventsFromCalendar();
 
   const events = getItem('events');
   const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
 
-  // const getEventsByDate =
-  events
+	events
     .filter(
       event =>
         // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
         new Date(event.start - mondayDate).getDay() <= 6 &&
         (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
     )
-    // ;
-
-    // console.log(getEventsByDate);
-
-    // const toHtmlReadyElems =
-    // getEventsByDate
     .map(el => {
       const elem = createEventElement(el);
       const date = weekElem.querySelector(`[data-day="${new Date(el.start).getDate()}"]`);
-      // console.log(new Date(el.start).getDate());
-      // console.log(date);
-
       if (date) {
         date.querySelector(`[data-time="${new Date(el.start).getHours()}"]`).append(elem);
-        // date.closest(`[data-time="${new Date(el.start).getUTCHours()}"]`).append(elem);
       }
       return date;
     });
-
-  removeEventsFromCalendar();
-
   // console.log(toHtmlReadyElems);
 };
 
