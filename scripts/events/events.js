@@ -15,27 +15,16 @@ function handleEventClick(event) {
 }
 
 function removeEventsFromCalendar() {
-  // ф-ция для удаления всех событий с календаря
+  // + ф-ция для удаления всех событий с календаря
   const eventsFronCalendar = document.querySelectorAll('.event');
   eventsFronCalendar.forEach(event => event.remove());
 }
 
 const createEventElement = event => {
   // + ф-ция создает DOM элемент события
-  // событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
+  // + событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
   // + нужно добавить id события в дата атрибут
   // + здесь для создания DOM элемента события используйте document.createElement
-
-  // const calendarDayTimeSlotElem = weekElem.querySelector('.calendar__time-slot');
-  // // if (event.target !== calendarDayTimeSlotElem) {
-  // //   return;
-  // // }
-
-  // const createdElem = getItem('events').filter(
-  //   el =>
-  //     el.start.getDate() === calendarDayTimeSlotElem.closest('.calendar__day').dataset.day &&
-  //     el.start.getHours() === calendarDayTimeSlotElem.dataset.time,
-  // );
 
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
@@ -43,7 +32,16 @@ const createEventElement = event => {
   // eventElem.style.position = 'absolute'; // for check ----
   eventElem.style.top = `${new Date(event.start).getMinutes()}px`; // let
   console.log(eventElem.style.height);
-  // eventElem.style.height = shmoment(new Date(event.start)); //, new Date(event.end)); // 100px'; // let
+  const eventHight =
+    (new Date(event.end).getHours() - new Date(event.start).getHours() )* 60 +
+    new Date(event.end).getMinutes() -
+    new Date(event.start).getMinutes();
+
+  console.log(eventHight);
+  if (eventHight) {
+    eventElem.style.height = `${eventHight}px`; // let
+  }
+  // eventElem.style.height = shmoment((event.start).substract()); //, new Date(event.end)); // 100px'; // let
   // console.log(eventElem.style.height);
 
   const eventTitleElem = document.createElement('div');
@@ -80,7 +78,9 @@ export const renderEvents = () => {
   const events = getItem('events');
   const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
 
-	events
+  console.log(events);
+
+  events
     .filter(
       event =>
         // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
@@ -95,7 +95,6 @@ export const renderEvents = () => {
       }
       return date;
     });
-  // console.log(toHtmlReadyElems);
 };
 
 function onDeleteEvent() {

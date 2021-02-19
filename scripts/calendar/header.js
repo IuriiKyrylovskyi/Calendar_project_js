@@ -28,7 +28,7 @@ export const renderHeader = () => {
     .join('');
 };
 
-// при клике на кнопку "Create" открыть модальное окно с формой для создания события
-// назначьте здесь обработчик
+// + при клике на кнопку "Create" открыть модальное окно с формой для создания события
+// + назначьте здесь обработчик
 
 document.querySelector('.create-event-btn').addEventListener('click', openModal);
