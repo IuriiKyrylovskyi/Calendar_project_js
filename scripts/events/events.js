@@ -16,7 +16,7 @@ function handleEventClick(event) {
 
 function removeEventsFromCalendar() {
   // ф-ция для удаления всех событий с календаря
-  // setItem('events', []);
+  return setItem('events', []);
 }
 
 const createEventElement = event => {
@@ -39,7 +39,7 @@ const createEventElement = event => {
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
   eventElem.setAttribute('data-event-id', event.id);
-  eventElem.style.position = 'absolute'; // for check ----
+  // eventElem.style.position = 'absolute'; // for check ----
   eventElem.style.top = `${new Date(event.start).getMinutes()}px`; // let
   console.log(eventElem.style.height);
   // eventElem.style.height = shmoment(new Date(event.start)); //, new Date(event.end)); // 100px'; // let
@@ -47,19 +47,17 @@ const createEventElement = event => {
 
   const eventTitleElem = document.createElement('div');
   eventTitleElem.classList.add('event__title');
-  eventTitleElem.textContent = event.title; // 'Code'; // let
+  eventTitleElem.textContent = event.title; // 'Code';
 
   const eventTimeElem = document.createElement('div');
   eventTimeElem.classList.add('event__time');
   eventTimeElem.textContent = `
-	${new Date(event.start).getHours()}:
-	${new Date(event.start).getMinutes()} - 
-	${new Date(event.end).getHours()}:
-	${new Date(event.end).getMinutes()}
-	`; // let
+		${new Date(event.start).getHours()}:
+		${new Date(event.start).getMinutes()} - 
+		${new Date(event.end).getHours()}:
+		${new Date(event.end).getMinutes()}
+		`;
   console.log(eventTimeElem);
-
-  // eventTimeElem.textContent = '3:15 - 6:30'; // let
 
   eventElem.append(eventTitleElem);
   eventElem.append(eventTimeElem);
@@ -76,33 +74,40 @@ export const renderEvents = () => {
   // + каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
   // не забудьте удалить с календаря старые события перед добавлением новых
 
+  // removeEventsFromCalendar();
+
   const events = getItem('events');
   const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
-  // console.log(Array.from(events));
-  // console.log(typeof Array.from(events));
 
-  const getEventsByDate = events.filter(
-    event =>
-      // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
-      new Date(event.start - mondayDate).getDay() <= 6 &&
-      (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
-  );
+  // const getEventsByDate =
+  events
+    .filter(
+      event =>
+        // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
+        new Date(event.start - mondayDate).getDay() <= 6 &&
+        (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
+    )
+    // ;
 
-  // console.log(getEventsByDate);
-  // console.log(typeof getEventsByDate);
+    // console.log(getEventsByDate);
 
-	// const toHtmlReadyElems =
-		getEventsByDate.map(el => {
-    const elem = createEventElement(el);
-    const date = weekElem.querySelector(`[data-day="${new Date(el.start).getDate()}"]`);
-    // console.log(new Date(el.start).getDate());
-    // console.log(date);
+    // const toHtmlReadyElems =
+    // getEventsByDate
+    .map(el => {
+      const elem = createEventElement(el);
+      const date = weekElem.querySelector(`[data-day="${new Date(el.start).getDate()}"]`);
+      // console.log(new Date(el.start).getDate());
+      // console.log(date);
 
-    // if (date) {
-      date.querySelector(`[data-time="${new Date(el.start).getUTCHours()}"]`).append(elem);
-    // }
-    // return date;
-  });
+      if (date) {
+        date.querySelector(`[data-time="${new Date(el.start).getHours()}"]`).append(elem);
+        // date.closest(`[data-time="${new Date(el.start).getUTCHours()}"]`).append(elem);
+      }
+      return date;
+    });
+
+  removeEventsFromCalendar();
+
   // console.log(toHtmlReadyElems);
 };
 

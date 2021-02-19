@@ -23,7 +23,7 @@ export const renderWeek = () => {
   // + разметка недели состоит из 7 дней (.calendar__day) отображаемой недели
   // + массив дней, которые нужно отобразить, считаем ф-цией generateWeekRange на основе displayedWeekStart из storage
   // + каждый день должен содержать в дата атрибуте порядковый номер дня в месяце
-  // после того, как отрисовали всю сетку для отображаемой недели, нужно отобразить события этой недели с помощью renderEvents
+  // + после того, как отрисовали всю сетку для отображаемой недели, нужно отобразить события этой недели с помощью renderEvents
 
   // console.log(typeof generateDay());
   const calendarWeekElem = document.querySelector('.calendar__week');

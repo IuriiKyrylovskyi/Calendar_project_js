@@ -50,8 +50,11 @@ function onCreateEvent(event) {
     ),
   };
   console.log(newEvent);
+  const eventsArr = getItem('events');
+  console.log(eventsArr);
+  console.log(typeof eventsArr);
 
-  setItem('events', getItem('events').push(newEvent));
+  setItem('events', newEvent);
 
   onCloseEventForm();
 
