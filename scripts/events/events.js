@@ -91,18 +91,19 @@ export const renderEvents = () => {
   // console.log(getEventsByDate);
   // console.log(typeof getEventsByDate);
 
-  const toHtmlReadyElems = getEventsByDate.map(el => {
+	// const toHtmlReadyElems =
+		getEventsByDate.map(el => {
     const elem = createEventElement(el);
     const date = weekElem.querySelector(`[data-day="${new Date(el.start).getDate()}"]`);
-    console.log(new Date(el.start).getDate());
-    console.log(date);
+    // console.log(new Date(el.start).getDate());
+    // console.log(date);
 
-    if (date) {
+    // if (date) {
       date.querySelector(`[data-time="${new Date(el.start).getUTCHours()}"]`).append(elem);
-    }
-    return date;
+    // }
+    // return date;
   });
-  console.log(toHtmlReadyElems);
+  // console.log(toHtmlReadyElems);
 };
 
 function onDeleteEvent() {
