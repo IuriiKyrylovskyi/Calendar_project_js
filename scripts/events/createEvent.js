@@ -53,9 +53,10 @@ function onCreateEvent(event) {
   const eventsArr = getItem('events');
   console.log(eventsArr);
   console.log(typeof eventsArr);
-
-	const newArr = eventsArr.push(newEvent);
-  setItem('events', newArr);
+	
+	eventsArr.push(newEvent);
+  console.log(eventsArr);
+  // setItem('events', eventsArr);
 
   onCloseEventForm();
 
