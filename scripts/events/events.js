@@ -85,7 +85,7 @@ export const renderEvents = () => {
       event =>
         // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
         new Date(event.start).getMonth() === new Date(mondayDate).getMonth() &&
-        new Date(event.start - mondayDate).getDate() <= 6 &&
+        new Date(event.start - mondayDate).getDate() <= 7 &&
         new Date(event.start - mondayDate).getHours() >= 0, // ) / (1000 * 60 * 60 * 24),
       // (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
     )
