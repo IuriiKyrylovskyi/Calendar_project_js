@@ -14,9 +14,7 @@ export function closeModal() {
 }
 
 function onClickInsideModal(event) {
-  if (!event.target.closest('.create-event__close-btn')) {
     event.stopPropagation();
-  }
 }
 
 modalContentElem.addEventListener('click', onClickInsideModal);

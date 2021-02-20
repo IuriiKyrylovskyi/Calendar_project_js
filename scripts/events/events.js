@@ -33,7 +33,7 @@ const createEventElement = event => {
   eventElem.style.top = `${new Date(event.start).getMinutes()}px`; // let
   console.log(eventElem.style.height);
   const eventHight =
-    (new Date(event.end).getHours() - new Date(event.start).getHours() )* 60 +
+    (new Date(event.end).getHours() - new Date(event.start).getHours()) * 60 +
     new Date(event.end).getMinutes() -
     new Date(event.start).getMinutes();
 
@@ -84,8 +84,10 @@ export const renderEvents = () => {
     .filter(
       event =>
         // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
-        new Date(event.start - mondayDate).getDay() <= 6 &&
-        (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
+        new Date(event.start).getMonth() === new Date(mondayDate).getMonth() &&
+        new Date(event.start - mondayDate).getDate() <= 6 &&
+        new Date(event.start - mondayDate).getHours() >= 0, // ) / (1000 * 60 * 60 * 24),
+      // (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
     )
     .map(el => {
       const elem = createEventElement(el);
@@ -110,6 +112,6 @@ function onDeleteEvent() {
   // renderEvents()
 }
 
-deleteEventBtn.addEventListener('click', onDeleteEvent);
+deleteEventBtn.addEventListener('submit', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);

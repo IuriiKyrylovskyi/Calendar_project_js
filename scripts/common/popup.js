@@ -13,9 +13,7 @@ export function closePopup() {
 }
 
 function onClickInsidePopup(event) {
-  if (!event.target.closest('.delete-event-btn')) {
-    event.stopPropagation();
-  }
+  event.stopPropagation();
 }
 
 popupContentElem.addEventListener('click', onClickInsidePopup);

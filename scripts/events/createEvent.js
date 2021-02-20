@@ -32,10 +32,6 @@ function onCreateEvent(event) {
   // + закрываем форму
   // + и запускаем перерисовку событий с помощью renderEvents
 
-  if (event.target !== eventFormElem.querySelector('[type="submit"]')) {
-    return;
-  }
-
   event.preventDefault();
 
   const newEvent = {
@@ -51,13 +47,13 @@ function onCreateEvent(event) {
       eventFormElem.querySelector('[name="endTime"]').value,
     ),
   };
-  console.log(newEvent);
+  // console.log(newEvent);
   const eventsArr = getItem('events');
-  console.log(eventsArr);
-  console.log(typeof eventsArr);
+  // console.log(eventsArr);
+  // console.log(typeof eventsArr);
 
   eventsArr.push(newEvent);
-  console.log(eventsArr);
+  // console.log(eventsArr);
 
   setItem('events', eventsArr);
   console.log(getItem('events'));
@@ -73,6 +69,7 @@ export function initEventForm() {
   // console.log(eventFormElem.querySelector('[type="submit"]'));
   // console.log(closeEventFormBtn);
 
-  eventFormElem.querySelector('[type="submit"]').addEventListener('click', onCreateEvent);
+  // eventFormElem.querySelector('[type="submit"]').addEventListener('click', onCreateEvent);
+  eventFormElem.addEventListener('submit', onCreateEvent);
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
