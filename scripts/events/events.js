@@ -8,14 +8,29 @@ const deleteEventBtn = document.querySelector('.delete-event-btn');
 function handleEventClick(event) {
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
-  if (event.target !== weekElem.querySelector('.event')) {
-    return;
+
+  // const clickedEvent = event.target.classList.contains('event');
+  const clickedEvent = weekElem.querySelector('.event');
+  if (clickedEvent) {
+    openPopup(event.clientX, event.clientY);
+    const eventIdToDelete = Date.now();
+    console.log(event);
+
+    console.log(clickedEvent.dataset.eventId);
+    console.log(typeof clickedEvent.dataset.eventId);
+
+    const events = getItem('events');
+    events.map(ev => {
+      console.log(ev.id);
+      if (ev.id !== +clickedEvent.dataset.eventId) {
+        return;
+      }
+      ev.eventIdToDelete = eventIdToDelete;
+    });
+    console.log(events);
+
+    // setItem('events', idToDelElem);
   }
-  openPopup(event.clientX, event.clientY);
-  // event.eventIdToDelete = Date.now();
-  // console.log(event);
-  // console.log(event.eventIdToDelete);
-  // setItem('events', event.eventIdToDelete);
 }
 
 function removeEventsFromCalendar() {
