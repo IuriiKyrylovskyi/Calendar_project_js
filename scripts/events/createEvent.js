@@ -31,12 +31,14 @@ function onCreateEvent(event) {
   // + полученное событие добавляем в массив событий, что хранится в storage
   // + закрываем форму
   // + и запускаем перерисовку событий с помощью renderEvents
-  event.preventDafault();
+	
   if (event.target !== eventFormElem.querySelector('[type="submit"]')) {
-    return;
+		return;
   }
-
-  const newEvent = {
+	
+	event.preventDefault();
+	
+	const newEvent = {
     id: Date.now(),
     title: eventFormElem.querySelector('[name="title"]').value,
     description: eventFormElem.querySelector('[name="description"]').value,
