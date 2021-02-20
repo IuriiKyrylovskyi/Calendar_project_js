@@ -11,7 +11,7 @@ function handleEventClick(event) {
 
   // const clickedEvent = event.target.classList.contains('event');
   const clickedEvent = weekElem.querySelector('.event');
-  if (clickedEvent) {
+  if (event.target === clickedEvent) {
     openPopup(event.clientX, event.clientY);
     const eventIdToDelete = Date.now();
     console.log(event);
