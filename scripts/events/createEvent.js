@@ -31,7 +31,7 @@ function onCreateEvent(event) {
   // + полученное событие добавляем в массив событий, что хранится в storage
   // + закрываем форму
   // + и запускаем перерисовку событий с помощью renderEvents
-
+  event.preventDafault();
   if (event.target !== eventFormElem.querySelector('[type="submit"]')) {
     return;
   }
@@ -53,10 +53,12 @@ function onCreateEvent(event) {
   const eventsArr = getItem('events');
   console.log(eventsArr);
   console.log(typeof eventsArr);
-	
-	eventsArr.push(newEvent);
+
+  eventsArr.push(newEvent);
   console.log(eventsArr);
-  // setItem('events', eventsArr);
+
+  setItem('events', eventsArr);
+  console.log(getItem('events'));
 
   onCloseEventForm();
 
@@ -65,10 +67,10 @@ function onCreateEvent(event) {
 
 export function initEventForm() {
   // +? подпишитесь на сабмит формы и на закрытие формы
-	
+
   // console.log(eventFormElem.querySelector('[type="submit"]'));
   // console.log(closeEventFormBtn);
 
-  eventFormElem.querySelector('[type="submit"]').addEventListener('click', onCreateEvent);
+  eventFormElem.querySelector('[type="submit"]').addEventListener('submit', onCreateEvent);
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
