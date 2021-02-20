@@ -11,7 +11,11 @@ function handleEventClick(event) {
   if (event.target !== weekElem.querySelector('.event')) {
     return;
   }
-  openPopup();
+  openPopup(event.clientX, event.clientY);
+  // event.eventIdToDelete = Date.now();
+  // console.log(event);
+  // console.log(event.eventIdToDelete);
+  // setItem('events', event.eventIdToDelete);
 }
 
 function removeEventsFromCalendar() {
@@ -56,7 +60,7 @@ const createEventElement = event => {
 		${new Date(event.end).getHours()}:
 		${new Date(event.end).getMinutes()}
 		`;
-  console.log(eventTimeElem);
+  // console.log(eventTimeElem);
 
   eventElem.append(eventTitleElem);
   eventElem.append(eventTimeElem);
@@ -78,7 +82,7 @@ export const renderEvents = () => {
   const events = getItem('events');
   const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
 
-  console.log(events);
+  // console.log(events);
 
   events
     .filter(

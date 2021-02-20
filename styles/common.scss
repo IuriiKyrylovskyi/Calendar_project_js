@@ -47,6 +47,12 @@
 		padding: 16px;
 		border: 1px solid #ccc;
 		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		svg {
+			margin: 0px 10px 0px 0px;
+		}
 	}
 }
 

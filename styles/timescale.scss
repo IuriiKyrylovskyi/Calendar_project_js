@@ -6,8 +6,8 @@
 .time-slot {
 	width: 50px;
 	height: 60px;
-	background-color: rgb(200, 250, 200);
-	border-bottom: 1px solid rgba(128, 128, 128, 0.8);
+	// background-color: rgb(200, 250, 200);
+	// border-bottom: 1px solid rgba(128, 128, 128, 0.8);
 	// &:first-child {
 	// 	font-size: 0;
 	// }
@@ -19,6 +19,7 @@
 		transform: translateY(-50%);
 		font-size: 12px;
 		font-weight: 500;
+		padding: 0px 5px 0px 0px;
 	}
 }
 
