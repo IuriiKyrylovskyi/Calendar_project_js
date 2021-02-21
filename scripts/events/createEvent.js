@@ -10,13 +10,17 @@ function clearEventForm() {
   // ф-ция должна очистить поля формы от значений
   eventFormElem.querySelector('[name="title"]').value = 'Title';
   eventFormElem.querySelector('[name="description"]').value = 'Add description';
-  eventFormElem.querySelector('[name="date"]').value = null; // new Date(Date.now()).getFullYear();
-  eventFormElem.querySelector('[name="startTime"]').value = '';
-  eventFormElem.querySelector('[name="endTime"]').value = '';
+  eventFormElem.querySelector('[name="date"]').valueAsDate = new Date(); // new Date(Date.now()).getFullYear();
+  // new Date(Date.now()).getFullYear();
+  eventFormElem.querySelector('[name="startTime"]').valueAsDate = new Date();
+  // eventFormElem.querySelector('[name="startTime"]').step = 900;
+  // `${new Date().getHours().toString()}:${new Date().getMinutes().toString()}`;
+  eventFormElem.querySelector('[name="endTime"]').valueAsNumber = new Date(Date.now()).getTime();
+  // eventFormElem.querySelector('[name="endTime"]').valueAsNumber = new Date().toFixed(2);
 }
 
 function onCloseEventForm() {
-  // здесь нужно закрыть модальное окно и очистить форму
+  // + здесь нужно закрыть модальное окно и очистить форму
   closeModal();
   clearEventForm();
 }
@@ -66,6 +70,10 @@ function onCreateEvent(event) {
 export function initEventForm() {
   // + подпишитесь на сабмит формы и на закрытие формы
 
+  clearEventForm();
+
   eventFormElem.addEventListener('submit', onCreateEvent);
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
+
+// --------

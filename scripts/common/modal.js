@@ -7,6 +7,7 @@ const modalContentElem = document.querySelector('.modal__content');
 
 export function openModal() {
   modalElem.classList.remove('hidden');
+  // modalElem.querySelector('[name="date"]').value = new Date(Date.now()).getFullYear();
 }
 
 export function closeModal() {
@@ -14,7 +15,7 @@ export function closeModal() {
 }
 
 function onClickInsideModal(event) {
-    event.stopPropagation();
+  event.stopPropagation();
 }
 
 modalContentElem.addEventListener('click', onClickInsideModal);

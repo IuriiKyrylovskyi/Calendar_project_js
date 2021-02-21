@@ -312,8 +312,9 @@ input[name=title]:focus {
   border-bottom: 2px solid blue;
 }
 
-input[name=date] {
-  width: 100px;
+input[name=startTime],
+input[name=endTime] {
+  width: 69px;
 }
 
 textarea[name=description] {

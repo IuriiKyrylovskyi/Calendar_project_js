@@ -63,11 +63,11 @@ input[name="title"] {
 	}
 }
 input[name="date"] {
-	width: 100px;
+	// width: 125px;
 }
-input[name="startTime"] {
-}
+input[name="startTime"],
 input[name="endTime"] {
+  width: 69px;
 }
 textarea[name="description"] {
 	height: 100px;

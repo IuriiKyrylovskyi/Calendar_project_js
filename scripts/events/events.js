@@ -15,7 +15,7 @@ function handleEventClick(event) {
   if (clickedEvent) {
     openPopup(event.clientX, event.clientY);
 
-    // const eventId = clickedEvent.dataset.eventId;
+    // const eventId = +clickedEvent.dataset.eventId;
     const eventId = +clickedEvent.getAttribute('data-event-id');
     console.log(eventId);
     setItem('eventIdToDelete', eventId);
