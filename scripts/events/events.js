@@ -39,13 +39,13 @@ const createEventElement = event => {
   eventElem.setAttribute('data-event-id', event.id);
   // eventElem.style.position = 'absolute'; // for check ----
   eventElem.style.top = `${new Date(event.start).getMinutes()}px`; // let
-  console.log(eventElem.style.height);
+  // console.log(eventElem.style.height);
   const eventHight =
     (new Date(event.end).getHours() - new Date(event.start).getHours()) * 60 +
     new Date(event.end).getMinutes() -
     new Date(event.start).getMinutes();
 
-  console.log(eventHight);
+  // console.log(eventHight);
   if (eventHight) {
     eventElem.style.height = `${eventHight}px`; // let
   }
@@ -108,20 +108,20 @@ export const renderEvents = () => {
 };
 
 function onDeleteEvent() {
-  // достаем из storage массив событий и eventIdToDelete
-  // удаляем из массива нужное событие и записываем в storage новый массив
-  // закрыть попап
-  // перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
+  // + достаем из storage массив событий и eventIdToDelete
+  // + удаляем из массива нужное событие и записываем в storage новый массив
+  // + закрыть попап
+  // + перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
 
   const events = getItem('events');
   const eventIdToDelete = getItem('eventIdToDelete');
-  console.log(events);
-  console.log(eventIdToDelete);
+  // console.log(events);
+  // console.log(eventIdToDelete);
 
-  const deleteEvent = events.filter(ev =>  ev.dataset.id !== eventIdToDelete);
+  const deleteEvent = events.filter(ev => ev.id !== eventIdToDelete);
+  // console.log(deleteEvent);
 
   setItem('events', deleteEvent);
-  console.log(getItem('events'));
   closePopup();
   renderEvents();
 }
