@@ -10,11 +10,13 @@ function handleEventClick(event) {
   // установите eventIdToDelete с id события в storage
 
   const clickedEvents = weekElem.querySelectorAll('.event');
-  const showPopupEvent = Array.from(clickedEvents).map(eventEl => {
-    if (eventEl !== event.target) {
-      return;
+  const showPopupEvent = clickedEvents.forEach(eventEl => {
+    if (eventEl === event.target) {
+      // } || eventEl !== event.target.closest) {
+      // return;
+      const openPopupEvent = openPopup.bind(null, event.clientX, event.clientY);
+      eventEl.addEventListener('click', openPopupEvent, true);
     }
-    openPopup(event.clientX, event.clientY);
   });
   console.log(showPopupEvent);
 
