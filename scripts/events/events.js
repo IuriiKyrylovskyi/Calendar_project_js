@@ -9,28 +9,33 @@ function handleEventClick(event) {
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
 
-  // const clickedEvent = event.target.classList.contains('event');
-  const clickedEvent = weekElem.querySelector('.event');
-  if (event.target === clickedEvent) {
+  const clickedEvents = weekElem.querySelectorAll('.event');
+  const showPopupEvent = Array.from(clickedEvents).map(eventEl => {
+    if (eventEl !== event.target) {
+      return;
+    }
     openPopup(event.clientX, event.clientY);
-    const eventIdToDelete = Date.now();
-    console.log(event);
+  });
+  console.log(showPopupEvent);
 
-    console.log(clickedEvent.dataset.eventId);
-    console.log(typeof clickedEvent.dataset.eventId);
+  // openPopup(showPopupEvent.clientX, showPopupEvent.clientY);
+  // const eventIdToDelete = Date.now();
+  // console.log(event);
 
-    const events = getItem('events');
-    events.map(ev => {
-      console.log(ev.id);
-      if (ev.id !== +clickedEvent.dataset.eventId) {
-        return;
-      }
-      ev.eventIdToDelete = eventIdToDelete;
-    });
-    console.log(events);
+  // console.log(clickedEvent.dataset.eventId);
+  // console.log(typeof clickedEvent.dataset.eventId);
 
-    // setItem('events', idToDelElem);
-  }
+  // const events = getItem('events');
+  // events.map(ev => {
+  //   console.log(ev.id);
+  //   if (ev.id !== +clickedEvent.dataset.eventId) {
+  //     return;
+  //   }
+  //   ev.eventIdToDelete = eventIdToDelete;
+  // });
+  // console.log(events);
+
+  // setItem('events', idToDelElem);
 }
 
 function removeEventsFromCalendar() {
@@ -70,11 +75,11 @@ const createEventElement = event => {
   const eventTimeElem = document.createElement('div');
   eventTimeElem.classList.add('event__time');
   eventTimeElem.textContent = `
-		${new Date(event.start).getHours()}:
-		${new Date(event.start).getMinutes()} - 
-		${new Date(event.end).getHours()}:
-		${new Date(event.end).getMinutes()}
-		`;
+    ${new Date(event.start).getHours()}:
+    ${new Date(event.start).getMinutes()} - 
+    ${new Date(event.end).getHours()}:
+    ${new Date(event.end).getMinutes()}
+    `;
   // console.log(eventTimeElem);
 
   eventElem.append(eventTitleElem);
