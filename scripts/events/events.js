@@ -6,22 +6,15 @@ const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleEventClick(event) {
-  // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
+  // + если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
 
-  const clickedEvents = weekElem.querySelectorAll('.event');
-  const showPopupEvent = clickedEvents.forEach(eventEl => {
-    if (eventEl === event.target) {
-      // } || eventEl !== event.target.closest) {
-      // return;
-      const openPopupEvent = openPopup.bind(null, event.clientX, event.clientY);
-      eventEl.addEventListener('click', openPopupEvent, true);
-    }
-  });
-  console.log(showPopupEvent);
+  const clickedEvent = event.target.classList.contains('event')
+    ? event.target
+    : event.target.closest('.event');
+  if (clickedEvent) openPopup(event.clientX, event.clientY);
 
-  // openPopup(showPopupEvent.clientX, showPopupEvent.clientY);
-  // const eventIdToDelete = Date.now();
+  const eventIdToDelete = Date.now();
   // console.log(event);
 
   // console.log(clickedEvent.dataset.eventId);
