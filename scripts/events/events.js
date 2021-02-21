@@ -15,7 +15,8 @@ function handleEventClick(event) {
   if (clickedEvent) openPopup(event.clientX, event.clientY);
 
   // const eventId = clickedEvent.dataset.eventId;
-  const eventId = clickedEvent.getAttribute('[data-event-id]');
+  const eventId = +clickedEvent.getAttribute('data-event-id');
+  console.log(eventId);
   setItem('eventIdToDelete', eventId);
 }
 
@@ -109,12 +110,16 @@ function onDeleteEvent() {
   // удаляем из массива нужное событие и записываем в storage новый массив
   // закрыть попап
   // перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
-  // const events = getItem('events');
-  // const deleteEvent = eventIdToDelete =>
-  //   events.filter(event => event.eventIdToDelete !== eventIdToDelete);
-  // setItem('events', deleteEvent);
-  // popup classList.add('hidden')
-  // renderEvents()
+
+  const events = getItem('events');
+  const eventIdToDelete = getItem('eventIdToDelete');
+
+  const deleteEvent = events.filter(event => event.dataset.eventId !== eventIdToDelete);
+
+  setItem('events', deleteEvent);
+  console.log(getItem('events'));
+  closePopup();
+  renderEvents();
 }
 
 deleteEventBtn.addEventListener('submit', onDeleteEvent);
