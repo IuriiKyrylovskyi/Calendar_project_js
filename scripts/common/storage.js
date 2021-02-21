@@ -31,12 +31,12 @@ let storage = {
 };
 
 export const setItem = (key, value) => {
-  // ф -ция должна устанавливать значения в объект storage
+  // + ф -ция должна устанавливать значения в объект storage
   Object.assign(storage, { [key]: value });
 };
 
 export const getItem = key => {
-  // ф-ция должна возвращать по ключу значения из объекта storage
+  // + ф-ция должна возвращать по ключу значения из объекта storage
   return storage[key];
 };
 

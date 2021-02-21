@@ -12,18 +12,20 @@ function handleEventClick(event) {
   const clickedEvent = event.target.classList.contains('event')
     ? event.target
     : event.target.closest('.event');
-  if (clickedEvent) openPopup(event.clientX, event.clientY);
+  if (clickedEvent) {
+    openPopup(event.clientX, event.clientY);
 
-  // const eventId = clickedEvent.dataset.eventId;
-  const eventId = +clickedEvent.getAttribute('data-event-id');
-  console.log(eventId);
-  setItem('eventIdToDelete', eventId);
+    // const eventId = clickedEvent.dataset.eventId;
+    const eventId = +clickedEvent.getAttribute('data-event-id');
+    console.log(eventId);
+    setItem('eventIdToDelete', eventId);
+  }
 }
 
 function removeEventsFromCalendar() {
   // + ф-ция для удаления всех событий с календаря
-  const eventsFronCalendar = document.querySelectorAll('.event');
-  eventsFronCalendar.forEach(event => event.remove());
+  const eventsFromCalendar = document.querySelectorAll('.event');
+  eventsFromCalendar.forEach(event => event.remove());
 }
 
 const createEventElement = event => {
@@ -113,8 +115,10 @@ function onDeleteEvent() {
 
   const events = getItem('events');
   const eventIdToDelete = getItem('eventIdToDelete');
+  console.log(events);
+  console.log(eventIdToDelete);
 
-  const deleteEvent = events.filter(event => event.dataset.eventId !== eventIdToDelete);
+  const deleteEvent = events.filter(ev =>  ev.dataset.id !== eventIdToDelete);
 
   setItem('events', deleteEvent);
   console.log(getItem('events'));
@@ -122,6 +126,6 @@ function onDeleteEvent() {
   renderEvents();
 }
 
-deleteEventBtn.addEventListener('submit', onDeleteEvent);
+deleteEventBtn.addEventListener('click', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);
