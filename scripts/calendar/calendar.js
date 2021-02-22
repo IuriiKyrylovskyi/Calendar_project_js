@@ -18,6 +18,15 @@ const generateDay = () => {
   return calendarDayElem;
 };
 
+const createTimeLine = () => {
+  const timeLineElem = document.createElement('div');
+  timeLineElem.style.position = 'absolute';
+  timeLineElem.style.top = '0'; // getMinutes
+  timeLineElem.style.width = '100%';
+  timeLineElem.style.height = '1px';
+  timeLineElem.style.backgroundColor = 'red';
+};
+
 export const renderWeek = () => {
   // + функция должна сгенерировать разметку недели в виде строки и вставить ее на страницу (в .calendar__week)
   // + разметка недели состоит из 7 дней (.calendar__day) отображаемой недели
