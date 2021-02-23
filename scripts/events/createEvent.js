@@ -12,7 +12,7 @@ function clearEventForm() {
   eventFormElem.querySelector('[name="description"]').value = 'Add description';
   eventFormElem.querySelector('[name="date"]').valueAsDate = new Date(); // new Date(Date.now()).getFullYear();
   // new Date(Date.now()).getFullYear();
-  eventFormElem.querySelector('[name="startTime"]').valueAsDate = new Date();
+  eventFormElem.querySelector('[name="startTime"]').valueAsDate = new Date().toLocaleString();
   // eventFormElem.querySelector('[name="startTime"]').step = 900;
   // `${new Date().getHours().toString()}:${new Date().getMinutes().toString()}`;
   eventFormElem.querySelector('[name="endTime"]').valueAsNumber = new Date(Date.now()).getTime();
@@ -62,9 +62,8 @@ function onCreateEvent(event) {
   setItem('events', eventsArr);
   // console.log(getItem('events'));
 
-  onCloseEventForm();
-
   renderEvents();
+  onCloseEventForm();
 }
 
 export function initEventForm() {
