@@ -3,6 +3,8 @@ import { generateWeekRange } from '../common/time.utils.js';
 import { renderEvents } from '../events/events.js';
 import { createNumbersArray } from '../common/createNumbersArray.js';
 
+let timeLineInterval = null;
+
 const generateDay = () => {
   // + функция должна сгенерировать и вернуть разметку дня в виде строки
   // + разметка состоит из 24 часовых временных слотов (.calendar__time-slot)
@@ -20,6 +22,13 @@ const generateDay = () => {
 
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
+  const startDate = getItem('displayedWeekStart');
+  const currentWeekDays = generateWeekRange(startDate);
+  if (!currentWeekDays) {
+    console.log('false');
+    return;
+  }
+  console.log('true');
 
   const weekElem = document.querySelector('.calendar__week');
   const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
@@ -36,7 +45,14 @@ const renderTimeLine = () => {
   return currentHour;
 };
 
-// const currentTime = () => {
+const timeLineTimeOut = () => {
+  const secondsToMin = 60000 - new Date().getMilliseconds();
+  console.log(secondsToMin);
+  setTimeout(() => {
+    renderTimeLine();
+    timeLineInterval = setInterval(renderTimeLine, 60000);
+  }, secondsToMin);
+};
 
 //   const currentTimeLine = document.querySelector('.current-time');
 //   currentTimeLine.style.top = `${new Date().getMinutes().toString()}px`;
@@ -74,7 +90,13 @@ export const renderWeek = () => {
     .join('');
 
   renderEvents();
-  // renderTimeLine();
-  // console.log(new Date().getMinutes().toString());
-  setInterval(renderTimeLine, 60000);
+
+  // if (currentWeekDays) {
+  renderTimeLine();
+
+  if (timeLineInterval) {
+    clearInterval(timeLineInterval);
+  }
+  timeLineTimeOut();
+  // }
 };

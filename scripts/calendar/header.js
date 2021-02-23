@@ -25,7 +25,8 @@ export const renderHeader = () => {
 					<span class="day-label__day-number">${new Date(date).getDate()}</span>
 				</div>`,
     )
-    .join('');
+		.join('');
+	
 };
 
 // + при клике на кнопку "Create" открыть модальное окно с формой для создания события
