@@ -21,10 +21,28 @@ const generateDay = () => {
 const createTimeLine = () => {
   const timeLineElem = document.createElement('div');
   timeLineElem.style.position = 'absolute';
-  timeLineElem.style.top = '0'; // getMinutes
+  timeLineElem.style.top = '0px'; //'1px'; // getMinutes
   timeLineElem.style.width = '100%';
   timeLineElem.style.height = '1px';
   timeLineElem.style.backgroundColor = 'red';
+  console.log(timeLineElem);
+
+  return timeLineElem;
+};
+
+const renderTimeLine = () => {
+  const getCurrentTime = new Date();
+  const weekElem = document.querySelector('.calendar__week');
+  const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
+  const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
+
+  console.log(createTimeLine.style.top);
+
+  createTimeLine.style.top = `${getCurrentTime.getMinutes()}px`;
+
+  currentHour.append(createTimeLine);
+  console.log(currentHour);
+  return currentHour;
 };
 
 export const renderWeek = () => {
@@ -38,10 +56,10 @@ export const renderWeek = () => {
   const calendarWeekElem = document.querySelector('.calendar__week');
 
   const startDate = getItem('displayedWeekStart');
-  // console.log(startDate);2
+  console.log(startDate);
 
   const currentWeekDays = generateWeekRange(startDate);
-  // console.log(currentWeekDays);
+  console.log(currentWeekDays);
 
   calendarWeekElem.innerHTML = currentWeekDays
     .map(dayNum => {
@@ -59,4 +77,6 @@ export const renderWeek = () => {
     .join('');
 
   renderEvents();
+  createTimeLine();
+  setTimeout(renderTimeLine, 1000);
 };

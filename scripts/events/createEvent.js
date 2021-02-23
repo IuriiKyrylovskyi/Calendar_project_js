@@ -13,8 +13,7 @@ function clearEventForm() {
     minute: 'numeric',
     hour12: false,
   });
-
-  console.log(getTime.format(new Date()));
+  // console.log(getTime.format(new Date()));
 
   // + ф-ция должна очистить поля формы от значений
   eventFormElem.querySelector('[name="title"]').value = 'Title';
@@ -67,8 +66,9 @@ function onCreateEvent(event) {
   setItem('events', eventsArr);
   // console.log(getItem('events'));
 
+	onCloseEventForm();
+	
   renderEvents();
-  onCloseEventForm();
 }
 
 export function initEventForm() {
