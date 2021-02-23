@@ -18,18 +18,6 @@ const generateDay = () => {
   return calendarDayElem;
 };
 
-// const createTimeLine = () => {
-//   const timeLineElem = document.createElement('div');
-//   timeLineElem.classList.add = 'current-time';
-//   // timeLineElem.style.position = 'absolute';
-//   // timeLineElem.style.top = '0px'; //'1px'; // getMinutes
-//   // timeLineElem.style.width = '100%';
-//   // timeLineElem.style.height = '1px';
-//   // timeLineElem.style.backgroundColor = 'red';
-//   console.log(timeLineElem);
-
-//   return timeLineElem;
-// };
 
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
@@ -48,7 +36,7 @@ const renderTimeLine = () => {
 };
 
 const currentTime = () => {
-  const currentTimeLine = document.querySelector('current-time');
+  const currentTimeLine = document.querySelector('.current-time');
   currentTimeLine.style.top = `${new Date().getMinutes().toString()}px`;
 };
 
