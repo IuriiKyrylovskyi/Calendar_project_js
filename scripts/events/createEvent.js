@@ -7,16 +7,21 @@ const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
 
 function clearEventForm() {
-  // ф-ция должна очистить поля формы от значений
+
+  const getTime = new Intl.DateTimeFormat('en', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
+
+  console.log(getTime.format(new Date()));
+
+  // + ф-ция должна очистить поля формы от значений
   eventFormElem.querySelector('[name="title"]').value = 'Title';
   eventFormElem.querySelector('[name="description"]').value = 'Add description';
-  eventFormElem.querySelector('[name="date"]').valueAsDate = new Date(); // new Date(Date.now()).getFullYear();
-  // new Date(Date.now()).getFullYear();
-  eventFormElem.querySelector('[name="startTime"]').valueAsDate = new Date().toLocaleString();
-  // eventFormElem.querySelector('[name="startTime"]').step = 900;
-  // `${new Date().getHours().toString()}:${new Date().getMinutes().toString()}`;
-  eventFormElem.querySelector('[name="endTime"]').valueAsNumber = new Date(Date.now()).getTime();
-  // eventFormElem.querySelector('[name="endTime"]').valueAsNumber = new Date().toFixed(2);
+  eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
+  eventFormElem.querySelector('[name="startTime"]').value = `${getTime.format(new Date())}`;
+  eventFormElem.querySelector('[name="endTime"]').value = `${getTime.format(new Date())}`;
 }
 
 function onCloseEventForm() {
@@ -74,5 +79,3 @@ export function initEventForm() {
   eventFormElem.addEventListener('submit', onCreateEvent);
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
-
-// --------
