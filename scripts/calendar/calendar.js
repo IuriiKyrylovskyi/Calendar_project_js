@@ -18,17 +18,18 @@ const generateDay = () => {
   return calendarDayElem;
 };
 
-const createTimeLine = () => {
-  const timeLineElem = document.createElement('div');
-  timeLineElem.style.position = 'absolute';
-  timeLineElem.style.top = '0px'; //'1px'; // getMinutes
-  timeLineElem.style.width = '100%';
-  timeLineElem.style.height = '1px';
-  timeLineElem.style.backgroundColor = 'red';
-  console.log(timeLineElem);
+// const createTimeLine = () => {
+//   const timeLineElem = document.createElement('div');
+//   timeLineElem.classList.add = 'current-time';
+//   // timeLineElem.style.position = 'absolute';
+//   // timeLineElem.style.top = '0px'; //'1px'; // getMinutes
+//   // timeLineElem.style.width = '100%';
+//   // timeLineElem.style.height = '1px';
+//   // timeLineElem.style.backgroundColor = 'red';
+//   console.log(timeLineElem);
 
-  return timeLineElem;
-};
+//   return timeLineElem;
+// };
 
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
@@ -36,13 +37,19 @@ const renderTimeLine = () => {
   const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
 
-  console.log(createTimeLine.style.top);
+  // console.log(createTimeLine.style.top);
+  const timeLineElem = '<div class="current-time"></div>';
 
-  createTimeLine.style.top = `${getCurrentTime.getMinutes()}px`;
+  // createTimeLine.style.top = `${getCurrentTime.getMinutes()}px`;
 
-  currentHour.append(createTimeLine);
+  currentHour.innerHTML = timeLineElem;
   console.log(currentHour);
   return currentHour;
+};
+
+const currentTime = () => {
+  const currentTimeLine = document.querySelector('current-time');
+  currentTimeLine.style.top = `${new Date().getMinutes().toString()}px`;
 };
 
 export const renderWeek = () => {
@@ -77,6 +84,7 @@ export const renderWeek = () => {
     .join('');
 
   renderEvents();
-  createTimeLine();
-  setTimeout(renderTimeLine, 1000);
+  renderTimeLine();
+  console.log(new Date().getMinutes().toString());
+  setInterval(currentTime, 6000);
 };

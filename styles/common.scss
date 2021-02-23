@@ -27,7 +27,7 @@
 		padding: 16px;
 		border: 1px solid #ccc;
 		border-radius: 8px;
-        box-shadow: 0 3px 15px rgb(0, 0, 0, 0.2);
+		box-shadow: 0 3px 15px rgb(0, 0, 0, 0.2);
 	}
 }
 
@@ -59,4 +59,13 @@
 
 .hidden {
 	display: none;
+}
+
+.current-time {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background-color: red;
 }
