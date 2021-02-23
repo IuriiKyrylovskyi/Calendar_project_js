@@ -26,7 +26,8 @@ const renderTimeLine = () => {
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
 
   // console.log(createTimeLine.style.top);
-  const timeLineElem = '<div class="current-time"></div>';
+	
+  const timeLineElem = `<div class="current-time" style="top:${getCurrentTime.getMinutes()}px;"></div>`;
 
   // createTimeLine.style.top = `${getCurrentTime.getMinutes()}px`;
 
@@ -35,10 +36,11 @@ const renderTimeLine = () => {
   return currentHour;
 };
 
-const currentTime = () => {
-  const currentTimeLine = document.querySelector('.current-time');
-  currentTimeLine.style.top = `${new Date().getMinutes().toString()}px`;
-};
+// const currentTime = () => {
+	
+//   const currentTimeLine = document.querySelector('.current-time');
+//   currentTimeLine.style.top = `${new Date().getMinutes().toString()}px`;
+// };
 
 export const renderWeek = () => {
   // + функция должна сгенерировать разметку недели в виде строки и вставить ее на страницу (в .calendar__week)
@@ -72,7 +74,7 @@ export const renderWeek = () => {
     .join('');
 
   renderEvents();
-  renderTimeLine();
-  console.log(new Date().getMinutes().toString());
-  setInterval(currentTime, 6000);
+  // renderTimeLine();
+  // console.log(new Date().getMinutes().toString());
+  setInterval(renderTimeLine, 60000);
 };
