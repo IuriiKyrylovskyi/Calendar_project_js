@@ -18,15 +18,15 @@ const generateDay = () => {
   return calendarDayElem;
 };
 
-
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
+
   const weekElem = document.querySelector('.calendar__week');
   const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
 
   // console.log(createTimeLine.style.top);
-	
+
   const timeLineElem = `<div class="current-time" style="top:${getCurrentTime.getMinutes()}px;"></div>`;
 
   // createTimeLine.style.top = `${getCurrentTime.getMinutes()}px`;
@@ -37,7 +37,7 @@ const renderTimeLine = () => {
 };
 
 // const currentTime = () => {
-	
+
 //   const currentTimeLine = document.querySelector('.current-time');
 //   currentTimeLine.style.top = `${new Date().getMinutes().toString()}px`;
 // };

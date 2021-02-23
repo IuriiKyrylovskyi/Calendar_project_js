@@ -74,6 +74,17 @@
   height: 1px;
   background-color: red;
 }
+.current-time:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: -3px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: red;
+}
 
 .button {
   margin: 5px 30px 5px 0;
