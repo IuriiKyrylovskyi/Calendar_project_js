@@ -31,7 +31,7 @@ const renderTimeLine = () => {
     currentWeekDays.filter(day => day.toLocaleDateString() === getCurrentTime.toLocaleDateString());
   console.log(getCurrentDate());
 
-  if (getCurrentDate().length === 0) {
+  if (!getCurrentDate().length) {
     // console.log('false');
     return;
   }

@@ -20,7 +20,10 @@ function clearEventForm() {
   eventFormElem.querySelector('[name="description"]').value = 'Add description';
   eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
   eventFormElem.querySelector('[name="startTime"]').value = `${getTime.format(new Date())}`;
-  eventFormElem.querySelector('[name="endTime"]').value = `${getTime.format(new Date())}`;
+	eventFormElem.querySelector('[name="endTime"]').value = `${getTime.format(new Date())}`;
+	
+
+	
 }
 
 function onCloseEventForm() {

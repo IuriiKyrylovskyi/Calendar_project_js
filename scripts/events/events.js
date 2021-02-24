@@ -2,8 +2,33 @@ import { getItem, setItem } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 
+import { openModal } from '../common/modal.js';
+
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
+
+function handleTimeSlotClick(event) {
+  const eventFormElem = document.querySelector('.event-form');
+  const clickedStartTimeSlotElem =
+    event.target.dataset.time.length < 2
+      ? `0${event.target.dataset.time}`
+      : event.target.dataset.time;
+  console.log(clickedStartTimeSlotElem);
+  const clickedEndTimeSlotElem =
+    (+event.target.dataset.time + 1).toString().length < 2
+      ? `0${(+event.target.dataset.time + 1).toString()}`
+      : (+event.target.dataset.time + 1).toString();
+  console.log(clickedEndTimeSlotElem);
+
+  if (clickedStartTimeSlotElem) {
+    // eventFormElem.querySelector('[name="title"]').value = 'Title';
+    // eventFormElem.querySelector('[name="description"]').value = 'Add description';
+    // eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
+    eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
+    eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
+    openModal();
+  }
+}
 
 function handleEventClick(event) {
   // + если произошел клик по событию, то нужно паказать попап с кнопкой удаления
@@ -129,3 +154,5 @@ function onDeleteEvent() {
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);
+
+weekElem.addEventListener('click', handleTimeSlotClick);
