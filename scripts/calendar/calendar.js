@@ -23,8 +23,14 @@ const generateDay = () => {
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
   const startDate = getItem('displayedWeekStart');
-  const currentWeekDays = generateWeekRange(startDate);
-  if (!currentWeekDays) {
+  // const currentWeekDays = generateWeekRange(startDate);
+  console.log(startDate);
+  console.log(startDate.getFullYear());
+
+  if (
+    startDate.getFullYear() !== getCurrentTime.getFullYear() ||
+    startDate.getMonth() !== getCurrentTime.getMonth()
+  ) {
     console.log('false');
     return;
   }
@@ -50,11 +56,11 @@ const renderTimeLine = () => {
 
 const timeLineTimeOut = () => {
   const secondsToMin = 60 - new Date().getSeconds();
-  console.log(secondsToMin);
+  // console.log(secondsToMin);
   setTimeout(() => {
     renderTimeLine();
     timeLineInterval = setInterval(renderTimeLine, 60000);
-  }, secondsToMin * 10000);
+  }, secondsToMin * 1000);
 };
 
 //   const currentTimeLine = document.querySelector('.current-time');
