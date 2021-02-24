@@ -46,12 +46,12 @@ const renderTimeLine = () => {
 };
 
 const timeLineTimeOut = () => {
-  const secondsToMin = 60000 - new Date().getMilliseconds();
+  const secondsToMin = 60 - new Date().getSeconds();
   console.log(secondsToMin);
   setTimeout(() => {
     renderTimeLine();
     timeLineInterval = setInterval(renderTimeLine, 60000);
-  }, secondsToMin);
+  }, secondsToMin * 1000);
 };
 
 //   const currentTimeLine = document.querySelector('.current-time');
@@ -91,12 +91,12 @@ export const renderWeek = () => {
 
   renderEvents();
 
-  // if (currentWeekDays) {
-  renderTimeLine();
+  // if (new Date().getDate() - currentWeekDays.getDate() ) {
+    renderTimeLine();
 
-  if (timeLineInterval) {
-    clearInterval(timeLineInterval);
-  }
-  timeLineTimeOut();
+    if (timeLineInterval) {
+      clearInterval(timeLineInterval);
+    }
+    timeLineTimeOut();
   // }
 };
