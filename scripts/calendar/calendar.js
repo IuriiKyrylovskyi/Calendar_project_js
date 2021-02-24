@@ -20,6 +20,17 @@ const generateDay = () => {
   return calendarDayElem;
 };
 
+const deleteTimeLine = () => {
+	const currentTimeElems = document.querySelectorAll('.current-time');
+	console.log(currentTimeElems.length);
+  if (currentTimeElems.length > 0) {
+    currentTimeElems.forEach(line => {
+      line.innerHTML = '';
+			return line;
+    });
+  }
+};
+
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
   const startDate = getItem('displayedWeekStart');
@@ -35,13 +46,18 @@ const renderTimeLine = () => {
     // console.log('false');
     return;
   }
+
+  deleteTimeLine();
+
   // console.log('true');
   const weekElem = document.querySelector('.calendar__week');
   const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
   if (!currentDate) {
     return;
   }
+
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
+  currentHour.innerHTML = '';
 
   const timeLineElem = `<div class="current-time" style="top:${getCurrentTime.getMinutes()}px;"></div>`;
 

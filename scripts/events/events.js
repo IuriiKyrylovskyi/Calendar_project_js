@@ -21,9 +21,12 @@ function handleTimeSlotClick(event) {
   console.log(clickedEndTimeSlotElem);
 
   if (clickedStartTimeSlotElem) {
+    // const calendarDayElem = clickedStartTimeSlotElem.closest('.calendar__day');
+    // console.log(calendarDayElem.dataset.day);
+
     // eventFormElem.querySelector('[name="title"]').value = 'Title';
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
-    // eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
+    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
     openModal();
@@ -62,8 +65,7 @@ const createEventElement = event => {
   const eventElem = document.createElement('div');
   eventElem.classList.add('event');
   eventElem.setAttribute('data-event-id', event.id);
-  // eventElem.style.position = 'absolute'; // for check ----
-  eventElem.style.top = `${new Date(event.start).getMinutes()}px`; // let
+  eventElem.style.top = `${new Date(event.start).getMinutes()}px`; 
   // console.log(eventElem.style.height);
   const eventHight =
     (new Date(event.end).getHours() - new Date(event.start).getHours()) * 60 +
