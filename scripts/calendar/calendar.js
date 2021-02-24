@@ -21,12 +21,12 @@ const generateDay = () => {
 };
 
 const deleteTimeLine = () => {
-	const currentTimeElems = document.querySelectorAll('.current-time');
-	console.log(currentTimeElems.length);
+  const currentTimeElems = document.querySelectorAll('.current-time');
+  console.log(currentTimeElems.length);
   if (currentTimeElems.length > 0) {
     currentTimeElems.forEach(line => {
       line.innerHTML = '';
-			return line;
+      return line;
     });
   }
 };
@@ -38,6 +38,7 @@ const renderTimeLine = () => {
   // console.log(startDate.getFullYear());
   const currentWeekDays = generateWeekRange(startDate);
   console.log(getCurrentTime.toLocaleDateString());
+
   const getCurrentDate = () =>
     currentWeekDays.filter(day => day.toLocaleDateString() === getCurrentTime.toLocaleDateString());
   console.log(getCurrentDate());

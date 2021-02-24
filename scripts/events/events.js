@@ -8,12 +8,14 @@ const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleTimeSlotClick(event) {
-  const eventFormElem = document.querySelector('.event-form');
+	const eventFormElem = document.querySelector('.event-form');
+	
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
       ? `0${event.target.dataset.time}`
       : event.target.dataset.time;
-  console.log(clickedStartTimeSlotElem);
+	console.log(clickedStartTimeSlotElem);
+	
   const clickedEndTimeSlotElem =
     (+event.target.dataset.time + 1).toString().length < 2
       ? `0${(+event.target.dataset.time + 1).toString()}`
@@ -21,8 +23,8 @@ function handleTimeSlotClick(event) {
   console.log(clickedEndTimeSlotElem);
 
   if (clickedStartTimeSlotElem) {
-    // const calendarDayElem = clickedStartTimeSlotElem.closest('.calendar__day');
-    // console.log(calendarDayElem.dataset.day);
+    const calendarDayElem = clickedStartTimeSlotElem.closest('.calendar__day');
+    console.log(calendarDayElem);
 
     // eventFormElem.querySelector('[name="title"]').value = 'Title';
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
