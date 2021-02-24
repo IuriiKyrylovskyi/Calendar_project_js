@@ -31,9 +31,8 @@ const renderTimeLine = () => {
   console.log('true');
 
   const weekElem = document.querySelector('.calendar__week');
-  // const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
   const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
-  if (currentDate.dataset.day !== new Date().getDate()) {
+  if (!currentDate) {
     return;
   }
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
