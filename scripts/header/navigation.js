@@ -79,6 +79,6 @@ const onChangeWeek = event => {
 };
 
 export const initNavigation = () => {
-  // renderCurrentMonth();
+  renderCurrentMonth();
   navElem.addEventListener('click', onChangeWeek);
 };
