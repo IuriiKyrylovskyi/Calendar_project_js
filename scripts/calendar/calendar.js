@@ -31,7 +31,11 @@ const renderTimeLine = () => {
   console.log('true');
 
   const weekElem = document.querySelector('.calendar__week');
+  // const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
   const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
+  if (currentDate.dataset.day !== new Date().getDate()) {
+    return;
+  }
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
 
   // console.log(createTimeLine.style.top);
@@ -51,7 +55,7 @@ const timeLineTimeOut = () => {
   setTimeout(() => {
     renderTimeLine();
     timeLineInterval = setInterval(renderTimeLine, 60000);
-  }, secondsToMin * 1000);
+  }, secondsToMin * 10000);
 };
 
 //   const currentTimeLine = document.querySelector('.current-time');
@@ -92,11 +96,11 @@ export const renderWeek = () => {
   renderEvents();
 
   // if (new Date().getDate() - currentWeekDays.getDate() ) {
-    renderTimeLine();
+  renderTimeLine();
 
-    if (timeLineInterval) {
-      clearInterval(timeLineInterval);
-    }
-    timeLineTimeOut();
+  if (timeLineInterval) {
+    clearInterval(timeLineInterval);
+  }
+  timeLineTimeOut();
   // }
 };
