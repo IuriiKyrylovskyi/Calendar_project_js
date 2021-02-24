@@ -23,19 +23,19 @@ const generateDay = () => {
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
   const startDate = getItem('displayedWeekStart');
-  // const currentWeekDays = generateWeekRange(startDate);
-  console.log(startDate);
-  console.log(startDate.getFullYear());
+  // console.log(startDate);
+  // console.log(startDate.getFullYear());
+  const currentWeekDays = generateWeekRange(startDate);
+  console.log(getCurrentTime.toLocaleDateString());
+  const getCurrentDate = () =>
+    currentWeekDays.filter(day => day.toLocaleDateString() === getCurrentTime.toLocaleDateString());
+  console.log(getCurrentDate());
 
-  if (
-    startDate.getFullYear() !== getCurrentTime.getFullYear() ||
-    startDate.getMonth() !== getCurrentTime.getMonth()
-  ) {
-    console.log('false');
+  if (getCurrentDate().length === 0) {
+    // console.log('false');
     return;
   }
-  console.log('true');
-
+  // console.log('true');
   const weekElem = document.querySelector('.calendar__week');
   const currentDate = weekElem.querySelector(`[data-day="${getCurrentTime.getDate()}"]`);
   if (!currentDate) {
@@ -43,14 +43,10 @@ const renderTimeLine = () => {
   }
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
 
-  // console.log(createTimeLine.style.top);
-
   const timeLineElem = `<div class="current-time" style="top:${getCurrentTime.getMinutes()}px;"></div>`;
 
-  // createTimeLine.style.top = `${getCurrentTime.getMinutes()}px`;
-
   currentHour.innerHTML = timeLineElem;
-  console.log(currentHour);
+  // console.log(currentHour);
   return currentHour;
 };
 
@@ -63,10 +59,6 @@ const timeLineTimeOut = () => {
   }, secondsToMin * 1000);
 };
 
-//   const currentTimeLine = document.querySelector('.current-time');
-//   currentTimeLine.style.top = `${new Date().getMinutes().toString()}px`;
-// };
-
 export const renderWeek = () => {
   // + функция должна сгенерировать разметку недели в виде строки и вставить ее на страницу (в .calendar__week)
   // + разметка недели состоит из 7 дней (.calendar__day) отображаемой недели
@@ -78,10 +70,10 @@ export const renderWeek = () => {
   const calendarWeekElem = document.querySelector('.calendar__week');
 
   const startDate = getItem('displayedWeekStart');
-  console.log(startDate);
+  // console.log(startDate);
 
   const currentWeekDays = generateWeekRange(startDate);
-  console.log(currentWeekDays);
+  // console.log(currentWeekDays);
 
   calendarWeekElem.innerHTML = currentWeekDays
     .map(dayNum => {
@@ -100,12 +92,10 @@ export const renderWeek = () => {
 
   renderEvents();
 
-  // if (new Date().getDate() - currentWeekDays.getDate() ) {
   renderTimeLine();
 
   if (timeLineInterval) {
     clearInterval(timeLineInterval);
   }
   timeLineTimeOut();
-  // }
 };
