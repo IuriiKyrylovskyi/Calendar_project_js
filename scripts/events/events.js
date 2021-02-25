@@ -9,7 +9,10 @@ const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
-
+  const eventElem = weekElem.querySelector('.event');
+  if (event.target === eventElem) {
+    return;
+  }
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
       ? `0${event.target.dataset.time}`
@@ -26,11 +29,14 @@ function handleTimeSlotClick(event) {
     const calendarDayElem = event.target.closest('.calendar__day');
     console.log(calendarDayElem.dataset.day);
 
+    console.log(new Date().getFullYear());
+    console.log(new Date().getMonth());
+
     // eventFormElem.querySelector('[name="title"]').value = 'Title';
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
-    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date() //`${
-    //   calendarDayElem.dataset.day
-    // }:${new Date().getMonth()}:${new Date().getMonth()}`;
+    eventFormElem.querySelector('[name="date"]').value = `${
+      calendarDayElem.dataset.day
+    }:${new Date()}:${new Date().getFullYear()}`;
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
     openModal();

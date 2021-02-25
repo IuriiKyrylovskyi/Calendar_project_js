@@ -23,12 +23,10 @@ const generateDay = () => {
 const deleteTimeLine = () => {
   const currentTimeElems = document.querySelectorAll('.current-time');
   console.log(currentTimeElems.length);
-  if (currentTimeElems.length > 0) {
-    currentTimeElems.forEach(line => {
-      line.innerHTML = '';
-      return line;
-    });
-  }
+  currentTimeElems.forEach(line => {
+    line.remove();
+    return line;
+  });
 };
 
 const renderTimeLine = () => {
@@ -36,8 +34,6 @@ const renderTimeLine = () => {
   // const startDate = getItem('displayedWeekStart');
   // console.log(startDate);
   // console.log(startDate.getFullYear());
-
-
 
   // console.log('true');
   const weekElem = document.querySelector('.calendar__week');
@@ -65,7 +61,7 @@ const timeLineTimeOut = () => {
     timeLineInterval = setInterval(() => {
       console.log('line');
       renderTimeLine();
-    }, 6000);
+    }, 60000);
   }, secondsToMin * 1000);
 };
 
