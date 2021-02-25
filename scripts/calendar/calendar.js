@@ -56,10 +56,10 @@ const timeLineTimeOut = () => {
   const secondsToMin = 60 - new Date().getSeconds();
   // console.log(secondsToMin);
   setTimeout(() => {
-    console.log('again');
+    // console.log('again');
     renderTimeLine();
     timeLineInterval = setInterval(() => {
-      console.log('line');
+      // console.log('line');
       renderTimeLine();
     }, 60000);
   }, secondsToMin * 1000);
