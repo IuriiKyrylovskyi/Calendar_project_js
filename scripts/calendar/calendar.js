@@ -71,8 +71,12 @@ const timeLineTimeOut = () => {
   const secondsToMin = 60 - new Date().getSeconds();
   // console.log(secondsToMin);
   setTimeout(() => {
+		console.log('again');
     renderTimeLine();
-    timeLineInterval = setInterval(renderTimeLine, 60000);
+    timeLineInterval = setInterval(() => {
+      console.log('line');
+      renderTimeLine();
+    }, 6000);
   }, secondsToMin * 1000);
 };
 
@@ -107,12 +111,13 @@ export const renderWeek = () => {
     // )
     .join('');
 
+  if (timeLineInterval) {
+    clearInterval(timeLineInterval);
+	}
+	
   renderEvents();
 
   renderTimeLine();
 
-  if (timeLineInterval) {
-    clearInterval(timeLineInterval);
-  }
   timeLineTimeOut();
 };

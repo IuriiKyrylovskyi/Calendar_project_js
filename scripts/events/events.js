@@ -28,7 +28,9 @@ function handleTimeSlotClick(event) {
 
     // eventFormElem.querySelector('[name="title"]').value = 'Title';
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
-    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
+    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date() //`${
+    //   calendarDayElem.dataset.day
+    // }:${new Date().getMonth()}:${new Date().getMonth()}`;
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
     openModal();
