@@ -33,22 +33,11 @@ const deleteTimeLine = () => {
 
 const renderTimeLine = () => {
   const getCurrentTime = new Date();
-  const startDate = getItem('displayedWeekStart');
+  // const startDate = getItem('displayedWeekStart');
   // console.log(startDate);
   // console.log(startDate.getFullYear());
-  const currentWeekDays = generateWeekRange(startDate);
-  console.log(getCurrentTime.toLocaleDateString());
 
-  const getCurrentDate = () =>
-    currentWeekDays.filter(day => day.toLocaleDateString() === getCurrentTime.toLocaleDateString());
-  console.log(getCurrentDate());
 
-  if (!getCurrentDate().length) {
-    // console.log('false');
-    return;
-  }
-
-  deleteTimeLine();
 
   // console.log('true');
   const weekElem = document.querySelector('.calendar__week');
@@ -71,7 +60,7 @@ const timeLineTimeOut = () => {
   const secondsToMin = 60 - new Date().getSeconds();
   // console.log(secondsToMin);
   setTimeout(() => {
-		console.log('again');
+    console.log('again');
     renderTimeLine();
     timeLineInterval = setInterval(() => {
       console.log('line');
@@ -111,11 +100,28 @@ export const renderWeek = () => {
     // )
     .join('');
 
+  console.log('render');
   if (timeLineInterval) {
+    console.log('render2');
     clearInterval(timeLineInterval);
-	}
-	
+    timeLineInterval = null;
+  }
+
   renderEvents();
+
+  // const currentWeekDays = generateWeekRange(startDate);
+  // console.log(getCurrentTime.toLocaleDateString());
+
+  const getCurrentDate = () =>
+    currentWeekDays.filter(day => day.toLocaleDateString() === new Date().toLocaleDateString());
+  console.log(getCurrentDate());
+
+  if (!getCurrentDate().length) {
+    // console.log('false');
+    return;
+  }
+
+  deleteTimeLine();
 
   renderTimeLine();
 
