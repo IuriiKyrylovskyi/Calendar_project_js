@@ -16,23 +16,10 @@ function handleTimeSlotClick(event) {
     return;
   }
 
-  const showedWeek = getItem('displayedWeekStart');
-  console.log(showedWeek);
-  console.log(getDisplayedMonth(showedWeek));
-  console.log(new Date(getDisplayedMonth(showedWeek)).getMonth());
-  console.log(new Date(getDisplayedMonth(showedWeek)).getFullYear());
-  console.log(new Date(2021, 1, 32));
-
-  const daysElems = weekElem.querySelectorAll('.calendar__day');
   const calendarDayElem = event.target.closest('.calendar__day');
 
-	const clickedDateIndex = Array.from(daysElems).find((day, index) => {
-		console.log(day.dataset.day);
-		console.log(calendarDayElem.dataset.day);
-		+ day.dataset.day === +calendarDayElem.dataset.day;
-    return index;
-  });
-  console.log(clickedDateIndex);
+  const abd = calendarDayElem.dataset.fullDate.replaceAll('.', '-');
+  console.log(calendarDayElem.dataset.fullDate.replaceAll('.', '-'));
 
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
@@ -56,12 +43,11 @@ function handleTimeSlotClick(event) {
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
     // const dateRender = getDisplayedMonth()
 
-    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
-    // new Date(
-    //   getDisplayedMonth(calendarDayElem.dataset.day).getFullYear(),
-    //   getDisplayedMonth(calendarDayElem.dataset.day).getMonth(),
-    //   calendarDayElem.dataset.day,
-    // );
+    eventFormElem.querySelector('[name="date"]').value = new Date(
+      // calendarDayElem.dataset.fullDate,
+			abd
+    );
+
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
     openModal();
