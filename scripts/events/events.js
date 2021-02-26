@@ -3,16 +3,19 @@ import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 
 import { openModal } from '../common/modal.js';
+import { getDisplayedMonth } from '../common/time.utils.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
-  const eventElem = weekElem.querySelector('.event');
+  const eventElem = weekElem.querySelectorAll('.event');
   if (event.target === eventElem) {
+    console.log(eventElem);
     return;
   }
+
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
       ? `0${event.target.dataset.time}`
@@ -34,9 +37,14 @@ function handleTimeSlotClick(event) {
 
     // eventFormElem.querySelector('[name="title"]').value = 'Title';
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
-    eventFormElem.querySelector('[name="date"]').value = `${
-      calendarDayElem.dataset.day
-    }:${new Date()}:${new Date().getFullYear()}`;
+    // const dateRender = getDisplayedMonth()
+
+    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
+    // new Date(
+    //   getDisplayedMonth(calendarDayElem.dataset.day).getFullYear(),
+    //   getDisplayedMonth(calendarDayElem.dataset.day).getMonth(),
+    //   calendarDayElem.dataset.day,
+    // );
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
     openModal();

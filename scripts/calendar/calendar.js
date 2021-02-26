@@ -53,7 +53,7 @@ const renderTimeLine = () => {
 };
 
 const timeLineTimeOut = () => {
-  const secondsToMin = 60 - new Date().getSeconds();
+  const secondsToMin = 59 - new Date().getSeconds();
   // console.log(secondsToMin);
   setTimeout(() => {
     // console.log('again');
