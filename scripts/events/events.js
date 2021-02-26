@@ -12,9 +12,27 @@ function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
   const eventElem = weekElem.querySelectorAll('.event');
   if (event.target === eventElem) {
-    console.log(eventElem);
+    // console.log(eventElem);
     return;
   }
+
+  const showedWeek = getItem('displayedWeekStart');
+  console.log(showedWeek);
+  console.log(getDisplayedMonth(showedWeek));
+  console.log(new Date(getDisplayedMonth(showedWeek)).getMonth());
+  console.log(new Date(getDisplayedMonth(showedWeek)).getFullYear());
+  console.log(new Date(2021, 1, 32));
+
+  const daysElems = weekElem.querySelectorAll('.calendar__day');
+  const calendarDayElem = event.target.closest('.calendar__day');
+
+	const clickedDateIndex = Array.from(daysElems).find((day, index) => {
+		console.log(day.dataset.day);
+		console.log(calendarDayElem.dataset.day);
+		+ day.dataset.day === +calendarDayElem.dataset.day;
+    return index;
+  });
+  console.log(clickedDateIndex);
 
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
@@ -29,7 +47,6 @@ function handleTimeSlotClick(event) {
   console.log(clickedEndTimeSlotElem);
 
   if (clickedStartTimeSlotElem) {
-    const calendarDayElem = event.target.closest('.calendar__day');
     console.log(calendarDayElem.dataset.day);
 
     console.log(new Date().getFullYear());
