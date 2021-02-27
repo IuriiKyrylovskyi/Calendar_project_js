@@ -86,7 +86,7 @@ export const renderWeek = () => {
       const day = generateDay();
       day.setAttribute('data-day', dayNum.getDate());
       day.setAttribute('data-full-date', dayNum.toLocaleDateString());
-      day.setAttribute('data-full-date2', dayNum.toISOString());
+      // day.setAttribute('data-full-date2', dayNum.toISOString());
       return day.outerHTML;
     })
     // .map(dayNum =>

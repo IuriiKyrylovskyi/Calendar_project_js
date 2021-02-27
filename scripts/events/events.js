@@ -10,7 +10,7 @@ const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
-  const eventElem = weekElem.querySelectorAll('.event');
+  const eventElem = weekElem.querySelectorlAll('.event');
   if (event.target === eventElem) {
     // console.log(eventElem);
     return;
@@ -18,8 +18,13 @@ function handleTimeSlotClick(event) {
 
   const calendarDayElem = event.target.closest('.calendar__day');
 
-  const abd = calendarDayElem.dataset.fullDate.replaceAll('.', '-');
-  console.log(calendarDayElem.dataset.fullDate.replaceAll('.', '-'));
+  const abd = calendarDayElem.dataset.fullDate.replaceAll('.', '/');
+  console.log(calendarDayElem.dataset.fullDate.replaceAll('.', '/'));
+
+  const formatter = new Intl.DateTimeFormat('en', { month: 'numeric' });
+  const date = calendarDayElem.dataset.fullDate;
+  // console.log(formatter.format(date));
+  console.log(new Date(date).getFullYear());
 
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
@@ -45,7 +50,7 @@ function handleTimeSlotClick(event) {
 
     eventFormElem.querySelector('[name="date"]').value = new Date(
       // calendarDayElem.dataset.fullDate,
-			abd
+      abd,
     );
 
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
