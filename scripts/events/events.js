@@ -3,7 +3,6 @@ import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 
 import { openModal } from '../common/modal.js';
-import { getDisplayedMonth } from '../common/time.utils.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -18,7 +17,7 @@ function handleTimeSlotClick(event) {
 
   const calendarDayElem = event.target.closest('.calendar__day');
 
-  const formatter = new Intl.DateTimeFormat('fr-CA', {
+  const formatter = new Intl.DateTimeFormat('en-CA', {
     day: 'numeric',
     month: 'numeric',
     year: 'numeric',
@@ -31,29 +30,22 @@ function handleTimeSlotClick(event) {
     event.target.dataset.time.length < 2
       ? `0${event.target.dataset.time}`
       : event.target.dataset.time;
-  console.log(clickedStartTimeSlotElem);
+  // console.log(clickedStartTimeSlotElem);
 
-  // const clickedEndTimeSlotElem = (+clickedStartTimeSlotElem + 1).toString();
   const clickedEndTimeSlotElem =
     (+event.target.dataset.time + 1).toString().length < 2
       ? `0${(+event.target.dataset.time + 1).toString()}`
       : (+event.target.dataset.time + 1).toString();
-  console.log(clickedEndTimeSlotElem);
+  // console.log(clickedEndTimeSlotElem);
 
   if (clickedStartTimeSlotElem) {
-    console.log(calendarDayElem.dataset.day);
+    // console.log(calendarDayElem.dataset.day);
 
-    console.log(new Date().getFullYear());
-    console.log(new Date().getMonth());
-
-    // eventFormElem.querySelector('[name="title"]').value = 'Title';
-    // eventFormElem.querySelector('[name="description"]').value = 'Add description';
-    // const dateRender = getDisplayedMonth()
-
-    eventFormElem.querySelector('[name="date"]').valueAsNumber = clickedEventDate;
+    eventFormElem.querySelector('[name="date"]').valueAsNumber = new Date(clickedEventDate);
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
-    openModal();
+    
+		openModal();
   }
 }
 
