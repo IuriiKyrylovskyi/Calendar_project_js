@@ -11,7 +11,7 @@ function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
 
   if (event.target.classList.contains('event') || event.target.closest('.event')) {
-    console.log('clicked');
+    // console.log('clicked');
     return;
   }
 
@@ -25,7 +25,7 @@ function handleTimeSlotClick(event) {
   });
   const eventDate = new Date(calendarDayElem.dataset.fullDate);
   const clickedEventDate = formatter.format(eventDate);
-  console.log(formatter.format(eventDate));
+  // console.log(formatter.format(eventDate));
 
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
@@ -62,7 +62,7 @@ function handleEventClick(event) {
 
     // const eventId = +clickedEvent.dataset.eventId;
     const eventId = +clickedEvent.getAttribute('data-event-id');
-    console.log(eventId);
+    // console.log(eventId);
     setItem('eventIdToDelete', eventId);
   }
 }

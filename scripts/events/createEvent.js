@@ -56,9 +56,8 @@ function onCreateEvent(event) {
       eventFormElem.querySelector('[name="endTime"]').value,
     ),
   };
-  // console.log(newEvent);
-  console.log(+newEvent.start);
-  console.log(+newEvent.end);
+  // console.log(+newEvent.start);
+  // console.log(+newEvent.end);
   const eventsArr = getItem('events');
   // console.log(eventsArr);
   // console.log(typeof eventsArr);

@@ -43,6 +43,9 @@ const renderTimeLine = () => {
   }
 
   const currentHour = currentDate.querySelector(`[data-time="${getCurrentTime.getHours()}"]`);
+  if (!currentHour) {
+    currentHour.innerHTML = '';
+  }
   currentHour.innerHTML = '';
 
   const timeLineElem = `<div class="current-time" style="top:${getCurrentTime.getMinutes()}px;"></div>`;
@@ -97,9 +100,9 @@ export const renderWeek = () => {
     // )
     .join('');
 
-  console.log('render');
+  // console.log('render');
   if (timeLineInterval) {
-    console.log('render2');
+    // console.log('render2');
     clearInterval(timeLineInterval);
     timeLineInterval = null;
   }
