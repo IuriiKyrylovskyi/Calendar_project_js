@@ -10,7 +10,7 @@ const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
-	
+
   if (event.target.classList.contains('event') || event.target.closest('.event')) {
     console.log('clicked');
     return;
@@ -18,14 +18,14 @@ function handleTimeSlotClick(event) {
 
   const calendarDayElem = event.target.closest('.calendar__day');
 
-  // const abd = calendarDayElem.dataset.fullDate.replaceAll('.', '/');
-  // console.log(calendarDayElem.dataset.fullDate.replaceAll('.', '/'));
-  // console.log(new Date(calendarDayElem.dataset.fullDate).getFullYear());
-
-  // const formatter = new Intl.DateTimeFormat('en', { month: 'numeric' });
-  const date = calendarDayElem.dataset.fullDate;
-  // console.log(formatter.format(date));
-  console.log(new Date(date).getFullYear());
+  const formatter = new Intl.DateTimeFormat('fr-CA', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
+  const eventDate = new Date(calendarDayElem.dataset.fullDate);
+  const clickedEventDate = formatter.format(eventDate);
+  console.log(formatter.format(eventDate));
 
   const clickedStartTimeSlotElem =
     event.target.dataset.time.length < 2
@@ -33,8 +33,9 @@ function handleTimeSlotClick(event) {
       : event.target.dataset.time;
   console.log(clickedStartTimeSlotElem);
 
+  // const clickedEndTimeSlotElem = (+clickedStartTimeSlotElem + 1).toString();
   const clickedEndTimeSlotElem =
-    (+event.target.dataset.time + 1).toLocalString().length < 2
+    (+event.target.dataset.time + 1).toString().length < 2
       ? `0${(+event.target.dataset.time + 1).toString()}`
       : (+event.target.dataset.time + 1).toString();
   console.log(clickedEndTimeSlotElem);
@@ -49,11 +50,7 @@ function handleTimeSlotClick(event) {
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
     // const dateRender = getDisplayedMonth()
 
-    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date(
-      calendarDayElem.dataset.fullDate,
-      // abd,
-    );
-
+    eventFormElem.querySelector('[name="date"]').valueAsNumber = clickedEventDate;
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
     openModal();
