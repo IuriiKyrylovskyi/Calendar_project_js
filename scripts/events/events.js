@@ -10,18 +10,19 @@ const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
-  const eventElem = weekElem.querySelectorlAll('.event');
-  if (event.target === eventElem) {
-    // console.log(eventElem);
+	
+  if (event.target.classList.contains('event') || event.target.closest('.event')) {
+    console.log('clicked');
     return;
   }
 
   const calendarDayElem = event.target.closest('.calendar__day');
 
-  const abd = calendarDayElem.dataset.fullDate.replaceAll('.', '/');
-  console.log(calendarDayElem.dataset.fullDate.replaceAll('.', '/'));
+  // const abd = calendarDayElem.dataset.fullDate.replaceAll('.', '/');
+  // console.log(calendarDayElem.dataset.fullDate.replaceAll('.', '/'));
+  // console.log(new Date(calendarDayElem.dataset.fullDate).getFullYear());
 
-  const formatter = new Intl.DateTimeFormat('en', { month: 'numeric' });
+  // const formatter = new Intl.DateTimeFormat('en', { month: 'numeric' });
   const date = calendarDayElem.dataset.fullDate;
   // console.log(formatter.format(date));
   console.log(new Date(date).getFullYear());
@@ -33,7 +34,7 @@ function handleTimeSlotClick(event) {
   console.log(clickedStartTimeSlotElem);
 
   const clickedEndTimeSlotElem =
-    (+event.target.dataset.time + 1).toString().length < 2
+    (+event.target.dataset.time + 1).toLocalString().length < 2
       ? `0${(+event.target.dataset.time + 1).toString()}`
       : (+event.target.dataset.time + 1).toString();
   console.log(clickedEndTimeSlotElem);
@@ -48,9 +49,9 @@ function handleTimeSlotClick(event) {
     // eventFormElem.querySelector('[name="description"]').value = 'Add description';
     // const dateRender = getDisplayedMonth()
 
-    eventFormElem.querySelector('[name="date"]').value = new Date(
-      // calendarDayElem.dataset.fullDate,
-      abd,
+    eventFormElem.querySelector('[name="date"]').valueAsDate = new Date(
+      calendarDayElem.dataset.fullDate,
+      // abd,
     );
 
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
