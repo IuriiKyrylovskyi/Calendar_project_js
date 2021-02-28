@@ -18,6 +18,7 @@ function handleTimeSlotClick(event) {
   const calendarDayElem = event.target.closest('.calendar__day');
 
   const formatter = new Intl.DateTimeFormat('en-CA', {
+    // for local time display
     day: 'numeric',
     month: 'numeric',
     year: 'numeric',
@@ -44,8 +45,8 @@ function handleTimeSlotClick(event) {
     eventFormElem.querySelector('[name="date"]').valueAsNumber = new Date(clickedEventDate);
     eventFormElem.querySelector('[name="startTime"]').value = `${clickedStartTimeSlotElem}:00`;
     eventFormElem.querySelector('[name="endTime"]').value = `${clickedEndTimeSlotElem}:00`;
-    
-		openModal();
+
+    openModal();
   }
 }
 
@@ -158,10 +159,16 @@ function onDeleteEvent() {
 
   const events = getItem('events');
   const eventIdToDelete = getItem('eventIdToDelete');
+
   // console.log(events);
   // console.log(eventIdToDelete);
 
-  const deleteEvent = events.filter(ev => ev.id !== eventIdToDelete);
+  const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
+  console.log(new Date());
+  console.log(minsToEvent(new Date()));
+  const deleteEvent = events.filter(
+    ev => ev.id !== eventIdToDelete && minsToEvent(eventIdToDelete) <= ev.start,
+  );
   // console.log(deleteEvent);
 
   setItem('events', deleteEvent);
