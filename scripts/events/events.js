@@ -164,10 +164,10 @@ function onDeleteEvent() {
   // console.log(eventIdToDelete);
 
   const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
-  console.log(new Date());
-  console.log(minsToEvent(new Date()));
+  console.log(+new Date());
+  console.log(+minsToEvent(new Date()));
   const deleteEvent = events.filter(
-    ev => ev.id !== eventIdToDelete && minsToEvent(eventIdToDelete) <= ev.start,
+    ev => ev.id !== eventIdToDelete, //&& +minsToEvent(new Date()) <= +ev.start,
   );
   // console.log(deleteEvent);
 

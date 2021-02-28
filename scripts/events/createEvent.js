@@ -3,11 +3,12 @@ import { renderEvents } from './events.js';
 import { getDateTime } from '../common/time.utils.js';
 import { closeModal } from '../common/modal.js';
 
+import shmoment from '../common/shmoment.js';
+
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
 
 function clearEventForm() {
-
   const getTime = new Intl.DateTimeFormat('en', {
     hour: 'numeric',
     minute: 'numeric',
@@ -20,10 +21,7 @@ function clearEventForm() {
   eventFormElem.querySelector('[name="description"]').value = 'Add description';
   eventFormElem.querySelector('[name="date"]').valueAsDate = new Date();
   eventFormElem.querySelector('[name="startTime"]').value = `${getTime.format(new Date())}`;
-	eventFormElem.querySelector('[name="endTime"]').value = `${getTime.format(new Date())}`;
-	
-
-	
+  eventFormElem.querySelector('[name="endTime"]').value = `${getTime.format(new Date())}`;
 }
 
 function onCloseEventForm() {
@@ -59,18 +57,23 @@ function onCreateEvent(event) {
     ),
   };
   // console.log(newEvent);
+  console.log(+newEvent.start);
+  console.log(+newEvent.end);
   const eventsArr = getItem('events');
   // console.log(eventsArr);
   // console.log(typeof eventsArr);
+  const maxEventRange = shmoment(newEvent.start).add('hours', 6).result();
+  if (+newEvent.start < +newEvent.end && +maxEventRange >= +newEvent.end) {
+    eventsArr.push(newEvent);
+    // console.log(eventsArr);
 
-  eventsArr.push(newEvent);
-  // console.log(eventsArr);
+    setItem('events', eventsArr);
+  }
 
-  setItem('events', eventsArr);
   // console.log(getItem('events'));
 
-	onCloseEventForm();
-	
+  onCloseEventForm();
+
   renderEvents();
 }
 
