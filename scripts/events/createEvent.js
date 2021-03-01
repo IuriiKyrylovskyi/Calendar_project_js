@@ -35,7 +35,8 @@ function checkEventExist(newEventStart, newEventEnd) {
   const eventRange = events.filter(
     event =>
       (event.start <= newEventStart && event.end >= newEventStart) ||
-      (event.start <= newEventEnd && event.end >= newEventEnd),
+      (event.start <= newEventEnd && event.end >= newEventEnd) ||
+      (event.start >= newEventStart && event.end <= newEventEnd),
     // ||
     // (event.start <= newEventEnd && event.end >= newEventEnd),
   );
