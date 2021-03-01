@@ -36,7 +36,10 @@ function checkEventExist(newEventStart, newEventEnd) {
     event =>
       (event.start <= newEventStart && event.end >= newEventStart) ||
       (event.start <= newEventEnd && event.end >= newEventEnd),
+    // ||
+    // (event.start <= newEventEnd && event.end >= newEventEnd),
   );
+  console.log(eventRange.length);
   return eventRange.length;
 }
 
