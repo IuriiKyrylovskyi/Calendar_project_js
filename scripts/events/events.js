@@ -104,9 +104,17 @@ const createEventElement = event => {
   eventTimeElem.classList.add('event__time');
   eventTimeElem.textContent = `
     ${new Date(event.start).getHours()}:
-    ${new Date(event.start).getMinutes()} - 
+    ${
+      new Date(event.start).getMinutes() > 10
+        ? new Date(event.start).getMinutes()
+        : '0' + new Date(event.start).getMinutes()
+    } - 
     ${new Date(event.end).getHours()}:
-    ${new Date(event.end).getMinutes()}
+    ${
+      new Date(event.end).getMinutes() > 10
+        ? new Date(event.end).getMinutes()
+        : '0' + new Date(event.end).getMinutes()
+    }
     `;
   // console.log(eventTimeElem);
 
