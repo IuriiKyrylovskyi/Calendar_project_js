@@ -53,8 +53,13 @@ const renderTimeLine = () => {
   // currentHour.innerHTML = timeLineElem;
   // // console.log(currentHour);
 
+  deleteTimeLine();
+
   const timeLineElem = document.createElement('div');
   timeLineElem.classList.add('current-time');
+  // if (timeLineElem) {
+  //   currentHour.remove(timeLineElem);
+  // }
   timeLineElem.style.top = ` ${getCurrentTime.getMinutes()}px`;
 
   currentHour.append(timeLineElem);
