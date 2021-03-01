@@ -30,6 +30,18 @@ function onCloseEventForm() {
   clearEventForm();
 }
 
+function checkEventExist(newEventStart, newEventEnd) {
+  const events = getItem('events');
+  const eventRange = events.filter(
+    event =>
+      event.start <= newEventStart &&
+      event.end >= newEventStart &&
+      event.start <= newEventEnd &&
+      event.end >= newEventEnd,
+  );
+  return eventRange.length;
+}
+
 function onCreateEvent(event) {
   // + задача этой ф-ции только добавить новое событие в массив событий, что хранится в storage
   // + создавать или менять DOM элементы здесь не нужно. Этим займутся другие ф-ции
@@ -56,6 +68,12 @@ function onCreateEvent(event) {
       eventFormElem.querySelector('[name="endTime"]').value,
     ),
   };
+
+  if (checkEventExist(newEvent.start, newEvent.end)) {
+    onCloseEventForm();
+    return;
+  }
+
   // console.log(+newEvent.start);
   // console.log(+newEvent.end);
   const eventsArr = getItem('events');
