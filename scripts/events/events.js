@@ -171,12 +171,13 @@ function onDeleteEvent() {
   // console.log(events);
   // console.log(eventIdToDelete);
 
-  const minsToEvent = date => shmoment(date).add('minutes', 15).result();
+  const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
   // console.log(+minsToEvent);
-  const deletedEvent = events.find(ev =>
-    ev.id === eventIdToDelete && +minsToEvent(ev.start) <= +new Date() ? ev : closePopup(),
+  const deletedEvent = events.find(
+    ev => ev.id === eventIdToDelete && +minsToEvent(ev.start) <= Date.now(),
   );
   if (!deletedEvent) {
+    closePopup();
     return;
   }
   // console.log(deletedEvent.id);
