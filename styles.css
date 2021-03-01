@@ -184,14 +184,14 @@
   margin: 0px 0px 0px 2px;
 }
 
+.icon-button {
+  margin: 0px 10px 0px 0px;
+}
+
 .header {
   display: flex;
   align-items: center;
   margin: 10px 50px 5px 50px;
-}
-
-.icon-button {
-  margin: 0px 10px 0px 0px;
 }
 
 .calendar {
@@ -250,10 +250,6 @@
   font-size: 20px;
 }
 
-.current {
-  background-color: #518fe0;
-}
-
 .calendar__time-scale {
   height: 100%;
 }
@@ -280,13 +276,15 @@ span[data-time-slot-time="0"] {
   position: relative;
   max-width: 550px;
   min-width: 400px;
-  padding: 30px 20px 20px 40px;
+  padding: 30px 20px 20px 60px;
 }
+
 .event-form {
   display: flex;
   flex-direction: column;
 }
 .event-form__time {
+  position: relative;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -295,12 +293,11 @@ span[data-time-slot-time="0"] {
 .event-form__time input + input {
   margin-left: 15px;
 }
-.event-form__time input:before, .event-form__time input:after {
-  content: "";
-  display: none;
-}
-.event-form textarea {
-  border: none;
+.event-form__time svg {
+  position: absolute;
+  left: -30px;
+  width: 20px;
+  height: 20px;
 }
 .event-form__submit-btn {
   flex: 0 0 40px;
@@ -346,6 +343,7 @@ textarea[name=description] {
   overflow-y: auto;
   appearance: none;
 }
+
 .event {
   position: absolute;
   z-index: 5;
@@ -361,6 +359,11 @@ textarea[name=description] {
 .event__title {
   margin-bottom: 15px;
 }
+
+.current {
+  background-color: #518fe0;
+}
+
 * {
   box-sizing: border-box;
 }

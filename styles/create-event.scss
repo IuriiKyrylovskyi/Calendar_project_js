@@ -3,18 +3,17 @@
 	position: relative;
 	max-width: 550px;
 	min-width: 400px;
-	padding: 30px 20px 20px 40px;
-	&__close-btn {
-	}
+	padding: 30px 20px 20px 60px;
+	
 }
 .event-form {
 	display: flex;
 	flex-direction: column;
 
-	&__field {
-	}
+	
 
 	&__time {
+		position: relative;
 		display: flex;
 		justify-content: space-between;
 		font-size: 14px;
@@ -22,17 +21,15 @@
 		input + input {
 			margin-left: 15px;
 		}
-		input {
-			&:before,
-			&:after {
-				content: "";
-				display: none;
-			}
+		
+		svg {
+			position: absolute;
+			left: -30px;
+			width: 20px;
+			height: 20px;
 		}
 	}
-	textarea {
-		border: none;
-	}
+
 	&__submit-btn {
 		flex: 0 0 40px;
 		width: 150px;
@@ -67,7 +64,7 @@ input[name="date"] {
 }
 input[name="startTime"],
 input[name="endTime"] {
-  width: 69px;
+	width: 69px;
 }
 
 textarea[name="description"] {
@@ -78,7 +75,4 @@ textarea[name="description"] {
 	resize: none;
 	overflow-y: auto;
 	appearance: none;
-
-	&:focus {
-	}
 }
