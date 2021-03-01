@@ -22,7 +22,7 @@ const generateDay = () => {
 
 const deleteTimeLine = () => {
   const currentTimeElems = document.querySelectorAll('.current-time');
-  console.log(currentTimeElems.length);
+  // console.log(currentTimeElems.length);
   currentTimeElems.forEach(line => {
     line.remove();
     return line;
@@ -48,15 +48,22 @@ const renderTimeLine = () => {
   }
   // currentHour.innerHTML = '';
 
-  const timeLineElem = `<div class="current-time" style="top:${getCurrentTime.getMinutes()}px;"></div>`;
+  // const timeLineElem = `<div class="current-time" style="top:${getCurrentTime.getMinutes()}px;"></div>`;
 
-  currentHour.innerHTML = timeLineElem;
-  // console.log(currentHour);
+  // currentHour.innerHTML = timeLineElem;
+  // // console.log(currentHour);
+
+  const timeLineElem = document.createElement('div');
+  timeLineElem.classList.add('current-time');
+  timeLineElem.style.top = ` ${getCurrentTime.getMinutes()}px`;
+
+  currentHour.append(timeLineElem);
+
   return currentHour;
 };
 
 const timeLineTimeOut = () => {
-  const secondsToMin = 59 - new Date().getSeconds();
+  const secondsToMin = -new Date().getSeconds();
   // console.log(secondsToMin);
   setTimeout(() => {
     // console.log('again');
