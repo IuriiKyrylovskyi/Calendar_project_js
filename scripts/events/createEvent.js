@@ -40,7 +40,7 @@ function checkEventExist(newEventStart, newEventEnd) {
     // ||
     // (event.start <= newEventEnd && event.end >= newEventEnd),
   );
-  console.log(eventRange.length);
+  // console.log(eventRange.length);
   return eventRange.length;
 }
 

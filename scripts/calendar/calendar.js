@@ -126,7 +126,7 @@ export const renderWeek = () => {
 
   const getCurrentDate = () =>
     currentWeekDays.filter(day => day.toLocaleDateString() === new Date().toLocaleDateString());
-  console.log(getCurrentDate());
+  // console.log(getCurrentDate());
 
   if (!getCurrentDate().length) {
     // console.log('false');
