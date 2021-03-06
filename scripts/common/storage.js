@@ -31,14 +31,22 @@ let storage = {
 };
 
 export const setItem = (key, value) => {
-  // + ф -ция должна устанавливать значения в объект storage
-  Object.assign(storage, { [key]: value });
+  localStorage.setItem(key, JSON.stringify(value));
+  // Object.assign(storage, { [key]: value });
 };
 
-export const getItem = key => {
-  // + ф-ция должна возвращать по ключу значения из объекта storage
-  return storage[key];
-};
+export const getItem = key => JSON.parse(localStorage.getItem(key));
+
+
+// export const setItem = (key, value) => {
+//   // + ф -ция должна устанавливать значения в объект storage
+//   Object.assign(storage, { [key]: value });
+// };
+
+// export const getItem = key => {
+//   // + ф-ция должна возвращать по ключу значения из объекта storage
+//   return storage[key];
+// };
 
 // пример объекта события
 const eventExample = {

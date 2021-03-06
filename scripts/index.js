@@ -15,3 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initEventForm();
 });
+
+
+const onStorageChange = e => {
+  // if (e.key === 'tasksList') {
+  //   console.log(e.key);
+  //   renderTasks();
+  // }
+};
+window.addEventListener('storage', onStorageChange);

@@ -135,7 +135,7 @@ export const renderEvents = () => {
 
   removeEventsFromCalendar();
 
-  const events = getItem('events');
+  const events = getItem('events') || [];
   const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
 
   // console.log(events);
