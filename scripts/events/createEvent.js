@@ -1,4 +1,4 @@
-import { getItem, setItem } from '../common/storage.js';
+import { getEvents, setItem } from '../common/storage.js';
 import { renderEvents } from './events.js';
 import { getDateTime } from '../common/time.utils.js';
 import { closeModal } from '../common/modal.js';
@@ -31,7 +31,7 @@ function onCloseEventForm() {
 }
 
 function checkEventExist(newEventStart, newEventEnd) {
-  const events = getItem('events');
+  const events = getEvents();
   const eventRange = events.filter(
     event =>
       (event.start <= newEventStart && event.end >= newEventStart) ||
@@ -76,7 +76,7 @@ function onCreateEvent(event) {
 
   // console.log(+newEvent.start);
   // console.log(+newEvent.end);
-  const eventsArr = getItem('events');
+  const eventsArr = getEvents();
   // console.log(eventsArr);
   // console.log(typeof eventsArr);
   const maxEventRange = shmoment(newEvent.start).add('hours', 6).result();

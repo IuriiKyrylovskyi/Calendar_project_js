@@ -1,4 +1,9 @@
-import { getItem, setItem } from '../common/storage.js';
+import {
+  getDisplayedWeekStart,
+  getEventIdToDelete,
+  getEvents,
+  setItem,
+} from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 
@@ -135,8 +140,8 @@ export const renderEvents = () => {
 
   removeEventsFromCalendar();
 
-  const events = getItem('events') || [];
-  const mondayDate = new Date(getItem('displayedWeekStart')); // .getDate
+  const events = getEvents() || [];
+  const mondayDate = getDisplayedWeekStart(); // .getDate
 
   // console.log(events);
 
@@ -165,8 +170,8 @@ function onDeleteEvent() {
   // + закрыть попап
   // + перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
 
-  const events = getItem('events');
-  const eventIdToDelete = getItem('eventIdToDelete');
+  const events = getEvents();
+  const eventIdToDelete = getEventIdToDelete();
 
   // console.log(events);
   // console.log(eventIdToDelete);

@@ -1,4 +1,4 @@
-import { getItem } from '../common/storage.js';
+import { getDisplayedWeekStart } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 import { renderEvents } from '../events/events.js';
 import { createNumbersArray } from '../common/createNumbersArray.js';
@@ -90,7 +90,7 @@ export const renderWeek = () => {
   // console.log(typeof generateDay());
   const calendarWeekElem = document.querySelector('.calendar__week');
 
-  const startDate = getItem('displayedWeekStart');
+  const startDate = getDisplayedWeekStart();
   // console.log(startDate);
 
   const currentWeekDays = generateWeekRange(startDate);

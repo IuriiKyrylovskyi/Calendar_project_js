@@ -1,17 +1,19 @@
-import { getItem, setItem } from '../common/storage.js';
+import { getDisplayedWeekStart, setItem } from '../common/storage.js';
 import { renderWeek } from '../calendar/calendar.js';
 import { getStartOfWeek, getDisplayedMonth } from '../common/time.utils.js';
 import { renderHeader } from '../calendar/header.js';
 
 const navElem = document.querySelector('.navigation');
 
-function renderCurrentMonth() {
-	// + отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
-  // + вставить в .navigation__displayed-month
-	const displayedMonthElem = document.querySelector('.navigation__displayed-month');
+const displayedWeekStart = getDisplayedWeekStart();
 
-  console.log(getItem('displayedWeekStart'));
-  const currentMonth = getDisplayedMonth(getItem('displayedWeekStart'));
+function renderCurrentMonth() {
+  // + отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
+  // + вставить в .navigation__displayed-month
+  const displayedMonthElem = document.querySelector('.navigation__displayed-month');
+
+  console.log(displayedWeekStart);
+  const currentMonth = getDisplayedMonth(displayedWeekStart);
   console.log(currentMonth);
 
   displayedMonthElem.textContent = currentMonth;
@@ -24,7 +26,7 @@ const onChangeWeek = event => {
 
   const isButton = event.target.closest('button');
 
-  const startOfWeek = getStartOfWeek(getItem('displayedWeekStart'));
+  const startOfWeek = getStartOfWeek(displayedWeekStart);
 
   let uploadWeekStart = 0;
 
@@ -58,7 +60,7 @@ const onChangeWeek = event => {
     startOfWeek.setDate(uploadWeekStart);
     // console.log(startOfWeek);
     setItem('displayedWeekStart', startOfWeek);
-    // console.log(getItem('displayedWeekStart'));
+    // console.log(getDisplayedWeekStart);
   }
   if (isButton.dataset.direction === 'prev') {
     uploadWeekStart = startOfWeek.getDate() - 7;
@@ -66,12 +68,12 @@ const onChangeWeek = event => {
     startOfWeek.setDate(uploadWeekStart);
     // console.log(startOfWeek);
     setItem('displayedWeekStart', startOfWeek);
-    // console.log(getItem('displayedWeekStart'));
+    // console.log(getDisplayedWeekStart);
   }
   if (isButton.dataset.direction === 'today') {
     // console.log(new Date(Date.now()).getDate());
     setItem('displayedWeekStart', getStartOfWeek(new Date(Date.now())));
-    // console.log(getItem('displayedWeekStart'));
+    // console.log(getDisplayedWeekStart);
   }
   renderHeader();
   renderWeek();
