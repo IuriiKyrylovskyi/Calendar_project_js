@@ -11,7 +11,7 @@ import { renderEvents } from './events/events.js';
 const onStorageChange = e => {
   if (e.key === 'events') {
 		renderEvents();
-    console.log(e.key);
+    // console.log(e.key);
   }
 };
 window.addEventListener('storage', onStorageChange);

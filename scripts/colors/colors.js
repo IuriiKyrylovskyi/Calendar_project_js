@@ -1,7 +1,7 @@
-const updateTasksColor = e => {
+export const updateTasksColor = e => {
   document.querySelectorAll('.event').forEach(task => {
     task.style.backgroundColor = e.target.value;
-    // return task;
+    return task;
   });
 };
 
