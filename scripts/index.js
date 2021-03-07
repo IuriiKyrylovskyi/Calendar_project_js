@@ -6,11 +6,11 @@ import { setItem } from './common/storage.js';
 import { getStartOfWeek } from './common/time.utils.js';
 import { initEventForm } from './events/createEvent.js';
 
-import { initEvents } from './events/events.js';
+// import { initEvents } from './events/events.js';
 
 const onStorageChange = e => {
   if (e.key === 'events') {
-    initEvents();
+    // initEvents();
     console.log(e.key);
     //   renderTasks();
   }
