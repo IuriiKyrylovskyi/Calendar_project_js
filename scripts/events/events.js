@@ -143,7 +143,7 @@ export const renderEvents = () => {
   const events = getEvents() || [];
   const mondayDate = getDisplayedWeekStart(); // .getDate
 
-  // console.log(events);
+  console.log(events);
 
   events
     .filter(

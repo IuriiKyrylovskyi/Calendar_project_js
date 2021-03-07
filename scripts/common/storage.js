@@ -38,8 +38,16 @@ export const setItem = (key, value) => {
 const getItem = key => JSON.parse(localStorage.getItem(key));
 
 export const getDisplayedWeekStart = () => new Date(getItem('displayedWeekStart'));
-export const getEventIdToDelete = () => getItem('eventIdToDelete');
-export const getEvents = () => getItem('events');
+console.log(new Date(getItem('displayedWeekStart')));
+export const getEventIdToDelete = () => Number(getItem('eventIdToDelete'));
+export const getEvents = () => {
+  const events = getItem('events') || [];
+  return events.map(event => ({
+    ...event,
+    start: new Date(event.start),
+    end: new Date(event.end),
+  }));
+};
 
 // export const setItem = (key, value) => {
 //   // + ф -ция должна устанавливать значения в объект storage
