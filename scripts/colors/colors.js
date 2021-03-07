@@ -1,6 +1,7 @@
 export const updateTasksColor = e => {
   document.querySelectorAll('.event').forEach(task => {
     task.style.backgroundColor = e.target.value;
+    console.log(task);
     return task;
   });
 };
@@ -8,4 +9,6 @@ export const updateTasksColor = e => {
 // const colorInputElem = document.querySelector('[type="color"]');
 const colorInputElem = document.querySelector('#color');
 
-colorInputElem.addEventListener('change', updateTasksColor);
+if (colorInputElem) {
+	colorInputElem.addEventListener('change', updateTasksColor);
+}
