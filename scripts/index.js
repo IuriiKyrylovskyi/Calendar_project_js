@@ -6,13 +6,12 @@ import { setItem } from './common/storage.js';
 import { getStartOfWeek } from './common/time.utils.js';
 import { initEventForm } from './events/createEvent.js';
 
-// import { initEvents } from './events/events.js';
+import { renderEvents } from './events/events.js';
 
 const onStorageChange = e => {
   if (e.key === 'events') {
-    // initEvents();
+		renderEvents();
     console.log(e.key);
-    //   renderTasks();
   }
 };
 window.addEventListener('storage', onStorageChange);
@@ -25,7 +24,4 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHeader();
   initNavigation();
   initEventForm();
-
-  // localStorage.getItem('events');
-  // initEvents();
 });

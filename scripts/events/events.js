@@ -199,8 +199,4 @@ weekElem.addEventListener('click', handleEventClick);
 
 weekElem.addEventListener('click', handleTimeSlotClick);
 
-// export const initEvents = () => {
-//   deleteEventBtn.addEventListener('click', onDeleteEvent);
-//   weekElem.addEventListener('click', handleEventClick);
-//   weekElem.addEventListener('click', handleTimeSlotClick);
-// };
+

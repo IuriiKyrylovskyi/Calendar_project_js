@@ -38,10 +38,10 @@ export const setItem = (key, value) => {
 const getItem = key => JSON.parse(localStorage.getItem(key));
 
 export const getDisplayedWeekStart = () => new Date(getItem('displayedWeekStart'));
-console.log(new Date(getItem('displayedWeekStart')));
+// console.log(typeof getItem('displayedWeekStart'));
 export const getEventIdToDelete = () => Number(getItem('eventIdToDelete'));
 export const getEvents = () => {
-  const events = getItem('events') || [];
+  const events = getItem('events');
   return events.map(event => ({
     ...event,
     start: new Date(event.start),
