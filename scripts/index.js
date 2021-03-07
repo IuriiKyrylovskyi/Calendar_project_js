@@ -6,21 +6,26 @@ import { setItem } from './common/storage.js';
 import { getStartOfWeek } from './common/time.utils.js';
 import { initEventForm } from './events/createEvent.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // инициализация всех элементов
-    renderTimescale();
-    setItem('displayedWeekStart', getStartOfWeek(new Date()));
-    renderWeek();
-    renderHeader();
-    initNavigation();
-    initEventForm();
-});
-
+import { initEvents } from './events/events.js';
 
 const onStorageChange = e => {
-  // if (e.key === 'tasksList') {
-  //   console.log(e.key);
-  //   renderTasks();
-  // }
+  if (e.key === 'events') {
+    initEvents();
+    console.log(e.key);
+    //   renderTasks();
+  }
 };
 window.addEventListener('storage', onStorageChange);
+
+document.addEventListener('DOMContentLoaded', () => {
+  // инициализация всех элементов
+  renderTimescale();
+  setItem('displayedWeekStart', getStartOfWeek(new Date()));
+  renderWeek();
+  renderHeader();
+  initNavigation();
+  initEventForm();
+
+  // localStorage.getItem('events');
+  // initEvents();
+});

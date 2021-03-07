@@ -4,15 +4,15 @@ import { getStartOfWeek, getDisplayedMonth } from '../common/time.utils.js';
 import { renderHeader } from '../calendar/header.js';
 
 const navElem = document.querySelector('.navigation');
-const displayedMonthElem = document.querySelector('.navigation__displayed-month');
 
 function renderCurrentMonth() {
-  // + отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
+	// + отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
   // + вставить в .navigation__displayed-month
+	const displayedMonthElem = document.querySelector('.navigation__displayed-month');
 
+  console.log(getItem('displayedWeekStart'));
   const currentMonth = getDisplayedMonth(getItem('displayedWeekStart'));
-  // console.log(currentMonth);
-  // console.log(getItem('displayedWeekStart'));
+  console.log(currentMonth);
 
   displayedMonthElem.textContent = currentMonth;
   // console.log(displayedMonthElem);
