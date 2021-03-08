@@ -9,7 +9,7 @@ import { initEventForm } from './events/createEvent.js';
 import { renderEvents } from './events/events.js';
 
 const onStorageChange = e => {
-  if (e.key === 'events') {
+  if (e.key === 'events' || e.key === 'bgcolor') {
     renderEvents();
     // console.log(e.key);
   }

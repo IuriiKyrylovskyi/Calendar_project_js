@@ -1,17 +1,11 @@
-export const updateTasksColor = e => {
-  document.querySelectorAll('.event').forEach(task => {
-    task.style.backgroundColor = e.target.value;
-    console.log(task);
-    return task;
-  });
+const updateTasksColor = e => {
+  localStorage.setItem('bgcolor', e.target.value);
 };
 
 // const colorInputElem = document.querySelector('[type="color"]');
 const colorInputElem = document.querySelector('#color');
 
-if (colorInputElem) {
-  colorInputElem.addEventListener('change', updateTasksColor);
-}
+colorInputElem.addEventListener('change', updateTasksColor);
 
 // const onStorageChange = e => {
 //    document.querySelectorAll('.event').forEach(task => {
@@ -20,3 +14,7 @@ if (colorInputElem) {
 //    });
 // };
 // window.addEventListener('storage', onStorageChange);
+
+// const defaultColor = '#518fe0';
+
+// localStorage.setItem('bgcolor', defaultColor);

@@ -8,10 +8,12 @@ import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 
 import { openModal } from '../common/modal.js';
-import { updateTasksColor } from '../colors/colors.js';
+// import { updateTasksColor } from '../colors/colors.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
+
+// const colorInputElem = document.querySelector('#color');
 
 function handleTimeSlotClick(event) {
   const eventFormElem = document.querySelector('.event-form');
@@ -130,6 +132,16 @@ const createEventElement = event => {
   return eventElem;
 };
 
+const updateTasksColor = e => {
+	document.querySelectorAll('.event').forEach(task => {
+		const defaultColor = '#518fe0';
+    task.style.backgroundColor = localStorage.getItem('bgcolor') || defaultColor;
+    console.log(task);
+    return task;
+  });
+};
+
+
 export const renderEvents = () => {
   // + достаем из storage все события и дату понедельника отображаемой недели
   // + фильтруем события, оставляем только те, что входят в текущую неделю
@@ -144,7 +156,7 @@ export const renderEvents = () => {
   const events = getEvents();
   const mondayDate = getDisplayedWeekStart(); // .getDate
 
-  updateTasksColor();
+  // updateTasksColor();
 
   // console.log(events);
 
@@ -166,7 +178,7 @@ export const renderEvents = () => {
       return date;
     });
 
-  // updateTasksColor();
+  updateTasksColor();
 };
 
 function onDeleteEvent() {
@@ -203,4 +215,5 @@ deleteEventBtn.addEventListener('click', onDeleteEvent);
 weekElem.addEventListener('click', handleEventClick);
 
 weekElem.addEventListener('click', handleTimeSlotClick);
+
 
