@@ -10,7 +10,7 @@ import { renderEvents } from './events/events.js';
 
 const onStorageChange = e => {
   if (e.key === 'events') {
-		renderEvents();
+    renderEvents();
     // console.log(e.key);
   }
 };

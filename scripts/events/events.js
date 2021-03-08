@@ -141,7 +141,7 @@ export const renderEvents = () => {
 
   removeEventsFromCalendar();
 
-  const events = getEvents() || [];
+  const events = getEvents();
   const mondayDate = getDisplayedWeekStart(); // .getDate
 
   updateTasksColor();
@@ -166,7 +166,7 @@ export const renderEvents = () => {
       return date;
     });
 
-  updateTasksColor();
+  // updateTasksColor();
 };
 
 function onDeleteEvent() {

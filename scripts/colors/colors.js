@@ -10,5 +10,13 @@ export const updateTasksColor = e => {
 const colorInputElem = document.querySelector('#color');
 
 if (colorInputElem) {
-	colorInputElem.addEventListener('change', updateTasksColor);
+  colorInputElem.addEventListener('change', updateTasksColor);
 }
+
+// const onStorageChange = e => {
+//    document.querySelectorAll('.event').forEach(task => {
+//      task.style.backgroundColor = e.target.value;
+//      // console.log(task);
+//    });
+// };
+// window.addEventListener('storage', onStorageChange);
