@@ -134,8 +134,8 @@ const createEventElement = event => {
 
 const updateTasksColor = e => {
 	document.querySelectorAll('.event').forEach(task => {
-		const defaultColor = '#518fe0';
-    task.style.backgroundColor = localStorage.getItem('bgcolor') || defaultColor;
+		const defaultBgColor = '#518fe0';
+    task.style.backgroundColor = localStorage.getItem('bgColor') || defaultBgColor;
     console.log(task);
     return task;
   });
