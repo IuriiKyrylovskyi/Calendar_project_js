@@ -194,29 +194,44 @@ function onDeleteEvent(eventIdToDelete) {
   // console.log(eventIdToDelete);
   // console.log(handleEventClick());
 
-	const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
-	// console.log(+minsToEvent);
-  
-	const clickedEvent = getEvent(eventIdToDelete);
-  console.log(clickedEvent);
-  const clickedEventStart = clickedEvent.then(res => new Date(res.start)).then(res => res);
-  clickedEventStart.then(res => console.log(res));
-   console.log(clickedEventStart);// clickedEventStart.then(res => console.log(res));
+  const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
+  // console.log(+minsToEvent);
 
-  const deletedEvent = event => (+minsToEvent(clickedEventStart) <= Date.now() ? event : false);
-
-  if (deletedEvent() === false) {
-    closePopup();
-    return;
-  }
-  // console.log(deletedEvent.id);
-  deleteEvent(eventIdToDelete)
+  getEvent(eventIdToDelete)
+    .then(ev => {
+      if (minsToEvent(ev.start) > Date.now()) {
+        closePopup();
+        return;
+      }
+      ev;
+    })
+    .then(() => deleteEvent(eventIdToDelete))
     .then(() => getEventsList())
     .then(newEvents => {
       setItem('events', newEvents);
       closePopup();
       renderEvents();
     });
+  // console.log(clickedEvent);
+  // const clickedEventStart = clickedEvent.then(res => new Date(res.start)).then(res => res);
+  // clickedEventStart.then(res => console.log(res));
+  // console.log(clickedEventStart); // clickedEventStart.then(res => console.log(res));
+
+  // const deletedEvent = event => (+minsToEvent(clickedEventStart) <= Date.now() ? event : false);
+
+  // if (deletedEvent() === false) {
+  //   closePopup();
+  //   return;
+  // }
+  // // console.log(deletedEvent.id);
+
+  // deleteEvent(eventIdToDelete)
+  //   .then(() => getEventsList())
+  //   .then(newEvents => {
+  //     setItem('events', newEvents);
+  //     closePopup();
+  //     renderEvents();
+  //   });
 
   // setItem('events', renewEvents);
   // closePopup();
@@ -229,11 +244,12 @@ function handleEventClick(event) {
   const clickedEvent = event.target.classList.contains('event')
     ? event.target
     : event.target.closest('.event');
-  if (clickedEvent) {
-    openPopup(event.clientX, event.clientY);
-
-    eventId = +clickedEvent.getAttribute('data-event-id');
+  if (!clickedEvent) {
+    return;
   }
+  openPopup(event.clientX, event.clientY);
+
+  eventId = +clickedEvent.getAttribute('data-event-id');
   // console.log(eventId);
   onDeleteEvent(eventId);
 }
@@ -242,7 +258,8 @@ function handleEventClick(event) {
 //   deleteEvent(handleEventClick).then(() => afterDeleteEvent());
 // }
 
-deleteEventBtn.addEventListener('click', onDeleteEvent);
+// deleteEventBtn.addEventListener('click', onDeleteEvent);
+deleteEventBtn.addEventListener('click', handleEventClick);
 
 weekElem.addEventListener('click', handleEventClick);
 
