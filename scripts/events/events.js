@@ -9,6 +9,7 @@ import { openPopup, closePopup } from '../common/popup.js';
 
 import { openModal } from '../common/modal.js';
 // import { updateTasksColor } from '../colors/colors.js';
+import { getEventsList, getEvent, deleteEvent } from '../ajax/eventsGateway.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -58,28 +59,28 @@ function handleTimeSlotClick(event) {
   }
 }
 
-function handleEventClick(event) {
-  // + если произошел клик по событию, то нужно паказать попап с кнопкой удаления
-  // + установите eventIdToDelete с id события в storage
+// function handleEventClick(event) {
+//   // + если произошел клик по событию, то нужно паказать попап с кнопкой удаления
+//   // + установите eventIdToDelete с id события в storage
 
-  const clickedEvent = event.target.classList.contains('event')
-    ? event.target
-    : event.target.closest('.event');
-  if (clickedEvent) {
-    openPopup(event.clientX, event.clientY);
+//   const clickedEvent = event.target.classList.contains('event')
+//     ? event.target
+//     : event.target.closest('.event');
+//   if (clickedEvent) {
+//     openPopup(event.clientX, event.clientY);
 
-    // const eventId = +clickedEvent.dataset.eventId;
-    const eventId = +clickedEvent.getAttribute('data-event-id');
-    // console.log(eventId);
-    setItem('eventIdToDelete', eventId);
-  }
-}
+//     // const eventId = +clickedEvent.dataset.eventId;
+//     const eventId = +clickedEvent.getAttribute('data-event-id');
+//     console.log(eventId);
+//     setItem('eventIdToDelete', eventId);
+//   }
+// }
 
-function removeEventsFromCalendar() {
-  // + ф-ция для удаления всех событий с календаря
-  const eventsFromCalendar = document.querySelectorAll('.event');
-  eventsFromCalendar.forEach(event => event.remove());
-}
+// function removeEventsFromCalendar() {
+//   // + ф-ция для удаления всех событий с календаря
+//   const eventsFromCalendar = document.querySelectorAll('.event');
+//   eventsFromCalendar.forEach(event => event.remove());
+// }
 
 const createEventElement = event => {
   // + ф-ция создает DOM элемент события
@@ -132,7 +133,7 @@ const createEventElement = event => {
   return eventElem;
 };
 
-const updateTasksColor = e => {
+const updateTasksColor = () => {
   document.querySelectorAll('.event').forEach(task => {
     const defaultBgColor = '#518fe0';
     task.style.backgroundColor = localStorage.getItem('bgColor') || defaultBgColor;
@@ -150,7 +151,7 @@ export const renderEvents = () => {
   // + каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
   // + не забудьте удалить с календаря старые события перед добавлением новых
 
-  removeEventsFromCalendar();
+  // removeEventsFromCalendar();
 
   const events = getEvents();
   const mondayDate = getDisplayedWeekStart(); // .getDate
@@ -180,34 +181,66 @@ export const renderEvents = () => {
   updateTasksColor();
 };
 
-function onDeleteEvent() {
+function onDeleteEvent(eventIdToDelete) {
   // + достаем из storage массив событий и eventIdToDelete
   // + удаляем из массива нужное событие и записываем в storage новый массив
   // + закрыть попап
   // + перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
 
-  const events = getEvents();
-  const eventIdToDelete = getEventIdToDelete();
+  // const events = getEvents();
+  // const eventIdToDelete = getEventIdToDelete();
 
   // console.log(events);
   // console.log(eventIdToDelete);
+  // console.log(handleEventClick());
 
-  const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
-  // console.log(+minsToEvent);
-  const deletedEvent = events.find(
-    ev => ev.id === eventIdToDelete && +minsToEvent(ev.start) <= Date.now(),
-  );
-  if (!deletedEvent) {
+	const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
+	// console.log(+minsToEvent);
+  
+	const clickedEvent = getEvent(eventIdToDelete);
+  console.log(clickedEvent);
+  const clickedEventStart = clickedEvent.then(res => new Date(res.start)).then(res => res);
+  clickedEventStart.then(res => console.log(res));
+   console.log(clickedEventStart);// clickedEventStart.then(res => console.log(res));
+
+  const deletedEvent = event => (+minsToEvent(clickedEventStart) <= Date.now() ? event : false);
+
+  if (deletedEvent() === false) {
     closePopup();
     return;
   }
   // console.log(deletedEvent.id);
-  const renewEvents = events.filter(ev => ev.id !== deletedEvent.id);
+  deleteEvent(eventIdToDelete)
+    .then(() => getEventsList())
+    .then(newEvents => {
+      setItem('events', newEvents);
+      closePopup();
+      renderEvents();
+    });
 
-  setItem('events', renewEvents);
-  closePopup();
-  renderEvents();
+  // setItem('events', renewEvents);
+  // closePopup();
+  // renderEvents();
 }
+
+function handleEventClick(event) {
+  let eventId = 0;
+
+  const clickedEvent = event.target.classList.contains('event')
+    ? event.target
+    : event.target.closest('.event');
+  if (clickedEvent) {
+    openPopup(event.clientX, event.clientY);
+
+    eventId = +clickedEvent.getAttribute('data-event-id');
+  }
+  // console.log(eventId);
+  onDeleteEvent(eventId);
+}
+
+// function removeEventsFromCalendar() {
+//   deleteEvent(handleEventClick).then(() => afterDeleteEvent());
+// }
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 

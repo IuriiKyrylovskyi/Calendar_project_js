@@ -32,7 +32,7 @@ function onCloseEventForm() {
 }
 
 function checkEventExist(newEventStart, newEventEnd) {
-  // const events = getEvents();
+  // const events = getEvents(); ++++++++++
 	const events = getEventsList();
 	// console.log(events.then(response => console.log(response)));
 	const eventRange = events
@@ -80,12 +80,12 @@ function onCreateEvent(event) {
 
   // console.log(+newEvent.start);
   // console.log(+newEvent.end);
-  // const eventsArr = getEvents();
+  // const eventsArr = getEvents(); // +++++
   // console.log(eventsArr);
   // console.log(typeof eventsArr);
   const maxEventRange = shmoment(newEvent.start).add('hours', 6).result();
   if (+newEvent.start < +newEvent.end && +maxEventRange >= +newEvent.end) {
-    // eventsArr.push(newEvent);
+    // eventsArr.push(newEvent); // +++++
     // console.log(eventsArr);
 		createEvent(newEvent)
       .then(() => getEventsList())
@@ -94,12 +94,12 @@ function onCreateEvent(event) {
         onCloseEventForm();
         renderEvents();
       });
-    // setItem('events', eventsArr);
+    // setItem('events', eventsArr); // ++++ 
   }
 
-  // console.log(getItem('events'));
+  // console.log(getItem('events')); // +++++
 
-  // onCloseEventForm();
+  // onCloseEventForm(); // +++++
 
   // renderEvents();
 }
