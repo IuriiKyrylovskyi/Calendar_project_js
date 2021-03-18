@@ -133,14 +133,13 @@ const createEventElement = event => {
 };
 
 const updateTasksColor = e => {
-	document.querySelectorAll('.event').forEach(task => {
-		const defaultBgColor = '#518fe0';
+  document.querySelectorAll('.event').forEach(task => {
+    const defaultBgColor = '#518fe0';
     task.style.backgroundColor = localStorage.getItem('bgColor') || defaultBgColor;
     // console.log(task);
     return task;
   });
 };
-
 
 export const renderEvents = () => {
   // + достаем из storage все события и дату понедельника отображаемой недели
@@ -215,5 +214,3 @@ deleteEventBtn.addEventListener('click', onDeleteEvent);
 weekElem.addEventListener('click', handleEventClick);
 
 weekElem.addEventListener('click', handleTimeSlotClick);
-
-
