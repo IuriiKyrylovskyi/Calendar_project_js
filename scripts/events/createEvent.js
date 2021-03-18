@@ -1,4 +1,5 @@
 import { getEvents, setItem } from '../common/storage.js';
+import { getEventsList, createEvent } from '../ajax/eventsGateway.js';
 import { renderEvents } from './events.js';
 import { getDateTime } from '../common/time.utils.js';
 import { closeModal } from '../common/modal.js';
@@ -31,13 +32,16 @@ function onCloseEventForm() {
 }
 
 function checkEventExist(newEventStart, newEventEnd) {
-  const events = getEvents();
-  const eventRange = events.filter(
+  // const events = getEvents();
+	const events = getEventsList();
+	// console.log(events.then(response => console.log(response)));
+	const eventRange = events
+		.then(arr=> arr.filter(
     event =>
       (event.start <= newEventStart && event.end >= newEventStart) ||
       (event.start <= newEventEnd && event.end >= newEventEnd) ||
       (event.start >= newEventStart && event.end <= newEventEnd),
-  );
+  ));
   // console.log(eventRange.length);
   return eventRange.length;
 }
@@ -76,22 +80,28 @@ function onCreateEvent(event) {
 
   // console.log(+newEvent.start);
   // console.log(+newEvent.end);
-  const eventsArr = getEvents();
+  // const eventsArr = getEvents();
   // console.log(eventsArr);
   // console.log(typeof eventsArr);
   const maxEventRange = shmoment(newEvent.start).add('hours', 6).result();
   if (+newEvent.start < +newEvent.end && +maxEventRange >= +newEvent.end) {
-    eventsArr.push(newEvent);
+    // eventsArr.push(newEvent);
     // console.log(eventsArr);
-
-    setItem('events', eventsArr);
+		createEvent(newEvent)
+      .then(() => getEventsList())
+      .then(newEventsArr => {
+        setItem('events', newEventsArr);
+        onCloseEventForm();
+        renderEvents();
+      });
+    // setItem('events', eventsArr);
   }
 
   // console.log(getItem('events'));
 
-  onCloseEventForm();
+  // onCloseEventForm();
 
-  renderEvents();
+  // renderEvents();
 }
 
 export function initEventForm() {
@@ -102,3 +112,9 @@ export function initEventForm() {
   eventFormElem.addEventListener('submit', onCreateEvent);
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
 }
+
+// 1. prepare data -  const newEvent = {}
+// 2. write data to db
+// 3. read new data from server
+// 4. save new data to front-end storage
+// 5. update ui based on new data

@@ -13,9 +13,9 @@ function renderCurrentMonth() {
   const displayedMonthElem = document.querySelector('.navigation__displayed-month');
 	const displayedWeekStart = getDisplayedWeekStart();
 
-  console.log(displayedWeekStart);
+  // console.log(displayedWeekStart);
   const currentMonth = getDisplayedMonth(displayedWeekStart);
-  console.log(currentMonth);
+  // console.log(currentMonth);
 
   displayedMonthElem.textContent = currentMonth;
   // console.log(displayedMonthElem);

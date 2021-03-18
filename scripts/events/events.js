@@ -136,7 +136,7 @@ const updateTasksColor = e => {
 	document.querySelectorAll('.event').forEach(task => {
 		const defaultBgColor = '#518fe0';
     task.style.backgroundColor = localStorage.getItem('bgColor') || defaultBgColor;
-    console.log(task);
+    // console.log(task);
     return task;
   });
 };
