@@ -1,4 +1,6 @@
-const baseUrl = 'https://6053a1fc45e4b300172921fc.mockapi.io/events';
+// const baseUrl = 'https://6053a1fc45e4b300172921fc.mockapi.io/events';
+const baseUrl = 'https://crudcrud.com/api/204582c34b4145edb0a63e830a5a8b99';
+// const baseUrl = 'https://en6yng154ojdfnf.m.pipedream.net';
 
 // const mapevents = events => events.map(({ _id, ...rest }) => ({ ...rest, id: _id }));
 

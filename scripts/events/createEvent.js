@@ -60,7 +60,7 @@ function onCreateEvent(event) {
   event.preventDefault();
 
   const newEvent = {
-    id: Date.now(),
+    // id: Date.now(), +++
     title: eventFormElem.querySelector('[name="title"]').value,
     description: eventFormElem.querySelector('[name="description"]').value,
     start: getDateTime(
