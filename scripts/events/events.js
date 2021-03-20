@@ -191,8 +191,8 @@ function onDeleteEvent() {
 	const events = getEvents();
   const eventIdToDelete = getEventIdToDelete();
 
-  console.log(events);
-  console.log(eventIdToDelete);
+  // console.log(events);
+  // console.log(eventIdToDelete);
 
   const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
   // console.log(+minsToEvent);
@@ -200,7 +200,7 @@ function onDeleteEvent() {
     ev => Number(ev.id) === eventIdToDelete && +minsToEvent(ev.start) <= Date.now(),
 	);
 	
-console.log(deletedEvent);
+// console.log(deletedEvent);
 
   if (!deletedEvent) {
     closePopup();
