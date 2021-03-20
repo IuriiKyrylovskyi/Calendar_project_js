@@ -13,16 +13,6 @@ export const getEventsList = () => {
     .catch(() => new Error(alertMessage()));
 };
 
-// export const getEvent = eventId => {
-//   return fetch(`${baseUrl}/${eventId}`)
-//     .then((response, reject) => {
-//       if (!response.ok) reject(response);
-//       return response.json();
-//     })
-//     .catch(() => new Error(alertMessage()));
-// };
-// // .then(events => mapevents(events));
-
 export const createEvent = eventData => {
   return fetch(baseUrl, {
     method: 'POST',
@@ -37,16 +27,6 @@ export const createEvent = eventData => {
     // })
     // .catch(() => new Error(alertMessage()));
 };
-
-// export const updateEvent = (eventId, updatedEventData) => {
-//   return fetch(`${baseUrl}/${eventId}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json;charset=utf-8',
-//     },
-//     body: JSON.stringify(updatedEventData),
-//   });
-// };
 
 export const deleteEvent = eventId => {
   return fetch(`${baseUrl}/${eventId}`, {
