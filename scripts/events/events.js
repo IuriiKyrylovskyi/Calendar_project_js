@@ -8,7 +8,7 @@ import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 
 import { openModal } from '../common/modal.js';
-// import { updateTasksColor } from '../colors/colors.js';
+
 import { getEventsList } from '../ajax/eventsGateway.js';
 
 const weekElem = document.querySelector('.calendar__week');
@@ -133,11 +133,11 @@ const createEventElement = event => {
   return eventElem;
 };
 
-const updateTasksColor = e => {
+const updateTasksColor = () => {
   document.querySelectorAll('.event').forEach(task => {
     const defaultBgColor = '#518fe0';
     task.style.backgroundColor = localStorage.getItem('bgColor') || defaultBgColor;
-    console.log(task);
+    // console.log(task);
     return task;
   });
 };
@@ -153,35 +153,31 @@ export const renderEvents = () => {
 
   removeEventsFromCalendar();
 
-  const events = getEventsList();
+  const events = getEvents();
   const mondayDate = getDisplayedWeekStart(); // .getDate
 
   // updateTasksColor();
 
   // console.log(events);
-  events.then(arr => console.log(arr));
+  // events.then(arr => console.log(arr));
 
   events
-    .then(eventsArr =>
-      eventsArr.filter(
-        event =>
-          // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
-          new Date(event.start).getMonth() === new Date(mondayDate).getMonth() &&
-          new Date(event.start - mondayDate).getDate() <= 7 &&
-          new Date(event.start - mondayDate).getHours() >= 0, // ) / (1000 * 60 * 60 * 24),
-        // (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
-      ),
+    .filter(
+      event =>
+        // console.log(new Date(dayDate.start).getDay(), new Date(mondayDate)),
+        new Date(event.start).getMonth() === new Date(mondayDate).getMonth() &&
+        new Date(event.start - mondayDate).getDate() <= 7 &&
+        new Date(event.start - mondayDate).getHours() >= 0, // ) / (1000 * 60 * 60 * 24),
+      // (event.start - mondayDate >= 0) / (1000 * 60 * 60 * 24),
     )
-    .then(eventsArr =>
-      eventsArr.map(el => {
-        const elem = createEventElement(el);
-        const date = weekElem.querySelector(`[data-day="${new Date(el.start).getDate()}"]`);
-        if (date) {
-          date.querySelector(`[data-time="${new Date(el.start).getHours()}"]`).append(elem);
-        }
-        return date;
-      }),
-    );
+    .map(el => {
+      const elem = createEventElement(el);
+      const date = weekElem.querySelector(`[data-day="${new Date(el.start).getDate()}"]`);
+      if (date) {
+        date.querySelector(`[data-time="${new Date(el.start).getHours()}"]`).append(elem);
+      }
+      return date;
+    });
 
   updateTasksColor();
 };

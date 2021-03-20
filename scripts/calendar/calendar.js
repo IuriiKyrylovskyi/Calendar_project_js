@@ -1,6 +1,6 @@
 import { getDisplayedWeekStart } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
-import { renderEvents } from '../events/events.js';
+// import { renderEvents } from '../events/events.js';
 import { createNumbersArray } from '../common/createNumbersArray.js';
 
 let timeLineInterval = null;
@@ -119,7 +119,7 @@ export const renderWeek = () => {
     timeLineInterval = null;
   }
 
-  renderEvents();
+  // renderEvents(); +++
 
   // const currentWeekDays = generateWeekRange(startDate);
   // console.log(getCurrentTime.toLocaleDateString());

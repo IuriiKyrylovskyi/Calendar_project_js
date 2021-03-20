@@ -19,14 +19,14 @@ window.addEventListener('storage', onStorageChange);
 
 document.addEventListener('DOMContentLoaded', () => {
   // инициализация всех элементов
-	renderTimescale();
-	setItem('displayedWeekStart', getStartOfWeek(new Date()));
-	renderWeek();
-	renderHeader();
-	initNavigation();
-	initEventForm();
-	getEventsList()
-		.then(eventsList => {
+  renderTimescale();
+  setItem('displayedWeekStart', getStartOfWeek(new Date()));
+  renderWeek();
+  renderHeader();
+  initNavigation();
+  initEventForm();
+  getEventsList().then(eventsList => {
     setItem('events', eventsList);
+    renderEvents();
   });
 });

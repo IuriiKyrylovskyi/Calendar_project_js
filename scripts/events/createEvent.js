@@ -32,16 +32,15 @@ function onCloseEventForm() {
 }
 
 function checkEventExist(newEventStart, newEventEnd) {
-  // const events = getEvents(); ++++++++++
-	const events = getEventsList();
-	// console.log(events.then(response => console.log(response)));
-	const eventRange = events
-		.then(arr=> arr.filter(
+  const events = getEvents(); 
+ 
+  const eventRange = events.filter(
     event =>
       (event.start <= newEventStart && event.end >= newEventStart) ||
       (event.start <= newEventEnd && event.end >= newEventEnd) ||
       (event.start >= newEventStart && event.end <= newEventEnd),
-  ));
+  );
+
   // console.log(eventRange.length);
   return eventRange.length;
 }
@@ -60,7 +59,7 @@ function onCreateEvent(event) {
   event.preventDefault();
 
   const newEvent = {
-    // id: Date.now(), +++
+    // id: Date.now(), //+++
     title: eventFormElem.querySelector('[name="title"]').value,
     description: eventFormElem.querySelector('[name="description"]').value,
     start: getDateTime(
@@ -87,14 +86,14 @@ function onCreateEvent(event) {
   if (+newEvent.start < +newEvent.end && +maxEventRange >= +newEvent.end) {
     // eventsArr.push(newEvent); // +++++
     // console.log(eventsArr);
-		createEvent(newEvent)
+    createEvent(newEvent)
       .then(() => getEventsList())
       .then(newEventsArr => {
         setItem('events', newEventsArr);
         onCloseEventForm();
         renderEvents();
       });
-    // setItem('events', eventsArr); // ++++ 
+    // setItem('events', eventsArr); // ++++
   }
 
   // console.log(getItem('events')); // +++++

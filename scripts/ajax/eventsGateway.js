@@ -1,14 +1,25 @@
-// const baseUrl = 'https://6053a1fc45e4b300172921fc.mockapi.io/events';
-const baseUrl = 'https://crudcrud.com/api/204582c34b4145edb0a63e830a5a8b99';
-// const baseUrl = 'https://en6yng154ojdfnf.m.pipedream.net';
+const baseUrl = 'https://6053a1fc45e4b300172921fc.mockapi.io/events';
 
 // const mapevents = events => events.map(({ _id, ...rest }) => ({ ...rest, id: _id }));
 
+const alertMessage = () => alert('Internal Server Error');
+
 export const getEventsList = () => {
-  return fetch(baseUrl).then(response => response.json());
+  return fetch(baseUrl)
+    .then((response, reject) => {
+      if (!response.ok) reject(response);
+      return response.json();
+    })
+    .catch(() => new Error(alertMessage()));
 };
+
 export const getEvent = eventId => {
-  return fetch(`${baseUrl}/${eventId}`).then(response => response.json());
+  return fetch(`${baseUrl}/${eventId}`)
+    .then((response, reject) => {
+      if (!response.ok) reject(response);
+      return response.json();
+    })
+    .catch(() => new Error(alertMessage()));
 };
 // .then(events => mapevents(events));
 
@@ -19,7 +30,12 @@ export const createEvent = eventData => {
       'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(eventData),
-  });
+  })
+    // .then((response, reject) => {
+    //   if (!response.ok) reject(response);
+    //   return response.json();
+    // })
+    // .catch(() => new Error(alertMessage()));
 };
 
 // export const updateEvent = (eventId, updatedEventData) => {
