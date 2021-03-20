@@ -9,7 +9,7 @@ import { openPopup, closePopup } from '../common/popup.js';
 
 import { openModal } from '../common/modal.js';
 
-import { getEventsList } from '../ajax/eventsGateway.js';
+import { getEventsList, deleteEvent } from '../ajax/eventsGateway.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -188,27 +188,40 @@ function onDeleteEvent() {
   // + закрыть попап
   // + перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
 
-  const events = getEvents();
+	const events = getEvents();
   const eventIdToDelete = getEventIdToDelete();
 
-  // console.log(events);
-  // console.log(eventIdToDelete);
+  console.log(events);
+  console.log(eventIdToDelete);
 
   const minsToEvent = date => shmoment(date).subtract('minutes', 15).result();
   // console.log(+minsToEvent);
   const deletedEvent = events.find(
-    ev => ev.id === eventIdToDelete && +minsToEvent(ev.start) <= Date.now(),
-  );
+    ev => Number(ev.id) === eventIdToDelete && +minsToEvent(ev.start) <= Date.now(),
+	);
+	
+console.log(deletedEvent);
+
   if (!deletedEvent) {
     closePopup();
     return;
   }
   // console.log(deletedEvent.id);
-  const renewEvents = events.filter(ev => ev.id !== deletedEvent.id);
 
-  setItem('events', renewEvents);
-  closePopup();
-  renderEvents();
+	deleteEvent(eventIdToDelete)
+    .then(() => getEventsList())
+    .then(newEvents => {
+      setItem('events', newEvents);
+      closePopup();
+			renderEvents();
+			// console.log();
+    });
+
+  // const renewEvents = events.filter(ev => ev.id !== deletedEvent.id);
+
+  // setItem('events', renewEvents);
+  // closePopup();
+  // renderEvents();
 }
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
